@@ -1,43 +1,199 @@
 import React from 'react'
 import '../Styles/Cart.css'
+import redeem from '../Images/redeem.png'
+import coupan from '../Images/coupan.png'
+import { Heading } from '@chakra-ui/react'
+import {
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    useDisclosure,
+    Button
+} from '@chakra-ui/react'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
 export default function Cart() {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const [data, setData] = useState([])
+    console.log(data)
+
+    const getData = async () => {
+        await fetch(`https://confused-crab-glasses.cyclic.app/cartproducts`, {
+            headers: {
+                "Authorization": localStorage.getItem('token')
+            }
+        })
+            .then((res) => res.json())
+            .then((res) => setData(res))
+            .catch((err) => console.log(err))
+
+    }
+
+    useEffect(() => {
+        getData()
+    }, [])
+
+    const deleteFunc = async (id) => {
+        try {
+            await fetch(`https://confused-crab-glasses.cyclic.app/cartproducts/delete/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-type": "application/json"
+                }
+            }).then((res) => res.json())
+                .then((res) => console.log(res))
+                .then(res => getData())
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     return (
-        <div>
+        <div className='cart-main-container'>
             <img src="https://images.dailyobjects.com/marche/assets/images/other/key-valentines-offer-banners-homepage-desktop.jpg?tr=cm-pad_crop,v-2,w-1440,dpr-2,q-60" alt="" />
             <div className='cart-shopping-bag'>
                 <h1>SHOPPING BAG</h1>
             </div>
             <div className='cart-prod-main-div'>
                 <div className='cart-prod-child1'>
-                    <div className='cart-child1-card-div'>
-                        <div>
-                            <img src="https://images.dailyobjects.com/marche/product-images/1106/red-blue-zine-airtag-case-square-images/Red-Blue-Zine-AirTag-Key-Ring-Holder-Square.png?tr=cm-pad_resize,v-2,w-134,h-164,dpr-2,q-60" alt="" />
-                        </div>
-                        <div>
-                            <p>title</p>
-                            <h4>Rs.499</h4>
-                            <div className='cart-quntity-btn-box'>
-                                <div className='cart-plus-minus'>
-                                    <div>
-                                        <button>-</button>
-                                    </div>
-                                    <div>
-                                        <p>1</p>
-                                    </div>
-                                    <div>
-                                        <button>+</button>
-                                    </div>
-                                </div>
-                                <div className=''>
+                    {
+                        data && data.map((ele) => <div key={ele._id} className='cart-child1-card-div'>
+                            <div>
+                                <img src={ele.image} alt="" />
+                            </div>
+                            <div>
+                                <p>{ele.title}</p>
+                                <div style={{ display: "flex", gap: "20px" }}>
 
+                                    <h4>Rs.499</h4> <p style={{ color: "gray", textDecoration: "line-through" }}>{ele.discount}</p>
+                                </div>
+                                <div className='cart-quntity-btn-box'>
+                                    <div className='cart-plus-minus'>
+                                        <div>
+                                            <button>-</button>
+                                        </div>
+                                        <div>
+                                            <p>{ele.quantity}</p>
+                                        </div>
+                                        <div>
+                                            <button>+</button>
+                                        </div>
+                                    </div>
+                                    <div></div>
+                                    <button className='cart-delete-btn' onClick={() => deleteFunc(ele._id)}>
+                                        <img src="https://images.dailyobjects.com/marche/icons/bin.png?tr=cm-pad_resize,v-2,w-20,dpr-2,q-60" alt="" />
+                                    </button>
                                 </div>
                             </div>
+                        </div>)
+                    }
+                </div>
+                <div className='cart-prod-child2'>
+                    <div>
+                        <hr />
+                        <details>
+                            <summary>
+                                <img className='coupan-image' src={coupan} alt="" />
+                                <img className='coupan-arrow' src="https://www.iconpacks.net/icons/2/free-arrow-down-icon-3101-thumb.png" alt="" />
+                            </summary>
+                            <div className='coupan-apply-box'>
+                                <input type="text" placeholder='Type coupan code here...' />
+                                <h2>APPLY</h2>
+                            </div>
+                            <div className='offert-on-your-cart'>
+                                <h3>ADDITIONAL OFFERS ON YOUR CART</h3>
+                                <p>◦ Buy Any 3 Apple Watchbands @ Rs.2499 Only</p>
+                                <p>◦ Buy Any 3 Universal Watchbands @ Rs.999 Only</p>
+                                <p>◦ Buy 1 Get 1 Free On Cases & Sale Category</p>
+                                <p>◦ Free Camper Keychain Clip Set of 2 On Orders Above Rs. 1999</p>
+                                <p>◦ Free Duffle Bag On Orders Above Rs. 2999</p>
+                                <p>◦ Get Assured Cashback Up to Rs. 250 On Orders Above INR 1499 Via MobiKwik</p>
+                            </div>
+                        </details>
+                        <hr />
+                        <details>
+                            <summary>
+                                <img className='coupan-image' src={redeem} alt="" />
+                                <img className='coupan-arrow' src="https://www.iconpacks.net/icons/2/free-arrow-down-icon-3101-thumb.png" alt="" />
+                            </summary>
+                            <h1 className='e-gift-heading'>E-GIFT CARD CREDENTIALS</h1>
+                            <div className='redeem-input-box'>
+                                <input type="text" placeholder='E-Gift Card Number..' />
+                                <input type="text" placeholder='Pin' />
+                            </div>
+                            <button className='redeem-apply-btn'>APPLY</button>
+                        </details>
+                        <hr />
+                    </div>
+                    <div className='order-summary-box'>
+                        <Heading as='h5'>ORDER SUMMARY</Heading>
+                        <div className='order-summary-fle-div'>
+                            <p>Item Total (1 Items)</p>
+                            <Heading size="sm" >Rs.234</Heading>
                         </div>
+                        <div className='order-summary-fle-div'>
+                            <p style={{ color: "#eba194" }}>Discount</p>
+                            <Heading color="#eba194" size="sm" >Rs.1999</Heading>
+                        </div>
+                        <div className='order-summary-fle-div'>
+                            <p>Shipping</p>
+                            <Heading size="sm" color="#eba194" >FREE</Heading>
+                        </div>
+                        <hr />
+                        <div className='order-summary-fle-div'>
+                            <p>Grand Total</p>
+                            <Heading size="sm"  >Rs.2198</Heading>
+                        </div>
+                        <div className='order-summary-fle-div'>
+                            <p>(Inclusive of Taxes)</p>
+                            <Heading size="sm" color="#eba194" >You Saved Rs.1999</Heading>
+                        </div>
+                        <button className='redeem-apply-btn' onClick={onOpen}>CHEKOUT</button>
+
+                        <Modal isOpen={isOpen} onClose={onClose}>
+                            <ModalOverlay />
+                            <ModalContent>
+                                <ModalHeader>ADD NEW ADDRESS</ModalHeader>
+                                <ModalCloseButton />
+                                <ModalBody>
+                                    <div style={{ display: 'flex', gap: "30px" }}>
+                                        <input type="text" placeholder='Full Name*' />
+                                        <input type="text" placeholder='Mobile Number*' />
+                                    </div>
+                                    <input type="text" placeholder='Email Address*' />
+                                    <div style={{ display: 'flex', gap: "30px" }}>
+                                        <input type="text" placeholder='Pincode*' />
+                                        <input type="text" placeholder='City*' />
+                                    </div>
+                                    <div style={{ display: 'flex', gap: "30px" }}>
+                                        <input type="text" placeholder='State*' />
+                                        <input type="text" placeholder='Country*' />
+                                    </div>
+                                    <input type="text" placeholder='Flat No/Building , Street Name*' />
+                                    <input type="text" placeholder='Area/Locality*' />
+                                    <input type="text" placeholder='Landmark' />
+                                    <p>PS. Your information is safe with us, No spam.</p>
+
+                                </ModalBody>
+
+                                <ModalFooter>
+                                    <Button className='modal-add-address-btn' bg='#20A87E'>
+                                        ADD ADDRESS
+                                    </Button>
+                                </ModalFooter>
+                            </ModalContent>
+                        </Modal>
+
                     </div>
                 </div>
-                <div className='cart-prod-child2'></div>
             </div>
+            <Heading textAlign="left" ml="10px" mt="20px">RECENTLY VIEWED</Heading>
         </div>
     )
 }
