@@ -1,4 +1,9 @@
+.cart-main-container {
+    padding-bottom: 200px;
+}
+
 .cart-shopping-bag {
+
     /* border-bottom: 1px solid rgb(222, 221, 221); */
     padding: 40px;
 }
@@ -18,15 +23,23 @@
 }
 
 .cart-prod-main-div>div {
-    border: 1px solid red;
+    border: 1px solid rgb(202, 200, 200);
+    padding: 40px;
 }
 
+.cart-prod-child1 {
+    overflow: scroll;
+}
+
+
 .cart-child1-card-div {
-    border: 1px solid green;
+    float: right;
+    border-bottom: 1px solid grey;
     height: 250px;
     display: grid;
-    gap: 40px;
-    grid-template-columns: repeat(2, 30% 60%);
+    /* gap: 40px; */
+    width: 90%;
+    grid-template-columns: repeat(2, 30% 70%);
 }
 
 .cart-child1-card-div>div:nth-child(1) {
@@ -37,31 +50,35 @@
 
 .cart-child1-card-div>div:nth-child(2) {
     text-align: left;
+    padding: 30px;
+
 }
 
 .cart-child1-card-div>div:nth-child(2)>h4 {
     font-weight: bolder;
     font-size: 14px;
+    margin-top: 20px;
 }
 
 .cart-child1-card-div>div>img {
-    width: 80%;
-    border: 1px solid red;
+    width: 100%;
+    /* border: 1px solid red; */
 }
 
 .cart-child1-card-div>div {
-    border: 1px solid blue;
-    height: 100%;
+    /* border: 1px solid blue; */
+    /* padding: 30px; */
 }
 
 .cart-quntity-btn-box {
-    border: 1px solid hotpink;
+    /* border: 1px solid hotpink; */
     display: grid;
-    grid-template-columns: repeat(2, 40% 20%);
+    grid-template-columns: repeat(2, 40% 30% 20%);
+    margin-top: 80px;
 }
 
 .cart-plus-minus {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     height: 40px;
     display: flex;
     justify-content: space-around;
@@ -69,7 +86,7 @@
 }
 
 .cart-plus-minus>div {
-    border: 1px solid grey;
+    border: 1px solid rgb(190, 189, 189);
     height: 100%;
     width: 100%;
     display: flex;
@@ -77,4 +94,152 @@
     align-items: center;
     font-size: larger;
     font-weight: bold;
+}
+
+.cart-delete-btn {
+    /* border: 1px solid gold; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart-delete-btn>img {
+    width: 25%;
+}
+
+.cart-prod-child2 {
+    overflow: scroll;
+}
+
+.cart-prod-child2>div {
+    /* border: 1px solid red; */
+    /* height: 100%; */
+    width: 90%;
+    margin: auto;
+
+}
+
+.coupan-apply-box {
+    /* border: 1px solid red; */
+    background-color: #f7f7f7;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    /* grid-template-columns: repeat(2, 80% 20%); */
+}
+
+.coupan-apply-box>input {
+    width: 90%;
+    padding-left: 20px;
+    background-color: unset;
+    outline: unset;
+}
+
+.coupan-apply-box>h2 {
+    font-weight: bolder;
+    color: #20A87E;
+}
+
+details>summary {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+details>summary::-webkit-details-marker {
+    display: none;
+}
+
+.coupan-image {
+    width: 40%;
+}
+
+.coupan-arrow {
+    width: 20px;
+    height: 20px;
+}
+
+.offert-on-your-cart {
+    margin-top: 20px;
+    background-color: #f7f7f7;
+    text-align: left;
+    padding: 20px 10px;
+}
+
+.offert-on-your-cart>h3 {
+    font-size: 12px;
+    color: #20A87E;
+    font-weight: bolder;
+}
+
+.e-gift-heading {
+    text-align: left;
+    font-weight: bolder;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.redeem-input-box {
+    display: grid;
+    grid-template-columns: repeat(2, 68% 30%);
+    gap: 20px;
+}
+
+.redeem-input-box>input {
+    background-color: #f7f7f7;
+    height: 40px;
+    padding-left: 20px;
+    outline: none;
+    margin-bottom: 20px;
+}
+
+.redeem-apply-btn {
+    background-color: #20A87E;
+    width: 100%;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 50px;
+}
+
+.order-summary-box {
+    /* border: 1px solid red; */
+
+}
+
+.order-summary-box>h5 {
+    font-size: large;
+    font-weight: bolder;
+    color: black;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.order-summary-fle-div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.modal-add-address-btn {
+    margin: auto;
+    width: 100%;
+    color: white;
+}
+
+.chakra-modal__content {
+    /* border: 1px solid red; */
+
+}
+
+.chakra-modal__body input {
+    border-bottom: 1px solid rgb(211, 209, 209);
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    outline: none;
 }
