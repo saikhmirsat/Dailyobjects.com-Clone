@@ -1,7 +1,13 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-const conncetion = mongoose.connect('mongodb://127.0.0.1:27017/dailyobjects')
+mongoose.set('strictQuery', false)
 
-module.exports = {
-    conncetion
-}
+const connectDatabase = () => {
+  mongoose
+    .connect(process.env.Mongodb_URL)
+    .then((data) => {
+      console.log(`Mongodb connected with server: ${data.connection.host}`);
+    })
+};
+
+module.exports = connectDatabase;
