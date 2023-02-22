@@ -1,0 +1,73 @@
+.new-arrival-heading {
+    font-family: 'Trade Gothic LT Pro', sans-serif;
+    letter-spacing: -0.1ch;
+    color: black;
+    padding: 30px;
+    border-bottom: 1px solid rgb(200, 197, 197);
+    margin-bottom: 40px;
+}
+
+.new-arrival-grid-mainbox {
+    /* border: 1px solid red; */
+    width: 60%;
+    margin: auto;
+}
+
+.new-arrival-grid-div {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+    margin: auto;
+}
+
+.new-arrival-grid-div>h1 {
+    letter-spacing: -1;
+    font-weight: bolder;
+}
+
+.new-arrival-grid-circle {
+
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.new-arrival-grid-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-arrival-grid-circle>img {
+    border-radius: 50%;
+    width: 100%;
+}
+
+.new-arrival-grid-circle>h1 {
+    /* font-size: xx-large; */
+    letter-spacing: -0.1;
+}
+
+@media (max-width: 1024px) {
+    .new-arrival-grid-mainbox {
+        width: 90%;
+    }
+}
+
+@media (max-width: 667px) {
+    .new-arrival-grid-mainbox>a {
+        border-bottom: 1px solid rgb(195, 193, 193);
+        display: grid;
+        grid-template-columns: repeat(2, 30% 70%);
+        align-items: center;
+        padding-bottom: 20px;
+    }
+
+    .new-arrival-grid-circle {
+        height: 80px;
+        width: 80px;
+    }
+}
