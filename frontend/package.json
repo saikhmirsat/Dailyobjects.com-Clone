@@ -20,10 +20,9 @@
     "web-vitals": "^2.1.4",
     "apexcharts": "^3.35.0",
     "react-apexcharts": "^1.4.0",
-    "react-circular-progressbar": "^2.0.4"
-
-    "styled-components": "^5.3.6",
-    "web-vitals": "^2.1.4"
+    "react-circular-progressbar": "^2.0.4",
+    "styled-components": "^5.3.6"
+    
 
   },
   "scripts": {
