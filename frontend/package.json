@@ -6,6 +6,8 @@
     "@chakra-ui/icons": "^2.0.17",
     "@chakra-ui/react": "^2.5.1",
     "@emotion/react": "^11.10.6",
+    "@iconscout/react-unicons": "^1.1.6",
+    "@mui/material": "^5.6.0",
     "@emotion/styled": "^11.10.6",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -16,7 +18,14 @@
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+
+    "web-vitals": "^2.1.4",
+    "apexcharts": "^3.35.0",
+    "react-apexcharts": "^1.4.0",
+    "react-circular-progressbar": "^2.0.4",
+    "styled-components": "^5.3.6"
+    
+
   },
   "scripts": {
     "start": "react-scripts start",
