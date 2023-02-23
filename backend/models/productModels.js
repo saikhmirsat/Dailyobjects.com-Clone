@@ -36,8 +36,8 @@ const productSchema=new mongoose.Schema({
     package_content:{
         type:String
     },
-    rating:{
-        type:Number,
+    ratings:{
+        type: Number,
         default:0
     },
     numofReviews:{
@@ -45,7 +45,12 @@ const productSchema=new mongoose.Schema({
         default:0
     },
     reviews:[
-        {
+        {   
+            user:{
+                type:mongoose.Schema.ObjectId,
+                ref:"User",
+                required:true,
+            },
             name:{
                 type:String,
                 required:true
