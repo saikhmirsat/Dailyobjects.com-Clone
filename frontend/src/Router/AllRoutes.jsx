@@ -1,7 +1,10 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Cart from '../Pages/Cart'
+import CheckoutAddress from '../Pages/CheckoutAddress'
+import CheckoutPayment from '../Pages/CheckoutPayment'
 import Home from '../Pages/Home'
+import Loading from '../Pages/Loading'
 import Login from '../Pages/Login'
 import NewArrivals from '../Pages/NewArrivals'
 import ProductsDetails from '../Pages/ProductsDetails'
@@ -16,6 +19,9 @@ export default function AllRoutes() {
             <Route path='/register' element={<Register />}></Route>
             <Route path='/login' element={<Login />}></Route>
             <Route path='/cart' element={<Cart />}></Route>
+            <Route path='/checkout-address' element={<CheckoutAddress />}></Route>
+            <Route path='/checkout-payment' element={<CheckoutPayment />}></Route>
+            <Route path='/loading' element={<Loading />}></Route>
             {/* <Route path='' element={ }></Route> */}
         </Routes>
     )
