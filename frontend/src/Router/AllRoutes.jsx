@@ -4,6 +4,7 @@ import Cart from '../Pages/Cart'
 import Home from '../Pages/Home'
 import Login from '../Pages/Login'
 import NewArrivals from '../Pages/NewArrivals'
+import ProductsDetails from '../Pages/ProductsDetails'
 import Register from '../Pages/Register'
 
 export default function AllRoutes() {
@@ -11,6 +12,7 @@ export default function AllRoutes() {
         <Routes>
             <Route path='/' element={<Home />}></Route>
             <Route path='/newarrivals' element={<NewArrivals />}></Route>
+            <Route path= '/productdetails' element={<ProductsDetails />}></Route>
             <Route path='/register' element={<Register />}></Route>
             <Route path='/login' element={<Login />}></Route>
             <Route path='/cart' element={<Cart />}></Route>
