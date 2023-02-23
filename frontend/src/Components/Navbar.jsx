@@ -4,6 +4,7 @@ import { FaSearch } from 'react-icons/fa'
 import { FiUser } from 'react-icons/fi';
 import { FaShoppingBag } from 'react-icons/fa';
 import "./Navbar.css"
+import { Link } from "react-router-dom";
 
 function Navbar() {
 	const navRef = useRef();
@@ -16,30 +17,30 @@ function Navbar() {
 		<header>
 			<img src="https://images.dailyobjects.com/marche/icons/logo_named.png?tr=cm-pad_resize,v-2,w-135,h-27,dpr-1"></img>
 			<nav ref={navRef}>
-				<a href="/#">NEW ARRIVALS</a>
+				<Link to="/newarrivals">NEW ARRIVALS</Link>
 				<a href="/#">CASES&SLEEVES</a>
 				<a href="/#">ACCESORIES</a>
 				<a href="/#">SALE</a>
-                <a href="/#">BAGS&WALLET</a>
+				<a href="/#">BAGS&WALLET</a>
 				<a href="/#">HOME OFFICE</a>
-                <a href="/#">COLLECTION</a>
+				<a href="/#">COLLECTION</a>
 				<a href="/#">GIFTING</a>
 				<div id="search">
-				
-				<FaShoppingBag />
+
+					<FaShoppingBag />
 				</div>
 				<div id="user">
 					<FiUser />
 				</div>
 				<div id="user">
-				<FaSearch />
+					<FaSearch />
 				</div>
-				
+
 				<button
 					className="nav-btn nav-close-btn"
 					onClick={showNavbar}>
 					<FaTimes />
-					
+
 				</button>
 			</nav>
 			<button className="nav-btn" onClick={showNavbar}>
