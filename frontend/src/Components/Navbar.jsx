@@ -1,3 +1,4 @@
+
 import React from "react"
 import { background, Box,Image ,Text} from "@chakra-ui/react"
 import { EmailIcon,SearchIcon,LockIcon } from "@chakra-ui/icons";
@@ -9,6 +10,16 @@ import Bag from "./SubNavbar/Bag";
 import Home from "./SubNavbar/Home";
 import Collection from "./SubNavbar/Collection";
 import Gift from "./SubNavbar/Gifting";
+
+import { useRef } from "react";
+import { FaBars, FaTimes, FaUser } from "react-icons/fa";
+import { FaSearch } from 'react-icons/fa'
+import { FiUser } from 'react-icons/fi';
+import { FaShoppingBag } from 'react-icons/fa';
+import "./Navbar.css"
+import { Link } from "react-router-dom";
+
+
 
 
 

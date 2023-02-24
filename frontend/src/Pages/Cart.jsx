@@ -19,8 +19,18 @@ import { useState } from 'react'
 
 export default function Cart() {
     const { isOpen, onOpen, onClose } = useDisclosure()
-
     const [data, setData] = useState([])
+
+    const [fullname, setFullname] = useState("")
+    const [phoneNo, setPhoneNo] = useState("")
+    const [pinCode, setPinCode] = useState("")
+    const [city, setCity] = useState("")
+    const [state, setState] = useState("")
+    const [country, setCountry] = useState("")
+    const [address, setAddress] = useState("")
+    const [area, setArea] = useState("")
+    const [landmark, setLandmark] = useState("")
+
     console.log(data)
 
     const getData = async () => {
@@ -51,6 +61,40 @@ export default function Cart() {
                 .then(res => getData())
         } catch (err) {
             console.log(err)
+        }
+    }
+
+    const AddressSubmit = () => {
+        const payload = {
+            fullname,
+            phoneNo,
+            pinCode,
+            city,
+            state,
+            country,
+            address,
+            area,
+            landmark
+        }
+        console.log(payload)
+
+        try {
+            console.log(payload)
+            fetch(`https://odd-pear-scarab-sock.cyclic.app/`, {
+                method: "POST",
+                body: JSON.stringify(payload),
+                headers: {
+                    "Content-type": "application/json"
+                }
+            }).then(res => res.json())
+                .then((res) => {
+                    alert("Address added Successful")
+                    console.log(res)
+                })
+                .catch((err) => console.log(err))
+        } catch (err) {
+            console.log(err)
+            alert("Something Wrong")
         }
     }
 
@@ -163,27 +207,26 @@ export default function Cart() {
                                 <ModalCloseButton />
                                 <ModalBody>
                                     <div style={{ display: 'flex', gap: "30px" }}>
-                                        <input type="text" placeholder='Full Name*' />
-                                        <input type="text" placeholder='Mobile Number*' />
-                                    </div>
-                                    <input type="text" placeholder='Email Address*' />
-                                    <div style={{ display: 'flex', gap: "30px" }}>
-                                        <input type="text" placeholder='Pincode*' />
-                                        <input type="text" placeholder='City*' />
+                                        <input type="text" placeholder='Full Name*' onChange={(e) => setFullname(e.target.value)} />
+                                        <input type="text" placeholder='Mobile Number*' onChange={(e) => setPhoneNo(e.target.value)} />
                                     </div>
                                     <div style={{ display: 'flex', gap: "30px" }}>
-                                        <input type="text" placeholder='State*' />
-                                        <input type="text" placeholder='Country*' />
+                                        <input type="text" placeholder='Pincode*' onChange={(e) => setPinCode(e.target.value)} />
+                                        <input type="text" placeholder='City*' onChange={(e) => setCity(e.target.value)} />
                                     </div>
-                                    <input type="text" placeholder='Flat No/Building , Street Name*' />
-                                    <input type="text" placeholder='Area/Locality*' />
-                                    <input type="text" placeholder='Landmark' />
+                                    <div style={{ display: 'flex', gap: "30px" }}>
+                                        <input type="text" placeholder='State*' onChange={(e) => setState(e.target.value)} />
+                                        <input type="text" placeholder='Country*' onChange={(e) => setCountry(e.target.value)} />
+                                    </div>
+                                    <input type="text" placeholder='Flat No/Building , Street Name*' onChange={(e) => setAddress(e.target.value)} />
+                                    <input type="text" placeholder='Area/Locality*' onChange={(e) => setArea(e.target.value)} />
+                                    <input type="text" placeholder='Landmark' onChange={(e) => setLandmark(e.target.value)} />
                                     <p>PS. Your information is safe with us, No spam.</p>
 
                                 </ModalBody>
 
                                 <ModalFooter>
-                                    <Button className='modal-add-address-btn' bg='#20A87E'>
+                                    <Button className='modal-add-address-btn' bg='#20A87E' onClick={AddressSubmit}>
                                         ADD ADDRESS
                                     </Button>
                                 </ModalFooter>
@@ -193,7 +236,7 @@ export default function Cart() {
                     </div>
                 </div>
             </div>
-            <Heading textAlign="left" ml="10px" mt="20px">RECENTLY VIEWED</Heading>
+            {/* <Heading textAlign="left" ml="10px" mt="20px">RECENTLY VIEWED</Heading> */}
         </div>
     )
 }
