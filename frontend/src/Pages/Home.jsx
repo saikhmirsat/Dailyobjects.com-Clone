@@ -31,7 +31,7 @@ export default function Home() {
                 breakpoint: 667,
                 settings: {
                     slidesToShow: 2,
-                    slidesToScroll: 2,
+                    slidesToScroll: 1,
                     initialSlide: 2
                 }
             }
@@ -40,7 +40,6 @@ export default function Home() {
 
     return (
         <div>
-            <h1>Home</h1>
             <Link to='/'>
                 <img src="https://images.dailyobjects.com/marche/assets/images/other/watchbands-desktops.jpg?tr=cm-pad_crop,v-2,dpr-2,q-60" alt="" />
             </Link>
@@ -94,7 +93,7 @@ export default function Home() {
             <div style={{ marginTop: '20px' }}>
                 <img src="https://images.dailyobjects.com/marche/assets/images/other/messenger-bags-desktops.jpg?tr=cm-pad_crop,v-2,dpr-2,q-60" alt="" />
             </div>
-            <Heading textAlign='left' ml='2.5%' m='30px'>STUDIO COLLECTIONS</Heading>
+            <Heading fontSize={{ base: '20px', md: '30px', lg: '30px' }} textAlign='left' ml={{ base: '10px', md: '20px', lg: '30px' }} m='30px'>STUDIO COLLECTIONS</Heading>
             <div className='home-3rd-container'>
                 <div className='home-3rd-con-div'>
                     <img src="https://images.dailyobjects.com/marche/assets/images/other/dremscape-banner-mob-02.jpg?tr=cm-pad_crop,v-2,dpr-2,q-60" alt="" />

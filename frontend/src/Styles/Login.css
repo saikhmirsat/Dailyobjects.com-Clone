@@ -1,18 +1,11 @@
 #login-main-cont {
-    border: 1px solid red;
-    padding: 30px;
+    /* border: 1px solid red; */
+    /* padding: 30px; */
 }
 
-#login-main-cont>img {
-    width: 10%;
-    /* border: 1px solid green; */
-    margin: auto;
-    margin-bottom: 30px;
-}
 
-.login-div {
-    border: 2px solid #20a87e;
-    width: 40%;
+
+/* .login-div {
     margin: auto;
     padding: 20px;
 }
@@ -20,7 +13,6 @@
 .login-div>Input {
     border: 1px solid grey;
     margin-bottom: 15px;
-    /* outline-color: #20a87e; */
 }
 
 
@@ -36,4 +28,11 @@
 
 .login-div>h3 {
     margin-bottom: 20px;
+} */
+
+@media (max-width: 1024px) {
+    .login-div {
+        /* border: 1px solid red; */
+        padding: 0px;
+    }
 }
