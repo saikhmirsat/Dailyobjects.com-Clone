@@ -1,3 +1,16 @@
+
+import React from "react"
+import { background, Box,Image ,Text} from "@chakra-ui/react"
+import { EmailIcon,SearchIcon,LockIcon } from "@chakra-ui/icons";
+import NewArrival from "./SubNavbar/NewArrival";
+import Cases from "./SubNavbar/CasesSleeve";
+import Acces from "./SubNavbar/Accessories";
+import Sale from "./SubNavbar/Sale.jsx";
+import Bag from "./SubNavbar/Bag";
+import Home from "./SubNavbar/Home";
+import Collection from "./SubNavbar/Collection";
+import Gift from "./SubNavbar/Gifting";
+
 import { useRef } from "react";
 import { FaBars, FaTimes, FaUser } from "react-icons/fa";
 import { FaSearch } from 'react-icons/fa'
@@ -6,48 +19,43 @@ import { FaShoppingBag } from 'react-icons/fa';
 import "./Navbar.css"
 import { Link } from "react-router-dom";
 
-function Navbar() {
-	const navRef = useRef();
 
-	const showNavbar = () => {
-		navRef.current.classList.toggle("responsive_nav");
-	};
 
-	return (
-		<header>
-			<img src="https://images.dailyobjects.com/marche/icons/logo_named.png?tr=cm-pad_resize,v-2,w-135,h-27,dpr-1"></img>
-			<nav ref={navRef}>
-				<Link to="/newarrivals">NEW ARRIVALS</Link>
-				<a href="/#">CASES&SLEEVES</a>
-				<a href="/#">ACCESORIES</a>
-				<a href="/#">SALE</a>
-				<a href="/#">BAGS&WALLET</a>
-				<a href="/#">HOME OFFICE</a>
-				<a href="/#">COLLECTION</a>
-				<a href="/#">GIFTING</a>
-				<div id="search">
 
-					<FaShoppingBag />
-				</div>
-				<div id="user">
-					<FiUser />
-				</div>
-				<div id="user">
-					<FaSearch />
-				</div>
 
-				<button
-					className="nav-btn nav-close-btn"
-					onClick={showNavbar}>
-					<FaTimes />
 
-				</button>
-			</nav>
-			<button className="nav-btn" onClick={showNavbar}>
-				<FaBars />
-			</button>
-		</header>
-	);
-}
 
-export default Navbar;
+const Navbar = () => {
+
+  
+  return (
+    <Box display="flex" height="100px" mt="30px" ml="40px">
+      <Box width="300px" height="70px"  mt="10px">
+        <Image src="https://images.dailyobjects.com/marche/icons/logo_named.png?tr=cm-pad_resize,v-2,w-135,h-27,dpr-1"></Image>
+      </Box>
+      <Box display={"flex"} justifyContent="space-between" width="750px" height="70px" ml="50px">
+		<NewArrival />
+        <Cases />
+		<Acces />
+		<Sale />
+        <Bag />
+		<Home />
+    <Collection />
+    <Gift />
+   
+        
+      </Box>
+
+      <Box  width="200px" display="flex" gap={"20px"} ml="250px">
+        <Box ><EmailIcon /></Box>
+        <Box><LockIcon /></Box>
+        <Box><SearchIcon /></Box>
+
+
+
+
+      </Box>
+    </Box>
+   ) }
+
+export default Navbar
