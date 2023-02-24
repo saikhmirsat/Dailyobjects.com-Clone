@@ -116,3 +116,32 @@
 .home-4th-container>div>a {
     text-decoration: underline;
 }
+
+@media (max-width: 1024px) {
+    .home-2nd-con-child-1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .slick-slider button:nth-child(1) {
+        width: 30px;
+        height: 30px;
+    }
+
+    .slick-slider button:nth-child(3) {
+        width: 30px;
+        height: 30px;
+        right: 10px;
+    }
+
+}
+
+@media (max-width: 667px) {
+    .home-2nd-container {
+        display: none;
+        /* grid-template-columns: repeat(1, 1fr); */
+    }
+
+    .home-2nd-con-child-2 {}
+}
