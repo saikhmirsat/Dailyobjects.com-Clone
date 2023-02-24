@@ -43,9 +43,9 @@
 		width: 15%;
 	}
 
-	.Hamburger-box>button {
-		/* border: 1px solid green; */
-	}
+	
+		
+	
 
 	.hamburger-catagories-box {
 		border: 1px solid rgb(229, 228, 228);
@@ -113,10 +113,7 @@
 		width: 20%;
 	}
 
-	.Hamburger-box>button {
-		/* border: 1px solid green; */
-	}
-
+	
 	.hamburger-catagories-box {
 		border: 1px solid rgb(229, 228, 228);
 		display: grid;

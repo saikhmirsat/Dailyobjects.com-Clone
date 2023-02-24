@@ -1,9 +1,8 @@
 
 import './App.css';
+import Footer from './Components/Footer';
 
 // import AllRoutes from './Router/AllRoutes';
-import Navbar from './Components/Navbar'
-import AllRoutes from './Router/AllRoutes';
 // import Admin from './Components/Admin/Admin';
 
 
@@ -12,8 +11,8 @@ import AllRoutes from './Router/AllRoutes';
 function App() {
   return (
     <div className="App">
-      <Navbar />
-      <AllRoutes />
+     <Footer />
+     
     </div>
   );
 }
