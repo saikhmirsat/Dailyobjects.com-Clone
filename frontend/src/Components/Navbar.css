@@ -1,104 +1,155 @@
-@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;700&display=swap");
+.navbar {
 
-* {
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
-	/* font-family: "Titillium Web", sans-serif; */
-	font-size: small;
-	font-weight: 700;
-	
-}
-
-:root {
-	/* --mainColor: #29335c; */
-	--mainColorLight: #5767aa;
-	--secondaryColor: #db2b39;
-	--textColor:"black";
-    
-}
-
-/* header {
+	/* height: 50px; */
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	height: 80px;
-	padding: 0 2rem;
-	background-color: var(--mainColor);
-	color: var(--textColor);
-} */
-
-nav a {
-	margin: 0 1rem;
-	color: var(--textColor);
-	text-decoration: none;
+	padding: 5px 20px;
 }
 
-nav a:hover {
-	color: var(--secondaryColor);
+.normal-navbar {
+
+	width: 100%;
 }
 
-header .nav-btn {
-	padding: 5px;
-	cursor: pointer;
-	background: transparent;
-	border: none;
-	outline: none;
-	color: var(--textColor);
-	visibility: hidden;
-	opacity: 0;
-	font-size: 1.8rem;
+.Hamburger-box {
+	display: none;
 }
 
-header div,
-nav {
-	display: flex;
-	align-items: center;
-}
-
-@media only screen and (max-width: 1024px) {
-	header .nav-btn {
-		visibility: visible;
-		opacity: 1;
+@media (max-width: 1024px) {
+	.navbar {
+		padding: unset;
 	}
 
-	header nav {
-		position: fixed;
-		top: 0;
-		left: 0;
-		height: 100%;
+	.normal-navbar {
+		display: none;
+	}
+
+	.Hamburger-box {
+		display: flex;
+		width: 100%;
+	}
+
+	.hamburger-nav {
+		/* border: 1px solid red; */
 		width: 100%;
 		display: flex;
-		flex-direction: column;
+		justify-content: space-between;
 		align-items: center;
-		justify-content: center;
-		gap: 1.5rem;
-		background-color: var(--mainColor);
-		transition: 1s;
-		transform: translateY(-100vh);
+		border-bottom: 1px solid rgb(191, 190, 190);
+		padding: 10px 15px;
 	}
 
-	header .responsive_nav {
-		transform: none;
+	.Hamburger-box .hamburger-log {
+		width: 15%;
 	}
 
-	nav .nav-close-btn {
-		position: absolute;
-		top: 2rem;
-		right: 2rem;
+	.Hamburger-box>button {
+		/* border: 1px solid green; */
 	}
 
-	nav a {
-		font-size: 1.5rem;
-        
+	.hamburger-catagories-box {
+		border: 1px solid rgb(229, 228, 228);
+		display: grid;
+		grid-template-columns: repeat(3, 20% 70% 5%);
+		gap: 10px;
+		align-items: center;
+		margin-bottom: 10px;
 	}
+
+	.hamburger-catagories-box>img {
+		width: 90%;
+	}
+
+	.hamburger-catagories-brand {
+		border: 1px solid rgb(209, 207, 207);
+		height: 70px;
+		margin-bottom: -15px;
+		width: 100%;
+		background-color: rgb(222, 221, 221);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	.hamburger-catagories-release {
+		border: 1px solid rgb(209, 207, 207);
+		background-color: rgb(222, 221, 221);
+		width: 100%;
+		height: 70px;
+		display: flex;
+		align-items: center;
+		padding-left: 20px;
+	}
+
 }
 
-#search{
-	margin-left: 100px;
-	
-}
-#user{
-	margin-left: 15px;
-	
+@media (max-width: 667px) {
+	.navbar {
+		padding: unset;
+	}
+
+	.normal-navbar {
+		display: none;
+	}
+
+	.Hamburger-box {
+		display: flex;
+		width: 100%;
+	}
+
+	.hamburger-nav {
+		/* border: 1px solid red; */
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		border-bottom: 1px solid rgb(191, 190, 190);
+		padding: 10px 15px;
+	}
+
+	.Hamburger-box .hamburger-log {
+		width: 20%;
+	}
+
+	.Hamburger-box>button {
+		/* border: 1px solid green; */
+	}
+
+	.hamburger-catagories-box {
+		border: 1px solid rgb(229, 228, 228);
+		display: grid;
+		grid-template-columns: repeat(3, 20% 70% 5%);
+		gap: 10px;
+		align-items: center;
+		margin-bottom: 10px;
+	}
+
+	.hamburger-catagories-box>img {
+		width: 90%;
+	}
+
+	.hamburger-catagories-brand {
+		border: 1px solid rgb(209, 207, 207);
+		height: 70px;
+		margin-bottom: -15px;
+		width: 100%;
+		background-color: rgb(222, 221, 221);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	.hamburger-catagories-release {
+		border: 1px solid rgb(209, 207, 207);
+		background-color: rgb(222, 221, 221);
+		width: 100%;
+		height: 70px;
+		display: flex;
+		align-items: center;
+		padding-left: 20px;
+	}
 }

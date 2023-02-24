@@ -1,11 +1,23 @@
 #register-main-cont {
-    /* border: 1px solid red; */
-    padding: 30px;
+    /* border: 1px solid green; */
+    width: 100%;
+    /* padding: 30px; */
+}
+@media (max-width: 1024px){
+    
 }
 
+@media (max-width: 667px) {
+    #register-main-cont {
+        /* border: 1px solid blue; */
+        width: 100%;
+    }
+}
+
+/*
 #register-main-cont>img {
     width: 10%;
-    /* border: 1px solid green; */
+    
     margin: auto;
     margin-bottom: 30px;
 }
@@ -40,9 +52,9 @@ input[type="date"]::before {
     color: #999;
     content: attr(placeholder);
     margin-right: 122px;
-}
+} */
 
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
     .register-div {
         width: 98%;
     }
@@ -61,4 +73,4 @@ input[type="date"]::before {
         padding: 10px;
     }
 
-}
+} */
