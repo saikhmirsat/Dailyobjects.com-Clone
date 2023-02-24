@@ -1,5 +1,15 @@
 .Product-details-modal-list>li{
     font-size: 15px;
     font-weight: 400;
-    padding: 10px;
+    padding: 5px;
+
 }
+.scrollcss::-webkit-scrollbar {
+        width: 5px;
+      }
+.scrollcss::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+.scrollcss::-webkit-scrollbar-thumb {
+        background-color: rgb(180, 172, 172);
+      }

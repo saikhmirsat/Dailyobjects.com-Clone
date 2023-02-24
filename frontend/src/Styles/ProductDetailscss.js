@@ -4,7 +4,7 @@ import styled from "styled-components"
 const ProductsDetailsBottom = styled.div`
 .Product-details-right{
     max-width: 470px;
-    margin: 10% 20%;
+    margin: 8%;
     text-align: left;
 }
 .Product-details-right-heading{
