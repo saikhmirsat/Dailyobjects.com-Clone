@@ -1,5 +1,6 @@
 import { Box, Button, Heading, Image, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react'
 import React from 'react'
+import ProductDetails from '../Components/Product_Details/ProductDetails'
 import { ProductsDetailsBottom } from '../Styles/ProductDetailscss'
 
 const ProductsDetails = () => {
@@ -7,39 +8,53 @@ const ProductsDetails = () => {
     <ProductsDetailsBottom>
     {/* top left side */}
     <Box>
-        <Box className='Product-details-right'>
+    <Box className='Product-details-right'>
+        <Box className='Product-details-right-heading'>
             <h1>Hive Desk Caddy</h1>
             <b>
             Rs.3499
-            <span>4999</span>
+            <span className='Product-details-right-total-price'>4999</span>
             <span className='Product-details-right-exclusive'>Inclusive of all taxes</span>
             </b>
         </Box>
         <Box>
-            <Button>
+            <Button className='Product-details-right-addtocart-button'>
                 ADD TO CART
             </Button>
         </Box>
-        <Text>EXCITING OFFERS</Text>
-        <Box>
-            <Box></Box>
-            <Box>*FREE DUFFLE BAG ON ORDERS ABOVE Rs.2999 / FREE KEYCHAIN SET ON ORDERS ABOVE Rs.1999</Box>
+        <Box className='Product-details-right-offer'>EXCITING OFFERS</Box>
+        <Box display={"flex"}>
+            <Box>
+            <Image w="20px" m="0px 11px 0px 0px"src="https://images.dailyobjects.com/marche/assets/images/other/offers-icon-324-280px.png?tr=cm-pad_resize,v-2,dpr-1" alt="tag"/>
+            </Box>
+            <Box className='Product-details-right-free'>*FREE DUFFLE BAG ON ORDERS ABOVE Rs.2999 / FREE KEYCHAIN SET ON ORDERS ABOVE Rs.1999</Box>
         </Box>
-        <Box>
+        <Box mb={"10px"}>
         <InputGroup size='md'>
       <Input
         pr='4.5rem'
         type="text"
-        placeholder='Enter password'
+        p={"25px 20px"}
+        color="whitesmoke"
+        placeholder='Enter Pincode To Check Delivery'
       />
       <InputRightElement width='4.5rem'>
-        <Button h='1.75rem' size='sm' >
+        <Button p="0px 25px"fontSize={"14px"} color="rgba(0,0,0,.26)" borderRadius={"0px"} size='md' h={"3.8rem"} marginTop="18px" >
           CHECK
         </Button>
       </InputRightElement>
     </InputGroup>
         </Box>
+        <Box>
+            <Box>Product Details
+            <ProductDetails/>
+            </Box>
+            <Box>Specifications</Box>
+            <Box>Delivery Time & Returns</Box>
+        </Box>
     </Box>
+    </Box>
+
     {/* Bottom Side  */}
     <Box>
         {dummy?.map((item,i)=>{
