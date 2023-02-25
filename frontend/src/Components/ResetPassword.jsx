@@ -1,38 +1,30 @@
 import {
     Button,
-    FormControl,
     Flex,
+    FormControl,
+    FormLabel,
     Heading,
     Input,
     Stack,
-    Text,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+
+export default function ResetPassword() {
+    const [password, setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
+
+    let resetToken = localStorage.getItem("resetToken")
 
 
-
-export default function ForgotPassword() {
-    const [email, setEmail] = useState("")
-
-    // const getCookie = () => {
-    //     let cookie = document.cookie
-    //     let decoded = decodeURIComponent(cookie)
-    //     return decoded.split("=")
-
-    // }
-
-    // let ans = getCookie()
-    // console.log(ans[1])
-
-    const forgetBTN = () => {
+    const resetFunc = () => {
         const payload = {
-            email
+            password,
+            confirmPassword
         }
-      
         try {
-            fetch(`https://awful-pear-bedclothes.cyclic.app/api/password/forgot`, {
-                method: "POST",
+            fetch(`https://awful-pear-bedclothes.cyclic.app/api/password/reset/${resetToken}`, {
+                method: "PUT",
                 body: JSON.stringify(payload),
                 headers: {
                     "Content-type": "application/json"
@@ -40,14 +32,14 @@ export default function ForgotPassword() {
             }).then(res => res.json())
                 .then((res) => {
                     console.log(res)
-                    localStorage.setItem("resetToken", res.resetToken)
+                    alert(res)
                 })
         } catch (err) {
             console.log(err)
             alert("Something Wrong")
         }
-    }
 
+    }
 
     return (
         <Flex
@@ -65,20 +57,17 @@ export default function ForgotPassword() {
                 p={6}
                 my={12}>
                 <Heading lineHeight={1.1} fontSize={{ base: '2xl', md: '3xl' }}>
-                    Forgot your password?
+                    Enter new password
                 </Heading>
-                <Text
-                    fontSize={{ base: 'sm', sm: 'md' }}
-                    color={useColorModeValue('gray.800', 'gray.400')}>
-                    You&apos;ll get an email with a reset link
-                </Text>
-                <FormControl id="email">
-                    <Input
-                        placeholder="your-email@example.com"
-                        _placeholder={{ color: 'gray.500' }}
-                        type="email"
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
+
+                <FormControl id="password" isRequired>
+                    <FormLabel>Password</FormLabel>
+                    <Input type="password" onChange={(e) => setPassword(e.target.value)} />
+                </FormControl>
+
+                <FormControl id="confirmpassword" isRequired>
+                    <FormLabel>Confirm Password </FormLabel>
+                    <Input type="password" onChange={(e) => setConfirmPassword(e.target.value)} />
                 </FormControl>
                 <Stack spacing={6}>
                     <Button
@@ -87,9 +76,9 @@ export default function ForgotPassword() {
                         _hover={{
                             bg: 'blue.500',
                         }}
-                        onClick={forgetBTN}
+                        onClick={resetFunc}
                     >
-                        Request Reset
+                        Submit
                     </Button>
                 </Stack>
             </Stack>

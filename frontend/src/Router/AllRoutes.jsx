@@ -1,5 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
+import ResetPassword from '../Components/ResetPassword'
 import Admin from '../Components/Admin/Admin'
 import Form from '../Components/Admin/adminComponent/FormForAddProduct/AddProduct'
 import Products from '../Components/Admin/adminComponent/ProductRoute/Products'
@@ -34,6 +35,7 @@ export default function AllRoutes() {
             <Route path='/addproduct' element={<Form/>}></Route>
 
             <Route path='/search' element={<Search />}></Route>
+            <Route path='/resetpassword' element={<ResetPassword />}></Route>
 
             {/* <Route path='' element={ }></Route> */}
         </Routes>
