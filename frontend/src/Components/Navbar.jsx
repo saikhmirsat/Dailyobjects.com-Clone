@@ -27,7 +27,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
 
-  
+
   return (
     <Box display="flex" height="100px" mt="30px" ml="40px">
       <Box width="300px" height="70px"  mt="10px">
@@ -42,8 +42,8 @@ const Navbar = () => {
 		<Home />
     <Collection />
     <Gift />
-   
-        
+
+
       </Box>
 
       <Box  width="200px" display="flex" gap={"20px"} ml="250px">

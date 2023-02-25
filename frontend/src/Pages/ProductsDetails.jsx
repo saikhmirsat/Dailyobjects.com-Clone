@@ -2,6 +2,7 @@ import { Box, Button, Divider, Heading, Image, Input, InputGroup, InputRightElem
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
+import Navbar from '../Components/Navbar'
 import DeliveryTimeReturnsModal from '../Components/Product_Details/DeliveryTimeReturnsModal'
 import ImgSlider from '../Components/Product_Details/ImgSlider'
 import ProductDetailsModals from '../Components/Product_Details/ProductDetailsModal'
@@ -22,12 +23,12 @@ const ProductsDetails = () => {
           dispatch(getSingleProduct(payload));
         }
       }, [id, dispatch]);
-  return (
+  return (<Box>
+    {/* <Navbar/> */}
     <ProductsDetailsBottom>
-
-    <Box display={"flex"}>
+    <Box className='product-detalis-flex'>
     {/* top left side */}
-    <Box width={"50%"}><ImgSlider/></Box>
+    <Box className='product-detalis-sliderbox'><ImgSlider/></Box>
     {/* top right side */}
     <Box className='Product-details-right'>
         <Box className='Product-details-right-heading'>
@@ -130,6 +131,7 @@ COD Available</Box>
         })}
         </Box>
     </ProductsDetailsBottom>
+    </Box>
   )
 }
 

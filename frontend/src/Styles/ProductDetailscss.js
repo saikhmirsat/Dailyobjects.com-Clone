@@ -2,9 +2,15 @@ import styled from "styled-components"
 
 
 const ProductsDetailsBottom = styled.div`
+.product-detalis-flex{
+    display: flex;
+}
+.product-detalis-sliderbox{
+    width: 50%;
+}
 .Product-details-right{
     max-width: 470px;
-    margin: 8%;
+    margin: auto;
     text-align: left;
 }
 .Product-details-right-heading{
@@ -76,10 +82,43 @@ const ProductsDetailsBottom = styled.div`
     font-size: 16px;
     font-weight: lighter;
 }
-.product-details-bottom-img{
+
+
+    .product-details-bottom-img{
     display: flex;
+
+    }
+
+@media only screen and (min-width: 770px) and (max-width: 1200px){
+
 
 }
 
+@media only screen and (min-width: 320px) and (max-width: 770px){
+    .product-detalis-sliderbox{
+    width: 100%;
+}
+    .product-details-bottom-img{
+        display: block;
+}
+.product-detalis-flex{
+    display: flex;
+    flex-direction: column;
+}
+.product-details-bottom{
+    display: flex;
+    flex-direction: column;
+}
+.product-details-bottom-right{
+    display: flex;
+    flex-direction: column;
+}
+.product-details-bottom-adujust-wid{
+    width: 100%;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+}
+}
 `
 export {ProductsDetailsBottom}
