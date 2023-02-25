@@ -14,12 +14,7 @@
   .Admin {
     /* padding: 0.5rem 3.5rem; */
     color: var(--black);
-    background: linear-gradient(
-      106.37deg,
-      gray 29.63%,
-      teal 51.55%,
-      black 90.85%
-    );
+    background: #edf2f7;
     height: 100vh;
     display: flex;
     align-items: center;
