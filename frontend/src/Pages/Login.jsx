@@ -1,22 +1,53 @@
 import React from 'react'
 import '../Styles/Login.css'
-import { Heading, Input, Button } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import logo from '../Images/logo.png'
+import ForgotPassword from "../Components/ForgetPass"
+import {
+    Flex,
+    Box,
+    FormControl,
+    FormLabel,
+    Input,
+    Checkbox,
+    Stack,
+    Link,
+    Button,
+    Heading,
+    Text,
+    useColorModeValue,
+    useDisclosure,
+} from '@chakra-ui/react';
+import {
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+} from '@chakra-ui/react'
 
 export default function Login() {
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
     const [password, setPassword] = useState("")
     const [email, setEmail] = useState("")
+
+
     const navigate = useNavigate()
 
+    let token;
     const LoginFunc = () => {
         const payload = {
             email, password
         }
+        console.log(payload)
         try {
             console.log(payload)
-            fetch(`https://odd-pear-scarab-sock.cyclic.app/users/login`, {
+            fetch(`https://awful-pear-bedclothes.cyclic.app/api/login`, {
                 method: "POST",
                 body: JSON.stringify(payload),
                 headers: {
@@ -24,10 +55,17 @@ export default function Login() {
                 }
             }).then(res => res.json())
                 .then((res) => {
-                    localStorage.setItem("token", res.token)
-                    console.log(res)
-                    navigate('/')
-                    alert("Login Successful")
+
+                    if (res.success) {
+                        let date = new Date()
+                        date.setTime(date.getTime() + (7 * 24 * 60 * 60 * 1000))
+                        const expires = date.toUTCString()
+                        document.cookie = `${encodeURIComponent("token")}=${encodeURIComponent(res.token)};expires=${expires};path=/`
+                        alert("User Successfully logedin")
+                        navigate('/')
+                    } else {
+                        alert(res.message)
+                    }
                 })
                 .catch((err) => console.log(err))
 
@@ -40,18 +78,68 @@ export default function Login() {
         navigate('/register')
     }
     return (
-        <div id='login-main-cont'>
-            <img src={logo} alt="" />
-            <div className='login-div'>
-                <Heading as='h3'>Login</Heading>
 
-                <Input focusBorderColor='#20a87e' type="text" placeholder='Email...' onChange={(e) => setEmail(e.target.value)} />
-
-                <Input focusBorderColor='#20a87e' type="password" placeholder='Password..' onChange={(e) => setPassword(e.target.value)} />
-                <Button onClick={LoginFunc}>LogIn</Button>
-                <p>or</p>
-                <Button onClick={handleRegister}>Register</Button>
-            </div>
+        <div className='login-div'>
+            <Flex
+                minH={'100vh'}
+                align={'center'}
+                justify={'center'}
+                bg={useColorModeValue('gray.50', 'gray.800')}>
+                <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+                    <Stack align={'center'}>
+                        <Heading fontSize={'4xl'}>Sign in to your account</Heading>
+                    </Stack>
+                    <Box
+                        rounded={'lg'}
+                        bg={useColorModeValue('white', 'gray.700')}
+                        boxShadow={'lg'}
+                        p={8}>
+                        <Stack spacing={4}>
+                            <FormControl id="email">
+                                <FormLabel>Email address</FormLabel>
+                                <Input type="email" onChange={(e) => setEmail(e.target.value)} />
+                            </FormControl>
+                            <FormControl id="password">
+                                <FormLabel>Password</FormLabel>
+                                <Input type="password" onChange={(e) => setPassword(e.target.value)} />
+                            </FormControl>
+                            <Stack spacing={10}>
+                                <Stack
+                                    direction={{ base: 'column', sm: 'row' }}
+                                    align={'start'}
+                                    justify={'space-between'}>
+                                    <Checkbox>Remember me</Checkbox>
+                                    <Link color={'blue.400'} onClick={onOpen}>Forgot password?</Link>
+                                    <Modal isOpen={isOpen} onClose={onClose}>
+                                        <ModalOverlay />
+                                        <ModalContent>
+                                            <ModalHeader>Modal Title</ModalHeader>
+                                            <ModalCloseButton />
+                                            <ModalBody>
+                                                <ForgotPassword />
+                                            </ModalBody>
+                                            <ModalFooter>
+                                                <Button colorScheme='blue' mr={3} onClick={onClose}>
+                                                    Close
+                                                </Button>
+                                                <Button variant='ghost'>Secondary Action</Button>
+                                            </ModalFooter>
+                                        </ModalContent>
+                                    </Modal>
+                                </Stack>
+                                <Button
+                                    bg={'blue.400'}
+                                    color={'white'}
+                                    _hover={{
+                                        bg: 'blue.500',
+                                    }} onClick={LoginFunc}>
+                                    Sign in
+                                </Button>
+                            </Stack>
+                        </Stack>
+                    </Box>
+                </Stack>
+            </Flex>
         </div>
     )
 }

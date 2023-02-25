@@ -7,7 +7,7 @@ import {
     UilChart,
     UilSignOutAlt,
   } from "@iconscout/react-unicons";
-  
+  import {Link} from "react-router-dom";
   // Analytics Cards imports
   import { UilUsdSquare, UilMoneyWithdrawal } from "@iconscout/react-unicons";
   import { keyboard } from "@testing-library/user-event/dist/keyboard";
@@ -34,7 +34,7 @@ import {
     },
     {
       icon: UilPackage,
-      heading: 'Products'
+      heading: <Link to={"/allproducts"}> Products</Link>
     },
     {
       icon: UilChart,

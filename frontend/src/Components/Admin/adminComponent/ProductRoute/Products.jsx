@@ -24,8 +24,9 @@ import {Link as RouterLink} from "react-router-dom"
 import axios from 'axios';
 import { FaSearch } from 'react-icons/fa';
 import Productcard from '../Card/Productcard';
+import CommonSidebar from '../CommonSidebar/CommonSidebar';
 
-const Links = [<RouterLink to="#">Dashboard</RouterLink>, '', 'Team'];
+const Links = [<RouterLink to="/admindashboard">Dashboard</RouterLink>, '', 'Team'];
 
 const NavLink = ({ children }) => (
   <Link
@@ -43,44 +44,72 @@ const NavLink = ({ children }) => (
 
 export default function Products() {
 
-    const all=[
-        {
-            id:1,
-            img:"https://avatars.githubusercontent.com/u/112657812?v=4"
-        },
-        {
-            id:2,
-            img:"https://avatars.githubusercontent.com/u/112657812?v=4"
-        }
-    ]
+    // const all=[
+    //     {
+    //         id:1,
+    //         img:"https://avatars.githubusercontent.com/u/112657812?v=4"
+    //     },
+    //     {
+    //         id:2,
+    //         img:"https://avatars.githubusercontent.com/u/112657812?v=4"
+    //     },
+    //     {
+    //         id:2,
+    //         img:"https://avatars.githubusercontent.com/u/112657812?v=4"
+    //     },
+    //     {
+    //         id:2,
+    //         img:"https://avatars.githubusercontent.com/u/112657812?v=4"
+    //     },
+    //     {
+    //         id:2,
+    //         img:"https://avatars.githubusercontent.com/u/112657812?v=4"
+    //     },
+    //     {
+    //         id:2,
+    //         img:"https://avatars.githubusercontent.com/u/112657812?v=4"
+    //     },
+    //     {
+    //         id:2,
+    //         img:"https://avatars.githubusercontent.com/u/112657812?v=4"
+    //     },
+    //     {
+    //         id:2,
+    //         img:"https://avatars.githubusercontent.com/u/112657812?v=4"
+    //     },
+        
+    // ]
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
 
   const [data, setData] = useState([]);
   const [product, setProduct] = useState("");
 
-//   const getData=()=>{
-//     axios.get(``).then((res)=>{
-//         setData(res.data);
-//     }).catch((error)=>{
-//         console.log("error", error)
-//     });
-//   }
+//   https://awful-pear-bedclothes.cyclic.app/
 
-//   useEffect(()=>{
-//     // console.log("render")
-//     getData();
-//   },[])
+  const getData=()=>{
+    axios.get(`https://awful-pear-bedclothes.cyclic.app/api/products`).then((res)=>{
+        console.log(res)
+        setData(res.data.products);
+    }).catch((error)=>{
+        console.log("error", error)
+    });
+  }
+
+  useEffect(()=>{
+    //  console.log(data)
+    getData();
+  },[])
 
   const handleSearch=()=>{
     
   }
 
-  Links[1]=`Total_${all.length}`
+  Links[1]=`Total_${data.length}`
 
   return (
     <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
+      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4} position="fixed" width={"100%"} zIndex="100">
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <IconButton
             size={'md'}
@@ -142,10 +171,13 @@ export default function Products() {
           </Box>
         ) : null}
       </Box>
-        
-      <Box p={4} display="grid" gridTemplateColumns={{base:"repeat(1, 1fr)", md:"repeat(3, 1fr)", xl:"repeat(4, 1fr)"}}>
+      {/* <h1 style={{fontSize:"30px", textAlign:"left",fontWeight:"bolder",padding:"20px"}}>Products</h1> */}
+      <div style={{display:"flex",flexBasis:"row",width:"100%"}}>
+      <CommonSidebar/>
+      <div style={{margin:"auto",width:"80%"}}>
+      <Box p={4}gap="1rem" display="grid" marginTop={"5rem"}  gridTemplateColumns={{base:"repeat(1, 1fr)", md:"repeat(3, 1fr)", xl:"repeat(4, 1fr)"}}>
         {
-            all.length>0 && all.map((el, index)=>{
+            data.length>0 && data.map((el, index)=>{
                 return <Productcard
                 key={index}
                 {...el}
@@ -154,6 +186,9 @@ export default function Products() {
         }
         
       </Box>
+      </div>
+      </div>
+      
     </>
   );
 }

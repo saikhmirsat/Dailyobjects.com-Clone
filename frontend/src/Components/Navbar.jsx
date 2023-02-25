@@ -1,7 +1,7 @@
 
 import React from "react"
-import { background, Box,Image ,Text} from "@chakra-ui/react"
-import { EmailIcon,SearchIcon,LockIcon } from "@chakra-ui/icons";
+import { background, Box, Image, Text } from "@chakra-ui/react"
+import { EmailIcon, SearchIcon, LockIcon } from "@chakra-ui/icons";
 import NewArrival from "./SubNavbar/NewArrival";
 import Cases from "./SubNavbar/CasesSleeve";
 import Acces from "./SubNavbar/Accessories";
@@ -10,14 +10,15 @@ import Bag from "./SubNavbar/Bag";
 import Home from "./SubNavbar/Home";
 import Collection from "./SubNavbar/Collection";
 import Gift from "./SubNavbar/Gifting";
-
+import logo from '../Images/logo.png'
 import { useRef } from "react";
 import { FaBars, FaTimes, FaUser } from "react-icons/fa";
-import { FaSearch } from 'react-icons/fa'
-import { FiUser } from 'react-icons/fi';
+import { BsHandbag, BsPerson } from 'react-icons/bs'
+import { TfiSearch } from 'react-icons/tfi';
 import { FaShoppingBag } from 'react-icons/fa';
 import "./Navbar.css"
 import { Link } from "react-router-dom";
+import Hamburger from "./Hamburger";
 
 
 
@@ -29,33 +30,33 @@ const Navbar = () => {
 
 
   return (
-    <Box display="flex" height="100px" mt="30px" ml="40px">
-      <Box width="300px" height="70px"  mt="10px">
-        <Image src="https://images.dailyobjects.com/marche/icons/logo_named.png?tr=cm-pad_resize,v-2,w-135,h-27,dpr-1"></Image>
-      </Box>
-      <Box display={"flex"} justifyContent="space-between" width="750px" height="70px" ml="50px">
-		<NewArrival />
-        <Cases />
-		<Acces />
-		<Sale />
-        <Bag />
-		<Home />
-    <Collection />
-    <Gift />
+    <div className="navbar">
+      <div className="normal-navbar">
+        <Box display="flex" justifyContent='space-between' alignItems='center' height="50px">
+          <Box>
+            <Image width='80px' src={logo}></Image>
+          </Box>
+          <Box display="flex" justifyContent="space-between" >
+            <NewArrival />
+            <Cases />
+            <Acces />
+            <Sale />
+            <Bag />
+            <Home />
+            <Collection />
+            <Gift />
+          </Box>
 
-
-      </Box>
-
-      <Box  width="200px" display="flex" gap={"20px"} ml="250px">
-        <Box ><EmailIcon /></Box>
-        <Box><LockIcon /></Box>
-        <Box><SearchIcon /></Box>
-
-
-
-
-      </Box>
-    </Box>
-   ) }
+          <Box display="flex" alignItems='center' gap="30px" >
+            <Link to='/cart' ><BsHandbag size='20' /></Link>
+            <Link to='/register'><BsPerson size='23' /></Link>
+            <Link to='/search'><TfiSearch size='20' /></Link>
+          </Box>
+        </Box>
+      </div>
+      <Hamburger />
+    </div>
+  )
+}
 
 export default Navbar
