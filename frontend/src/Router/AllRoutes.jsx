@@ -1,5 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
+import ResetPassword from '../Components/ResetPassword'
 import Cart from '../Pages/Cart'
 import CheckoutAddress from '../Pages/CheckoutAddress'
 import CheckoutPayment from '../Pages/CheckoutPayment'
@@ -24,6 +25,7 @@ export default function AllRoutes() {
             <Route path='/checkout-payment' element={<CheckoutPayment />}></Route>
             <Route path='/loading' element={<Loading />}></Route>
             <Route path='/search' element={<Search />}></Route>
+            <Route path='/resetpassword' element={<ResetPassword />}></Route>
             {/* <Route path='' element={ }></Route> */}
         </Routes>
     )

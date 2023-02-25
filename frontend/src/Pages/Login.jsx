@@ -55,7 +55,6 @@ export default function Login() {
                 }
             }).then(res => res.json())
                 .then((res) => {
-
                     if (res.success) {
                         let date = new Date()
                         date.setTime(date.getTime() + (7 * 24 * 60 * 60 * 1000))
@@ -113,7 +112,6 @@ export default function Login() {
                                     <Modal isOpen={isOpen} onClose={onClose}>
                                         <ModalOverlay />
                                         <ModalContent>
-                                            <ModalHeader>Modal Title</ModalHeader>
                                             <ModalCloseButton />
                                             <ModalBody>
                                                 <ForgotPassword />
