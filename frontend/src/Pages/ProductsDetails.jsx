@@ -1,16 +1,38 @@
-import { Box, Button, Heading, Image, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react'
-import React from 'react'
-import ProductDetails from '../Components/Product_Details/ProductDetails'
+import { Box, Button, Divider, Heading, Image, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
+import Navbar from '../Components/Navbar'
+import DeliveryTimeReturnsModal from '../Components/Product_Details/DeliveryTimeReturnsModal'
+import ImgSlider from '../Components/Product_Details/ImgSlider'
+import ProductDetailsModals from '../Components/Product_Details/ProductDetailsModal'
+import SpecificationsModal from '../Components/Product_Details/SpecificationsModal'
+import { getSingleProduct } from '../Redux/App/action'
 import { ProductsDetailsBottom } from '../Styles/ProductDetailscss'
 
 const ProductsDetails = () => {
-  return (
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
+    const { id } = useParams();
+    console.log(id);
+    const { single } = useSelector((store) => store.AppReducer);
+    console.log(single)
+    useEffect(() => {
+        if (id) {
+          let payload = id;
+          dispatch(getSingleProduct(payload));
+        }
+      }, [id, dispatch]);
+  return (<Box>
+    {/* <Navbar/> */}
     <ProductsDetailsBottom>
+    <Box className='product-detalis-flex'>
     {/* top left side */}
-    <Box>
+    <Box className='product-detalis-sliderbox'><ImgSlider/></Box>
+    {/* top right side */}
     <Box className='Product-details-right'>
         <Box className='Product-details-right-heading'>
-            <h1>Hive Desk Caddy</h1>
+            <h1>{single.product?.title}</h1>
             <b>
             Rs.3499
             <span className='Product-details-right-total-price'>4999</span>
@@ -35,7 +57,6 @@ const ProductsDetails = () => {
         pr='4.5rem'
         type="text"
         p={"25px 20px"}
-        color="whitesmoke"
         placeholder='Enter Pincode To Check Delivery'
       />
       <InputRightElement width='4.5rem'>
@@ -46,11 +67,22 @@ const ProductsDetails = () => {
     </InputGroup>
         </Box>
         <Box>
-            <Box>Product Details
-            <ProductDetails/>
+            <Box>delivery.png
+Dispatch to Courier in 3-4 Days.
+cod.png
+COD Available</Box>
+<Box></Box>
+        </Box>
+        <Box>
+        <Divider/>
+            <Box>
+            <ProductDetailsModals/>
             </Box>
-            <Box>Specifications</Box>
-            <Box>Delivery Time & Returns</Box>
+            <Divider/>
+            <Box><SpecificationsModal/></Box>
+            <Divider/>
+            <Box><DeliveryTimeReturnsModal/></Box>
+            <Divider/>
         </Box>
     </Box>
     </Box>
@@ -99,6 +131,7 @@ const ProductsDetails = () => {
         })}
         </Box>
     </ProductsDetailsBottom>
+    </Box>
   )
 }
 
