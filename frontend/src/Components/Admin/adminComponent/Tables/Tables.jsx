@@ -16,7 +16,7 @@ const Tables = () => {
   return (
     <TableContainer className='Table' style={{marginTop:"10px"}}>
         <h2 style={{fontSize:"30px", textAlign:"left",fontWeight:"bolder",padding:"20px"}}>Recent Orders</h2>
-  <Table border={"1px solid gray"} variant='striped' colorScheme='teal'>
+  <Table style={{borderRadius:"10px"}}  variant='striped' colorScheme='teal'>
     <TableCaption>Imperial to metric conversion factors</TableCaption>
     <Thead>
       <Tr>
