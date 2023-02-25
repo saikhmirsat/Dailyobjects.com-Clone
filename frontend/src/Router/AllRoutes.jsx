@@ -15,6 +15,7 @@ import ProductPage from '../Pages/ProductPage'
 import ProductsDetails from '../Pages/ProductsDetails'
 import Register from '../Pages/Register'
 import Search from '../Pages/Search'
+import UserProfile from '../Pages/UserProfile'
 
 export default function AllRoutes() {
     return (
@@ -22,7 +23,7 @@ export default function AllRoutes() {
             <Route path='/' element={<Home />}></Route>
             <Route path='/newarrivals' element={<NewArrivals />}></Route>
             <Route path='/products' element={<ProductPage />}></Route>
-            <Route path= '/products/:id' element={<ProductsDetails />}></Route>
+            <Route path='/products/:id' element={<ProductsDetails />}></Route>
             <Route path='/register' element={<Register />}></Route>
             <Route path='/login' element={<Login />}></Route>
             <Route path='/cart' element={<Cart />}></Route>
@@ -30,13 +31,14 @@ export default function AllRoutes() {
             <Route path='/checkout-payment' element={<CheckoutPayment />}></Route>
             <Route path='/loading' element={<Loading />}></Route>
 
-            <Route path='/admindashboard' element={<Admin/>}></Route>
-            <Route path='/allproducts' element={<Products/>}></Route>
-            <Route path='/addproduct' element={<Form/>}></Route>
+            <Route path='/admindashboard' element={<Admin />}></Route>
+            <Route path='/allproducts' element={<Products />}></Route>
+            <Route path='/addproduct' element={<Form />}></Route>
 
             <Route path='/search' element={<Search />}></Route>
             <Route path='/resetpassword' element={<ResetPassword />}></Route>
 
+            <Route path='/userprofile' element={<UserProfile />}></Route>
             {/* <Route path='' element={ }></Route> */}
         </Routes>
     )

@@ -1,7 +1,7 @@
 import React from 'react'
 import '../Styles/Login.css'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { json, useNavigate } from 'react-router-dom'
 import logo from '../Images/logo.png'
 import ForgotPassword from "../Components/ForgetPass"
 import {
@@ -61,7 +61,15 @@ export default function Login() {
                         const expires = date.toUTCString()
                         document.cookie = `${encodeURIComponent("token")}=${encodeURIComponent(res.token)};expires=${expires};path=/`
                         alert("User Successfully logedin")
-                        navigate('/')
+                        localStorage.setItem("isAuth", true)
+                        localStorage.setItem("role", JSON.stringify(res.user.role))
+                        let user = res.user.role
+                        if (user == "admin") {
+                            navigate('/admindashboard')
+                        }
+                        if (user == 'user') {
+                            navigate('/')
+                        }
                     } else {
                         alert(res.message)
                     }

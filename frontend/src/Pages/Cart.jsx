@@ -80,7 +80,7 @@ export default function Cart() {
 
         try {
             console.log(payload)
-            fetch(`https://odd-pear-scarab-sock.cyclic.app/`, {
+            fetch(`https://awful-pear-bedclothes.cyclic.app/api/orders/me`, {
                 method: "POST",
                 body: JSON.stringify(payload),
                 headers: {

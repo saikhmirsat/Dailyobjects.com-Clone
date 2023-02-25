@@ -50,8 +50,14 @@ export default function Register() {
                 }
             }).then(res => res.json())
                 .then((res) => {
-                    alert("Register")
-                    console.log(res)
+                    if (res.success) {
+                        alert("Register")
+                        navigate('/login')
+                        console.log(res)
+                    } else {
+                        alert(res.message)
+                    }
+
                 })
         } catch (err) {
             console.log(err)

@@ -11,7 +11,7 @@ export default function NewArrivals() {
 
 
             <SimpleGrid className='new-arrival-grid-mainbox' columns={{ lg: 4, md: 3 }} spacing='30px'>
-                <Link to='/'>
+                <Link to='/products'>
                     <Box className='new-arrival-grid-div'>
                         <Box bg="#20A87E" className='new-arrival-grid-circle'>
                             <Heading as='h1' size='xl' color='white'>ALL</Heading>
