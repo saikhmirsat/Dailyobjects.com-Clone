@@ -17,7 +17,7 @@ import { BsHandbag, BsPerson } from 'react-icons/bs'
 import { TfiSearch } from 'react-icons/tfi';
 import { FaShoppingBag } from 'react-icons/fa';
 import "./Navbar.css"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Hamburger from "./Hamburger";
 
 
@@ -27,6 +27,13 @@ import Hamburger from "./Hamburger";
 
 
 const Navbar = () => {
+  const navigate = useNavigate()
+  const checkIsAuth = JSON.parse(localStorage.getItem("isAuth"))
+  const checkAdmin = JSON.parse(localStorage.getItem("role"))
+  console.log(checkAdmin)
+
+
+
 
 
   return (
@@ -37,7 +44,7 @@ const Navbar = () => {
             <Image width='80px' src={logo}></Image>
           </Box>
           <Box display="flex" justifyContent="space-between" >
-            <NewArrival />
+            <Link to='/newarrivals'><NewArrival /></Link>
             <Cases />
             <Acces />
             <Sale />
@@ -49,13 +56,13 @@ const Navbar = () => {
 
           <Box display="flex" alignItems='center' gap="30px" >
             <Link to='/cart' ><BsHandbag size='20' /></Link>
-            <Link to='/register'><BsPerson size='23' /></Link>
+            <Link to={checkIsAuth ? checkAdmin == "admin" ? '/admindashboard' : '/userprofile' : '/register'}><BsPerson size='23' /></Link>
             <Link to='/search'><TfiSearch size='20' /></Link>
           </Box>
         </Box>
       </div>
       <Hamburger />
-    </div>
+    </div >
   )
 }
 
