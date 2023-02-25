@@ -60,14 +60,14 @@
 }
 
 .active {
-  background: var(--activeItem);
+  background: #b3e6e2;
   margin-left: 0;
 }
 .active::before {
   content: "";
   width: 8px;
   height: 100%;
-  background: var(--pink);
+  background:#0a9286;
   margin-right: calc(1rem - 8px);
 }
 

@@ -13,11 +13,11 @@ import {
   const IMAGE =
     'https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?w=2000';
   
-  export default function Productcard({id,img}) {
+  export default function Productcard({category}) {
 
 
     return (
-      <Center py={12}>
+      <Center py={12} >
         <Box
           role={'group'}
           p={6}
@@ -53,18 +53,20 @@ import {
             }}>
                 <Box style={{margin:"auto",padding:"0.2rem 0"}}>
             <Text>{"Text"}</Text>
-          </Box>
+          </Box >
+          <Box style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
             <Image
               rounded={'lg'}
               height={180}
               width={250}
               objectFit={'cover'}
-              src={img}
+              src={category}
             />
+            </Box>
           </Box>
           <Stack pt={10} align={'center'}>
             <Text color={'gray.500'} fontSize={'xs'} textTransform={'uppercase'}>
-              {"Text"}
+              {category}
             </Text>
             <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
             {"Text"}
