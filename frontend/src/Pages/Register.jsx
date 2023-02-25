@@ -1,28 +1,48 @@
 import React from 'react'
 import '../Styles/Register.css'
-import { Heading, Input, Button } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import logo from '../Images/logo.png'
+import {
+    Flex,
+    Box,
+    FormControl,
+    FormLabel,
+    Input,
+    InputGroup,
+    HStack,
+    InputRightElement,
+    Stack,
+    Button,
+    Heading,
+    Text,
+    useColorModeValue,
+    Link
+} from '@chakra-ui/react';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 export default function Register() {
-    const [firstname, setFname] = useState("")
-    const [lastname, setLname] = useState("")
-    const [dob, setDob] = useState("")
+
+    const [showPassword, setShowPassword] = useState(false);
+
+    const [firstName, setFname] = useState("")
+    const [lastName, setLname] = useState("")
+    // const [dob, setDob] = useState("")
     const [password, setPassword] = useState("")
     const [email, setEmail] = useState("")
-    const [number, setNumber] = useState("")
+    const [mobile, setMobile] = useState("")
+
 
     const navigate = useNavigate()
 
     const handleRegister = () => {
         const payload = {
-            firstname, lastname, dob, password, email, number
+            firstName, lastName, password, email, mobile
         }
         console.log(payload)
         try {
-            console.log(payload)
-            fetch(`https://odd-pear-scarab-sock.cyclic.app/users/register`, {
+
+            fetch(`https://awful-pear-bedclothes.cyclic.app/api/register`, {
                 method: "POST",
                 body: JSON.stringify(payload),
                 headers: {
@@ -30,10 +50,9 @@ export default function Register() {
                 }
             }).then(res => res.json())
                 .then((res) => {
-                    alert("Register Successful")
+                    alert("Register")
                     console.log(res)
                 })
-                .catch((err) => console.log(err))
         } catch (err) {
             console.log(err)
             alert("Something Wrong")
@@ -41,25 +60,94 @@ export default function Register() {
 
     }
 
-    const LoginFunc = () => {
+    const handleLogin = () => {
         navigate('/login')
     }
 
     return (
         <div id='register-main-cont'>
-            <img src={logo} alt="" />
-            <div className='register-div'>
-                <Heading as='h3'>Register</Heading>
-                <Input focusBorderColor='#20a87e' type="text" placeholder='First name' onChange={(e) => setFname(e.target.value)} />
-                <Input focusBorderColor='#20a87e' type="text" placeholder='Last name' onChange={(e) => setLname(e.target.value)} />
-                <Input focusBorderColor='#20a87e' type="text" placeholder='Email...' onChange={(e) => setEmail(e.target.value)} />
-                <Input focusBorderColor='#20a87e' type="date" value={dob} placeholder='Date of Birth' onChange={(e) => setDob(e.target.value)} />
-                <Input focusBorderColor='#20a87e' type="Number" placeholder='Mobile number' onChange={(e) => setNumber(e.target.value)} />
-                <Input focusBorderColor='#20a87e' type="password" placeholder='Password..' onChange={(e) => setPassword(e.target.value)} />
-                <Button onClick={handleRegister}>Register</Button>
-                <p>or</p>
-                <Button onClick={LoginFunc}>LogIn</Button>
-            </div>
+            <Flex
+                minH={'100vh'}
+                align={'center'}
+                justify={'center'}
+                bg={useColorModeValue('gray.50', 'gray.800')}>
+                <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+                    <Stack align={'center'}>
+                        <Heading fontSize={'4xl'} textAlign={'center'}>
+                            Sign up
+                        </Heading>
+                        <Text fontSize={'lg'} color={'gray.600'}>
+                            to enjoy all of our cool features ✌️
+                        </Text>
+                    </Stack>
+                    <Box
+                        rounded={'lg'}
+                        bg={useColorModeValue('white', 'gray.700')}
+                        boxShadow={'lg'}
+                        p={8}>
+                        <Stack spacing={4}>
+                            <HStack>
+                                <Box>
+                                    <FormControl id="firstName" isRequired>
+                                        <FormLabel>First Name</FormLabel>
+                                        <Input type="text" onChange={(e) => setFname(e.target.value)} />
+                                    </FormControl>
+                                </Box>
+                                <Box>
+                                    <FormControl id="lastName">
+                                        <FormLabel>Last Name</FormLabel>
+                                        <Input type="text" onChange={(e) => setLname(e.target.value)} />
+                                    </FormControl>
+                                </Box>
+                            </HStack>
+                            <FormControl id="email" isRequired>
+                                <FormLabel>Email address</FormLabel>
+                                <Input type="email" onChange={(e) => setEmail(e.target.value)} />
+                            </FormControl>
+                            <FormControl id="password" isRequired>
+                                <FormLabel>Password</FormLabel>
+                                <InputGroup>
+                                    <Input type={showPassword ? 'text' : 'password'} onChange={(e) => setPassword(e.target.value)} />
+                                    <InputRightElement h={'full'}>
+                                        <Button
+                                            variant={'ghost'}
+                                            onClick={() =>
+                                                setShowPassword((showPassword) => !showPassword)
+                                            }>
+                                            {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                                        </Button>
+                                    </InputRightElement>
+                                </InputGroup>
+                            </FormControl>
+                            <Box>
+                                <FormControl id="mobile">
+                                    <FormLabel>Mobile Number..</FormLabel>
+                                    <Input type="number" onChange={(e) => setMobile(e.target.value)} />
+                                </FormControl>
+                            </Box>
+
+
+                            <Stack spacing={10} pt={2}>
+                                <Button
+                                    loadingText="Submitting"
+                                    size="lg"
+                                    bg={'blue.400'}
+                                    color={'white'}
+                                    _hover={{
+                                        bg: 'blue.500',
+                                    }} onClick={handleRegister}>
+                                    Sign up
+                                </Button>
+                            </Stack>
+                            <Stack pt={6}>
+                                <Text align={'center'}>
+                                    Already a user? <Button bg='unset' color='blue.400' onClick={handleLogin}>Login</Button>
+                                </Text>
+                            </Stack>
+                        </Stack>
+                    </Box>
+                </Stack>
+            </Flex>
         </div>
     )
 }

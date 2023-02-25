@@ -12,22 +12,27 @@ import Login from '../Pages/Login'
 import NewArrivals from '../Pages/NewArrivals'
 import ProductsDetails from '../Pages/ProductsDetails'
 import Register from '../Pages/Register'
+import Search from '../Pages/Search'
 
 export default function AllRoutes() {
     return (
         <Routes>
             <Route path='/' element={<Home />}></Route>
             <Route path='/newarrivals' element={<NewArrivals />}></Route>
-            <Route path= '/productdetails' element={<ProductsDetails />}></Route>
+            <Route path='/productdetails' element={<ProductsDetails />}></Route>
             <Route path='/register' element={<Register />}></Route>
             <Route path='/login' element={<Login />}></Route>
             <Route path='/cart' element={<Cart />}></Route>
             <Route path='/checkout-address' element={<CheckoutAddress />}></Route>
             <Route path='/checkout-payment' element={<CheckoutPayment />}></Route>
             <Route path='/loading' element={<Loading />}></Route>
+
             <Route path='/admindashboard' element={<Admin/>}></Route>
             <Route path='/allproducts' element={<Products/>}></Route>
             <Route path='/addproduct' element={<Form/>}></Route>
+
+            <Route path='/search' element={<Search />}></Route>
+
             {/* <Route path='' element={ }></Route> */}
         </Routes>
     )

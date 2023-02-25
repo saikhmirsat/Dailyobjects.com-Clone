@@ -1,19 +1,16 @@
 
 import './App.css';
-import Products from './Components/Admin/adminComponent/ProductRoute/Products';
 
-// import AllRoutes from './Router/AllRoutes';
-import Navbar from './Components/Navbar'
-import Admin from './Components/Admin/Admin';
-import AllRoutes from './Router/AllRoutes';
-
-
-
-
+import Footer from './Components/Footer';
+ import AllRoutes from './Router/AllRoutes';
+// import Admin from './Components/Admin/Admin';
 function App() {
   return (
     <div className="App">
+
       <AllRoutes/>
+
+     <Footer />
     </div>
   );
 }
