@@ -18,6 +18,7 @@ import {
     Text,
     useColorModeValue,
     useDisclosure,
+    Spinner
 } from '@chakra-ui/react';
 import {
     Modal,
@@ -37,6 +38,8 @@ export default function Login() {
     const [email, setEmail] = useState("")
 
 
+    const [loading, setLoading] = useState(false)
+
     const navigate = useNavigate()
 
     let token;
@@ -46,6 +49,7 @@ export default function Login() {
         }
         console.log(payload)
         try {
+            setLoading(true)
             console.log(payload)
             fetch(`https://awful-pear-bedclothes.cyclic.app/api/login`, {
                 method: "POST",
@@ -56,14 +60,18 @@ export default function Login() {
             }).then(res => res.json())
                 .then((res) => {
                     if (res.success) {
+                        console.log(res.user._id)
                         let date = new Date()
                         date.setTime(date.getTime() + (7 * 24 * 60 * 60 * 1000))
                         const expires = date.toUTCString()
                         document.cookie = `${encodeURIComponent("token")}=${encodeURIComponent(res.token)};expires=${expires};path=/`
                         alert("User Successfully logedin")
+                        localStorage.setItem("userId", JSON.stringify(res.user._id))
                         localStorage.setItem("isAuth", true)
                         localStorage.setItem("role", JSON.stringify(res.user.role))
+                        localStorage.setItem("user", JSON.stringify(res.user))
                         let user = res.user.role
+                        setLoading(false)
                         if (user == "admin") {
                             navigate('/admindashboard')
                         }
@@ -73,6 +81,7 @@ export default function Login() {
                     } else {
                         alert(res.message)
                     }
+
                 })
                 .catch((err) => console.log(err))
 
@@ -139,7 +148,13 @@ export default function Login() {
                                     _hover={{
                                         bg: 'blue.500',
                                     }} onClick={LoginFunc}>
-                                    Sign in
+                                    {loading ? <Spinner
+                                        thickness='4px'
+                                        speed='0.65s'
+                                        emptyColor='gray.200'
+                                        color='blue.500'
+                                        size='md'
+                                    /> : 'Sign in'}
                                 </Button>
                             </Stack>
                         </Stack>

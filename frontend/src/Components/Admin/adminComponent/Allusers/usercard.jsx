@@ -8,14 +8,12 @@ import {
     Image,
     Button,
   } from '@chakra-ui/react';
-  import {Link as RouterLink} from "react-router-dom";
-import DeleteProduct from '../DeleteProduct/DeleteProduct';
-import UpdateProduct from '../UpdateProduct/UpdateProduct';
+
   
   const IMAGE =
     'https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?w=2000';
   
-  export default function Productcard({_id,title,category,color,description,discounted_price,images,numofReviews,price,ratings,reviews,stock}) {
+  export default function UserCard({_id,email,firstName,role}) {
 
 
     return (
@@ -54,7 +52,7 @@ import UpdateProduct from '../UpdateProduct/UpdateProduct';
               },
             }}>
                 <Box style={{margin:"auto",padding:"0.2rem 0"}}>
-            <Text>{category}</Text>
+            <Text>{"User"}</Text>
           </Box >
           <Box style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
             <Image
@@ -62,45 +60,23 @@ import UpdateProduct from '../UpdateProduct/UpdateProduct';
               height={180}
               width={250}
               objectFit={'cover'}
-              src={images[0].url}
+              src={"https://www.seekpng.com/png/detail/966-9665493_my-profile-icon-blank-profile-image-circle.png"}
             />
             </Box>
           </Box>
           <Stack pt={10} align={'center'}>
             <Text color={'gray.500'} fontSize={'xs'} textTransform={'uppercase'}>
-              {`$ ${price}`}
+              {`Role:- ${role}`}
             </Text>
             <Heading fontSize={'0.8rem'} fontFamily={'body'} fontWeight={500}>
-            {title}
+            {firstName}
             </Heading>
             <Stack direction={'row'} align={'center'}>
-              <Text fontWeight={800} fontSize={'xm'}>
-              {`$ ${price}`}
-              </Text>
-              <Text textDecoration={'line-through'} color={'gray.600'}>
-              {discounted_price}
+              <Text  color={'gray.600'}>
+              {` ${email}`}
               </Text>
             </Stack>
           </Stack>
-          <Box style={{display:"flex", justifyContent:"space-around", marginTop:"20px",marginBottom:"-15px"}}>
-          <Text>Total Reviews</Text>
-            <Text>Rating</Text>
-            <Text>Review</Text>
-          </Box>
-          <Box style={{display:"flex", justifyContent:"space-around", marginTop:"20px"}}>
-          <Text>{numofReviews}</Text>
-            <Text>{ratings}</Text>
-            <Text>{reviews}</Text>
-          </Box>
-          
-          <Box style={{display:"flex", justifyContent:"space-between", marginTop:"20px"}}>
-          <DeleteProduct
-          id={_id}
-          />
-          <UpdateProduct
-          id={_id}
-          />
-          </Box>
         </Box>
       </Center>
     );

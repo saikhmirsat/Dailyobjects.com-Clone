@@ -30,7 +30,7 @@ const Navbar = () => {
   const navigate = useNavigate()
   const checkIsAuth = JSON.parse(localStorage.getItem("isAuth"))
   const checkAdmin = JSON.parse(localStorage.getItem("role"))
-  console.log(checkAdmin)
+
 
 
 

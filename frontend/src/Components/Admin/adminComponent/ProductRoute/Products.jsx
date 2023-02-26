@@ -20,13 +20,14 @@ import {
   useColorMode,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
-import {Link as RouterLink} from "react-router-dom"
+import { Link as RouterLink } from "react-router-dom"
 import axios from 'axios';
 import { FaSearch } from 'react-icons/fa';
 import Productcard from '../Card/Productcard';
 import CommonSidebar from '../CommonSidebar/CommonSidebar';
+import Spinners from '../Allusers/Spinner';
 
-const Links = [<RouterLink to="/admindashboard">Dashboard</RouterLink>, '', 'Team'];
+const Links = [ ''];
 
 const NavLink = ({ children }) => (
   <Link
@@ -44,82 +45,46 @@ const NavLink = ({ children }) => (
 
 export default function Products() {
 
-    // const all=[
-    //     {
-    //         id:1,
-    //         img:"https://avatars.githubusercontent.com/u/112657812?v=4"
-    //     },
-    //     {
-    //         id:2,
-    //         img:"https://avatars.githubusercontent.com/u/112657812?v=4"
-    //     },
-    //     {
-    //         id:2,
-    //         img:"https://avatars.githubusercontent.com/u/112657812?v=4"
-    //     },
-    //     {
-    //         id:2,
-    //         img:"https://avatars.githubusercontent.com/u/112657812?v=4"
-    //     },
-    //     {
-    //         id:2,
-    //         img:"https://avatars.githubusercontent.com/u/112657812?v=4"
-    //     },
-    //     {
-    //         id:2,
-    //         img:"https://avatars.githubusercontent.com/u/112657812?v=4"
-    //     },
-    //     {
-    //         id:2,
-    //         img:"https://avatars.githubusercontent.com/u/112657812?v=4"
-    //     },
-    //     {
-    //         id:2,
-    //         img:"https://avatars.githubusercontent.com/u/112657812?v=4"
-    //     },
-        
-    // ]
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
-
+  const [status, setStatus] = useState(false)
   const [data, setData] = useState([]);
   const [product, setProduct] = useState("");
+  const [total, setTotal]=useState(0);
 
-//   https://awful-pear-bedclothes.cyclic.app/
+  //   https://awful-pear-bedclothes.cyclic.app/
 
-  const getData=()=>{
-    axios.get(`https://awful-pear-bedclothes.cyclic.app/api/products`).then((res)=>{
-        console.log(res)
-        setData(res.data.products);
-    }).catch((error)=>{
-        console.log("error", error)
+  const getData = () => {
+    setStatus(false)
+    axios.get(`https://awful-pear-bedclothes.cyclic.app/api/products`).then((res) => {
+      console.log(res)
+      setData(res.data.products);
+      setTotal(res.data.productsCount);
+      setStatus(true);
+    }).catch((error) => {
+      setStatus(false);
+      console.log("error", error)
     });
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     //  console.log(data)
     getData();
-  },[])
+  }, [])
 
-  const handleSearch=()=>{
-    
+  const handleSearch = () => {
+
   }
 
-  Links[1]=`Total_${data.length}`
+  Links[0] = `Total_${total}`
 
   return (
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4} position="fixed" width={"100%"} zIndex="100">
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <IconButton
-            size={'md'}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={'Open Menu'}
-            display={{ md: 'none' }}
-            onClick={isOpen ? onClose : onOpen}
-          />
+
           <HStack spacing={8} alignItems={'center'}>
-            <Box width={"10%"}><RouterLink to={"#"}><Image width={"100%"} src=''/></RouterLink></Box>
+            <Box width={"10%"}><RouterLink to={"#"}><Image width={"100%"} src='' /></RouterLink></Box>
             <HStack
               as={'nav'}
               spacing={4}
@@ -129,15 +94,15 @@ export default function Products() {
               ))}
             </HStack>
             <Box width={"50%"}>
-            <Input width={"50%"} value={product} onChange={(e)=>setProduct(e.target.value)} placeholder={"Search"}/>
-            <Button onClick={()=>handleSearch()}><FaSearch width={"20px"}/></Button>
+              <Input width={"50%"} value={product} onChange={(e) => setProduct(e.target.value)} placeholder={"Search"} />
+              <Button onClick={() => handleSearch()}><FaSearch width={"20px"} /></Button>
             </Box>
           </HStack>
           <Flex alignItems={'center'}>
             <Menu>
-            <Button onClick={toggleColorMode}>
+              <Button onClick={toggleColorMode}>
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-            </Button>
+              </Button>
               <MenuButton
                 as={Button}
                 rounded={'full'}
@@ -151,12 +116,6 @@ export default function Products() {
                   }
                 />
               </MenuButton>
-              <MenuList zIndex={999}>
-                <MenuItem>Link 1</MenuItem>
-                <MenuItem>Link 2</MenuItem>
-                <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
-              </MenuList>
             </Menu>
           </Flex>
         </Flex>
@@ -172,23 +131,26 @@ export default function Products() {
         ) : null}
       </Box>
       {/* <h1 style={{fontSize:"30px", textAlign:"left",fontWeight:"bolder",padding:"20px"}}>Products</h1> */}
-      <div style={{display:"flex",flexBasis:"row",width:"100%"}}>
-      <CommonSidebar/>
-      <div style={{margin:"auto",width:"80%"}}>
-      <Box p={4}gap="1rem" display="grid" marginTop={"5rem"}  gridTemplateColumns={{base:"repeat(1, 1fr)", md:"repeat(3, 1fr)", xl:"repeat(4, 1fr)"}}>
-        {
-            data.length>0 && data.map((el, index)=>{
-                return <Productcard
-                key={index}
-                {...el}
-                />
-            })
-        }
-        
-      </Box>
+      <div style={{ display: "flex", flexBasis: "row", width: "100%" }}>
+        <CommonSidebar />
+        <Box margin={{ base: "0px 0px 0px 30px ", md: "0px 0px 0px 160px", xl: " 0px 0px 0px 180px", "2xl": " 0px 0px 0px 250px" }} style={{ width: "80%" }}>
+          <Box p={4} gap="1rem" display="grid" marginTop={"5rem"} gridTemplateColumns={{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)", xl: "repeat(4, 1fr)" }}>
+            {
+              (!status) ? (
+                <Spinners />
+              ) :
+                data.length > 0 && data.map((el, index) => {
+                  return <Productcard
+                    key={index}
+                    {...el}
+                  />
+                })
+            }
+
+          </Box>
+        </Box>
       </div>
-      </div>
-      
+
     </>
   );
 }
