@@ -15,9 +15,9 @@ const ProductPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [category, setCategory] = useState("");
   const [value, setValue] = useState("100");
-  const  [min ,setMin] = useState("5000");
-  const [page,setPage] = useState(1);
-  const [loading,setLoading] = useState(false);
+  const [min, setMin] = useState("5000");
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
 
   const term = location?.search;
@@ -25,91 +25,91 @@ const ProductPage = () => {
 
 
 
-    const products = useSelector((state) => state.AppReducer.products)
-    let total = Math.ceil(products?.productsCount/15);
-console.log(category);
-console.log(products.products)
-    // console.log(products,"searchsearch paramss")
-    const dispatch = useDispatch();
-    useEffect(() => {
-      let params = {};
-      // params.gte = value;
-      // params.lte = min;
-      params.page = page;
+  const products = useSelector((state) => state.AppReducer.products)
+  let total = Math.ceil(products?.productsCount / 15);
+  console.log(category);
+  console.log(products.products)
+  // console.log(products,"searchsearch paramss")
+  const dispatch = useDispatch();
+  useEffect(() => {
+    let params = {};
+    // params.gte = value;
+    // params.lte = min;
+    params.page = page;
 
-        params.keyword = category;
+    params.keyword = category;
 
-      // let model = {gte:value,lte:min,term:term}
-      setSearchParams(params);
-        dispatch(getProduct(term,value,min))
-    }, [term,page,value,min,category]);
+    // let model = {gte:value,lte:min,term:term}
+    setSearchParams(params);
+    dispatch(getProduct(term, value, min))
+  }, [term, page, value, min, category]);
   return (
     <ProductPageWrapper>
-    <Box><Navbar/></Box>
-    <Box><Image w={"100%"} src="https://images.dailyobjects.com/marche/assets/images/other/key-valentines-offer-banners-homepage-desktop.jpg?tr=cm-pad_crop,v-2,dpr-1" alt="advertise"/></Box>
-    <Box className='product-category-name'>
-    NEW ARRIVALS
-    </Box>
-    <Box className='product-category-adjust'>
-    <Box className='product-category-flex'>
-    <Box className="product-category">
-          <Box className='product-category-all'>
-            ALL
+      <Box><Navbar /></Box>
+      <Box><Image w={"100%"} src="https://images.dailyobjects.com/marche/assets/images/other/key-valentines-offer-banners-homepage-desktop.jpg?tr=cm-pad_crop,v-2,dpr-1" alt="advertise" /></Box>
+      <Box className='product-category-name'>
+        NEW ARRIVALS
+      </Box>
+      <Box className='product-category-adjust'>
+        <Box className='product-category-flex'>
+          <Box className="product-category">
+            <Box className='product-category-all'>
+              ALL
+            </Box>
+            <Box
+              onClick={
+                () => setCategory("")
+              }
+              className='product-category-name-bottom'>
+              All
+            </Box>
           </Box>
-          <Box
-          onClick={
-        ()=>setCategory("")
+          {
+            filterdata?.map((item, i) => {
+              return <Box key={i} className="product-category">
+                <Box
+                  as='button'
+                  borderRadius={"50%"}
+                  _active={{
+                    bg: '#1fa87e',
+                    transform: 'scale(0.98)',
+                    borderColor: '#1fa87e',
+                  }}
+                  onClick={
+                    () => setCategory(item.category)
+                  }
+                  _focus={{
+                    boxShadow:
+                      '0 0 1px 2px #1fa87e, 0 1px 1px #1fa87e',
+                  }} w="70px">
+                  <Img className='product-category-img' src={item.img} alt={item.name} />
+                </Box>
+                <Box className='product-category-name-bottom'>
+                  {item.name}
+                </Box>
+              </Box>
+            })
           }
-           className='product-category-name-bottom'>
-            All
-          </Box>
         </Box>
-    {
-      filterdata?.map((item, i) =>{
-       return  <Box key={i} className="product-category">
-          <Box
-           as='button'
-           borderRadius={"50%"}
-            _active={{
-    bg: '#1fa87e',
-    transform: 'scale(0.98)',
-    borderColor: '#1fa87e',
-  }}
-  onClick={
-    ()=>setCategory(item.category)
-  }
-  _focus={{
-    boxShadow:
-      '0 0 1px 2px #1fa87e, 0 1px 1px #1fa87e',
-  }} w="70px">
-            <Img className='product-category-img' src={item.img} alt={item.name}/>
-          </Box>
-          <Box className='product-category-name-bottom'>
-            {item.name}
-          </Box>
-        </Box>
-      })
-      }
-    </Box>
-    </Box>
-    <Box>
-      <Box className='productpage-filter'><FilterDrawer  setValue={setValue} setMin={setMin} value={value} min={min}/></Box>
-    </Box>
-    <Box padding={"10px"}>
-    <SimpleGrid  columns={[2, 3, 4]} spacing="15px">
-    {products.products?.map((item) => {
-                    return (<ProductCard key={item._id} id={item._id} item={item} />)
-                })}
-                </SimpleGrid>
-    </Box>
-    <Box margin={"auto"} m={"20px"}><Button
-    onClick={()=>setPage(page=>page-1)}
-    disabled={page<=1}
-    mr="20px"
-    >Prev</Button> <Button
-    disabled={total<=page}
-    onClick={()=>setPage(page=>page+1)}
-    >Next</Button></Box>
+      </Box>
+      <Box>
+        <Box className='productpage-filter'><FilterDrawer setValue={setValue} setMin={setMin} value={value} min={min} /></Box>
+      </Box>
+      <Box padding={"10px"}>
+        <SimpleGrid columns={[2, 3, 4]} spacing="15px">
+          {products.products?.map((item) => {
+            return (<ProductCard key={item._id} id={item._id} item={item} />)
+          })}
+        </SimpleGrid>
+      </Box>
+      <Box margin={"auto"} m={"20px"}><Button
+        onClick={() => setPage(page => page - 1)}
+        disabled={page <= 1}
+        mr="20px"
+      >Prev</Button> <Button
+        disabled={total <= page}
+        onClick={() => setPage(page => page + 1)}
+      >Next</Button></Box>
     </ProductPageWrapper>
   )
 }

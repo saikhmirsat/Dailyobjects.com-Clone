@@ -55,15 +55,15 @@ export default function Cart() {
     }
 
     let sum = 0;
-    data && data.forEach((item) =>{
-        return sum += item.price*item.quantity;
+    data && data.forEach((item) => {
+        return sum += item.price * item.quantity;
     })
 
     let dis_sum = 0;
-    data && data.forEach((item) =>{
-        return dis_sum += item.discounted_price-item.price;
+    data && data.forEach((item) => {
+        return dis_sum += item.discounted_price - item.price;
     })
-console.log(sum)
+    console.log(sum)
     useEffect(() => {
         getData()
     }, [])
@@ -128,7 +128,7 @@ console.log(sum)
             <div className='cart-prod-main-div'>
                 <div className='cart-prod-child1'>
                     {
-                        data && data.map((ele) =><div key={ele._id} className='cart-child1-card-div'>
+                        data && data.map((ele) => <div key={ele._id} className='cart-child1-card-div'>
                             <div>
                                 <img src={ele.image_url} alt="" />
                             </div>
