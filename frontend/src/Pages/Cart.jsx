@@ -36,11 +36,6 @@ export default function Cart() {
     const [area, setArea] = useState("")
     const [landmark, setLandmark] = useState("")
 
-    console.log(data);
-    // setCartLength(data.length);
-
-
-    const navigate = useNavigate()
 
 
     const navigate = useNavigate()
