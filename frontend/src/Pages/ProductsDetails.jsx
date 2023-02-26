@@ -60,7 +60,7 @@ const ProductsDetails = () => {
         placeholder='Enter Pincode To Check Delivery'
       />
       <InputRightElement width='4.5rem'>
-        <Button p="0px 25px"fontSize={"14px"} color="rgba(0,0,0,.26)" borderRadius={"0px"} size='md' h={"3.8rem"} marginTop="18px" >
+        <Button p="0px 25px" fontSize={"14px"} color="rgba(0,0,0,.26)" borderRadius={"0px"} size='md' h={"3.8rem"} marginTop="18px" >
           CHECK
         </Button>
       </InputRightElement>
