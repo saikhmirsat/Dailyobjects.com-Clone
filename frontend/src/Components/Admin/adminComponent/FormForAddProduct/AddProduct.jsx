@@ -187,12 +187,14 @@ import {
     InputLeftElement,
     InputGroup,
     InputRightElement,
+    useToast,
 } from '@chakra-ui/react';
 import { CheckIcon } from '@chakra-ui/icons';
 
 import axios from 'axios';
 import { useState } from 'react';
 import { Link as RouterLink } from "react-router-dom";
+import Toast from '../Toast/Toast';
 
 const getCookie = () => {
     let cookie = document.cookie
@@ -227,6 +229,7 @@ export default function SimpleCard() {
     const [dis_Price, setDisPrice] = useState()
     const [discount, setDiscount] = useState()
     const [status, setStatus] = useState("")
+    const toast = useToast()
 
     const products =
     {
@@ -276,6 +279,7 @@ export default function SimpleCard() {
         stock: +stock,
         discounted_price: +dis_Price,
         discount: +discount,
+        model:model,
         status: status
     }
 
@@ -288,32 +292,20 @@ export default function SimpleCard() {
             }
         }).then((res) => res.json())
             .then((res) => {
-                setTitle("")
-                setDescription("")
-                setCategory("")
-                setModel("")
-                setUrl1("")
-                setUrl2("")
-                setUrl3("")
-                setUrl4("")
-                setUrl5("")
-                setPrice()
-                setStock()
-                setHeading1("")
-                setHeading2("")
-                setHeading3("")
-                setHeading4("")
-                setHeading5("")
-                setContent1("")
-                setContent2("")
-                setContent3("")
-                setContent4("")
-                setContent5("")
-                setDisPrice()
-                setDiscount()
-                setStatus("")
                 console.log(res)
-
+                if(res.success==true){
+                    toast({
+                        title: "Data Added successful",
+                        position: "top",
+                        isClosable: true,
+                      })
+                }else{
+                    toast({
+                        title: "error",
+                        position: "top",
+                        isClosable: true,
+                      })
+                }
             })
             .catch((err) => console.log(err))
     }

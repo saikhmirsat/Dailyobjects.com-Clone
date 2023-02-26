@@ -9,6 +9,8 @@ import {
     Button,
   } from '@chakra-ui/react';
   import {Link as RouterLink} from "react-router-dom";
+import DeleteProduct from '../DeleteProduct/DeleteProduct';
+import UpdateProduct from '../UpdateProduct/UpdateProduct';
   
   const IMAGE =
     'https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?w=2000';
@@ -92,8 +94,12 @@ import {
           </Box>
           
           <Box style={{display:"flex", justifyContent:"space-between", marginTop:"20px"}}>
-          <Button>Delete</Button>
-          <RouterLink to={`#`}><Button>Edit</Button></RouterLink>
+          <DeleteProduct
+          id={_id}
+          />
+          <UpdateProduct
+          id={_id}
+          />
           </Box>
         </Box>
       </Center>
