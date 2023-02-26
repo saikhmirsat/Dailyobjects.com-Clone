@@ -25,6 +25,7 @@ import axios from 'axios';
 import { FaSearch } from 'react-icons/fa';
 import Productcard from '../Card/Productcard';
 import CommonSidebar from '../CommonSidebar/CommonSidebar';
+import UserCard from './usercard';
 
 const Links = [<RouterLink to="/admindashboard">Dashboard</RouterLink>, '', 'Team'];
 
@@ -42,7 +43,7 @@ const NavLink = ({ children }) => (
   </Link>
 );
 
-export default function Products() {
+export default function Users() {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
@@ -54,15 +55,16 @@ export default function Products() {
 
   const getData=()=>{
     axios.get(`https://awful-pear-bedclothes.cyclic.app/api/products`).then((res)=>{
-        console.log(res)
-        setData(res.data.products);
+        console.log(res) 
+        setData(res.data.products)
     }).catch((error)=>{
+        
         console.log("error", error)
     });
   }
 
   useEffect(()=>{
-    //  console.log(data)
+    console.log(data)
     getData();
   },[])
 
@@ -133,11 +135,11 @@ export default function Products() {
       {/* <h1 style={{fontSize:"30px", textAlign:"left",fontWeight:"bolder",padding:"20px"}}>Products</h1> */}
       <div style={{display:"flex",flexBasis:"row",width:"100%"}}>
       <CommonSidebar/>
-      <Box margin={{base:"0px 0px 0px 30px ",md:"0px 0px 0px 160px",xl:" 0px 0px 0px 180px","2xl":" 0px 0px 0px 230px"}} style={{width:"80%"}}>
+      <Box  margin={{base:"0px 0px 0px 30px ",md:"0px 0px 0px 160px",xl:" 0px 0px 0px 180px","2xl":" 0px 0px 0px 220px"}} style={{width:"80%"}}>
       <Box p={4}gap="1rem" display="grid" marginTop={"5rem"}  gridTemplateColumns={{base:"repeat(1, 1fr)", md:"repeat(3, 1fr)", xl:"repeat(4, 1fr)"}}>
         {
             data.length>0 && data.map((el, index)=>{
-                return <Productcard
+                return <UserCard
                 key={index}
                 {...el}
                 />
