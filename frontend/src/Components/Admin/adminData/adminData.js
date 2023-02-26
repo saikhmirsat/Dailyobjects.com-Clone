@@ -30,7 +30,7 @@ import {
     },
     {
       icon: UilUsersAlt,
-      heading: <Link to={"/allusers"}> Customers</Link>,
+      heading: <Link to={"/allusers"}> Users</Link>,
     },
     {
       icon: UilPackage,
@@ -45,20 +45,20 @@ import {
 //updates
   export const UpdatesData = [
     {
-      img: Raghu,
-      name: "Andrew Thomas",
+      img: "https://avatars.githubusercontent.com/u/107460137?s=60&v=4",
+      name: "Shivam",
       noti: "has ordered Apple smart watch 2500mh battery.",
       time: "25 seconds ago",
     },
     {
-      img: Raghu,
-      name: "James Bond",
+      img: "https://avatars.githubusercontent.com/u/108000589?s=60&v=4",
+      name: "Saikh",
       noti: "has received Samsung gadget for charging battery.",
       time: "30 minutes ago",
     },
     {
-      img: Raghu,
-      name: "Iron Man",
+      img: "https://avatars.githubusercontent.com/u/110044436?s=60&v=4",
+      name: "Aakash",
       noti: "has ordered Apple smart watch, samsung Gear 2500mh battery.",
       time: "2 hours ago",
     },
