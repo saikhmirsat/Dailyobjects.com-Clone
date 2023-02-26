@@ -17,6 +17,7 @@ import {
 import { useEffect } from 'react'
 import { useState } from 'react'
 import Navbar from '../Components/Navbar'
+import { useNavigate } from 'react-router-dom'
 
 export default function Cart() {
 
@@ -34,11 +35,17 @@ export default function Cart() {
     const [address, setAddress] = useState("")
     const [area, setArea] = useState("")
     const [landmark, setLandmark] = useState("")
-    const [cartLength,setCartLength] = useState(0);
 
     console.log(data);
     // setCartLength(data.length);
 
+
+    const navigate = useNavigate()
+
+
+    const navigate = useNavigate()
+
+    console.log(data)
 
     const getData = async () => {
         await fetch(`https://awful-pear-bedclothes.cyclic.app/api/cart/me`, {
@@ -82,37 +89,38 @@ console.log(sum)
     }
 
     const AddressSubmit = () => {
-        const payload = {
-            fullname,
-            phoneNo,
-            pinCode,
-            city,
-            state,
-            country,
-            address,
-            area,
-            landmark
-        }
-        console.log(payload)
+        // const payload = {
+        //     fullname,
+        //     phoneNo,
+        //     pinCode,
+        //     city,
+        //     state,
+        //     country,
+        //     address,
+        //     area,
+        //     landmark
+        // }
+        // console.log(payload)
 
-        try {
-            console.log(payload)
-            fetch(`https://awful-pear-bedclothes.cyclic.app/api/orders/me`, {
-                method: "POST",
-                body: JSON.stringify(payload),
-                headers: {
-                    "Content-type": "application/json"
-                }
-            }).then(res => res.json())
-                .then((res) => {
-                    alert("Address added Successful")
-                    console.log(res)
-                })
-                .catch((err) => console.log(err))
-        } catch (err) {
-            console.log(err)
-            alert("Something Wrong")
-        }
+        // try {
+        //     console.log(payload)
+        //     fetch(`https://awful-pear-bedclothes.cyclic.app/api/orders/me`, {
+        //         method: "POST",
+        //         body: JSON.stringify(payload),
+        //         headers: {
+        //             "Content-type": "application/json"
+        //         }
+        //     }).then(res => res.json())
+        //         .then((res) => {
+        //             alert("Address added Successful")
+        //             console.log(res)
+        //         })
+        //         .catch((err) => console.log(err))
+        // } catch (err) {
+        //     console.log(err)
+        //     alert("Something Wrong")
+        // }
+        navigate('/checkout-address')
     }
 
     return (
