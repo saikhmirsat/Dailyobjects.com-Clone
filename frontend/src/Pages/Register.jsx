@@ -17,12 +17,13 @@ import {
     Heading,
     Text,
     useColorModeValue,
-    Link
+    Link,
+    Spinner
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 export default function Register() {
-
+    const [loading, setLoading] = useState(false)
     const [showPassword, setShowPassword] = useState(false);
 
     const [firstName, setFname] = useState("")
@@ -33,6 +34,8 @@ export default function Register() {
     const [mobile, setMobile] = useState("")
 
 
+
+
     const navigate = useNavigate()
 
     const handleRegister = () => {
@@ -41,7 +44,7 @@ export default function Register() {
         }
         console.log(payload)
         try {
-
+            setLoading(true)
             fetch(`https://awful-pear-bedclothes.cyclic.app/api/register`, {
                 method: "POST",
                 body: JSON.stringify(payload),
@@ -50,6 +53,7 @@ export default function Register() {
                 }
             }).then(res => res.json())
                 .then((res) => {
+                    setLoading(false)
                     if (res.success) {
                         alert("Register")
                         navigate('/login')
@@ -142,7 +146,13 @@ export default function Register() {
                                     _hover={{
                                         bg: 'blue.500',
                                     }} onClick={handleRegister}>
-                                    Sign up
+                                    {loading ? <Spinner
+                                        thickness='4px'
+                                        speed='0.65s'
+                                        emptyColor='gray.200'
+                                        color='blue.500'
+                                        size='md'
+                                    /> : 'Sign up'}
                                 </Button>
                             </Stack>
                             <Stack pt={6}>

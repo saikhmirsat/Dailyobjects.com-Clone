@@ -3,7 +3,7 @@ import styled from "styled-components"
 const ProductCardWrapper = styled.div`
 
 background-color: #fafafa;
-display: inline-block;
+max-width: 470px;
 .product-card-wishlist{
     cursor: pointer;
     position: absolute;
