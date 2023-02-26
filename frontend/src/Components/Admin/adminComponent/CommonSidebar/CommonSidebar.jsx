@@ -15,17 +15,22 @@ import {
     UilBars,
   } from "@iconscout/react-unicons";
   import {GrAdd} from "react-icons/gr"
+import { useToast } from "@chakra-ui/toast";
 
 const CommonSidebar = () => {
 
-
+  const toast=useToast();
   const [selected, setSelected] = useState(0);
 
   const [expanded, setExpaned] = useState(true);
   const nevigate=useNavigate();
   const logout=()=>{
       localStorage.setItem("isAuth", false)
-      alert("Logout Success")
+      toast({
+        title: "Logout successful",
+        status: "success",
+        position: "top",
+      })
       nevigate('/register')
   }
 
