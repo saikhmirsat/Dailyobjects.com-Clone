@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaHeadset } from 'react-icons/fa';
 import { BiShoppingBag } from 'react-icons/bi';
 import { HiOutlineHeart } from 'react-icons/hi';
@@ -7,14 +7,25 @@ import { RiBookmark3Line } from 'react-icons/ri';
 import { GiThermometerScale } from 'react-icons/gi';
 import { useNavigate } from 'react-router-dom'
 import '../Styles/UserProfile.css'
-import { Button, Heading } from '@chakra-ui/react';
+import { Button, Heading, Spinner } from '@chakra-ui/react';
 
 export default function UserProfile() {
+    const [loading, setLoading] = useState(false)
+
+    const navigate = useNavigate()
 
     const logoutFunc = () => {
+        setLoading(true)
         localStorage.setItem("isAuth", false)
         alert("Logout Success")
-        window.location.reload()
+        navigate('/login')
+        setLoading(false)
+    }
+
+    const user = JSON.parse(localStorage.getItem("user"))
+
+    const HandleChange = () => {
+        navigate('/orderpage')
     }
 
     return (
@@ -22,23 +33,31 @@ export default function UserProfile() {
             <div className='Profile-1st-con'>
                 <div>
                     <Heading mb='10px'>D2D</Heading>
-                    <Button onClick={logoutFunc}>Logout</Button>
-                    <p>This area of YOOX is designed exclusively for you</p>
+                    <Button height='30px' mb='10px' onClick={logoutFunc}>{loading ? <Spinner
+                        thickness='4px'
+                        speed='0.65s'
+                        emptyColor='gray.200'
+                        color='blue.500'
+                        size='md'
+                    /> : 'Logout'}</Button>
+                    <p>This area of D2D is designed exclusively for you</p>
                 </div>
             </div>
             <div className='Profile-2nd-con'>
                 <div>
                     <div>
-                        {/* <h1>HELLO {User.firstName.toUpperCase()}</h1> */}
-                        <p>You've been with us since December 2022</p>
+                        <Heading size='40px' color='#20A87E'>HELLO {user.firstName.toUpperCase()}</Heading>
+                        <p>{user.email}</p>
+                        <p>You've been with us since January 2023</p>
+                        <Button mt='10px' onClick={HandleChange}>Your Orders</Button>
                     </div>
                 </div>
                 <div>
-                    <div>
+                    <div >
                         <FaHeadset size="35px" />
                         <h4>Can we help you?</h4>
                         <p>Please consult the Customer Care area for quick and easy help</p>
-                        <p style={{ fontSize: '14px', fontWeight: 'bold', textDecoration: 'underline' }}>GO TO CUSTOMER CARE</p>
+                        <p style={{ fontSize: '14px', fontWeight: 'bold', textDecoration: 'underline', color: '#20A87E' }}>GO TO CUSTOMER CARE</p>
                     </div>
                 </div>
             </div>
@@ -82,7 +101,7 @@ export default function UserProfile() {
                     </div>
                 </div>
                 <div>
-                    <img src="https://www.yoox.com/images/yoox80/banners/6736_2_HOME_2_W.jpg?634485886601286852" alt="" />
+                    <img src="https://images.dailyobjects.com/marche/product-images/1201/all-red-pedal-daypack-images/All-Red-Pedal-Daypack-vw.png?tr=cm-pad_resize,v-2,w-720,h-707,dpr-2,q-60" alt="" />
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <div >
@@ -92,7 +111,10 @@ export default function UserProfile() {
                     </div>
                 </div>
                 <div>
-                    <img src="https://www.yoox.com/images/yoox80/banners/6736_2_HOME_2_M.jpg?634485886601286852" alt="" />
+                    <img src="https://images.dailyobjects.com/marche/feature-banner/feature-banner-marshal-tech-case-1.jpg?tr=cm-pad_crop,v-2,w-720,h-576,dpr-2,q-60" alt="" />
+                </div>
+                <div>
+                    <img src="https://images.dailyobjects.com/marche/feature-banner/all-pedal-daypack-6t.jpg?tr=cm-pad_crop,v-2,w-720,h-576,dpr-2,q-60" alt="" />
                 </div>
             </div>
         </div>

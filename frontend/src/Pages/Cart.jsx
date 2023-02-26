@@ -18,6 +18,9 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 
 export default function Cart() {
+
+    const [loading, setLoading] = useState("")
+
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [data, setData] = useState([])
 
