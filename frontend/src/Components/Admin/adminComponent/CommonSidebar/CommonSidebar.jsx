@@ -23,8 +23,8 @@ const CommonSidebar = () => {
 
  const SidebarData = [
     {
-      icon: UilEstate,
-      heading: "Dashboard",
+      icon: UilEstate ,
+      heading: <RouterLink to={"/admindashboard"}>Dashboard</RouterLink>,
     },
     {
       icon: UilClipboardAlt,
@@ -32,7 +32,7 @@ const CommonSidebar = () => {
     },
     {
       icon: UilUsersAlt,
-      heading: "Customers",
+      heading: <RouterLink to={"/allusers"}> Customers</RouterLink>,
     },
     {
       icon: UilPackage,

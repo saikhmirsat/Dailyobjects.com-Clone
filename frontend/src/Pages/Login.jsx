@@ -56,11 +56,13 @@ export default function Login() {
             }).then(res => res.json())
                 .then((res) => {
                     if (res.success) {
+                        console.log(res.user._id)
                         let date = new Date()
                         date.setTime(date.getTime() + (7 * 24 * 60 * 60 * 1000))
                         const expires = date.toUTCString()
                         document.cookie = `${encodeURIComponent("token")}=${encodeURIComponent(res.token)};expires=${expires};path=/`
                         alert("User Successfully logedin")
+                        localStorage.setItem("userId", JSON.stringify(res.user._id))
                         localStorage.setItem("isAuth", true)
                         localStorage.setItem("role", JSON.stringify(res.user.role))
                         let user = res.user.role

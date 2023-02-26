@@ -30,7 +30,7 @@ import {
     },
     {
       icon: UilUsersAlt,
-      heading: "Customers",
+      heading: <Link to={"/allusers"}> Customers</Link>,
     },
     {
       icon: UilPackage,

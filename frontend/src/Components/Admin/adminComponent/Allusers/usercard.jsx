@@ -13,7 +13,7 @@ import {
   const IMAGE =
     'https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?w=2000';
   
-  export default function Productcard({_id,title,category,color,description,discounted_price,images,numofReviews,price,ratings,reviews,stock}) {
+  export default function UserCard({_id}) {
 
 
     return (
@@ -52,7 +52,7 @@ import {
               },
             }}>
                 <Box style={{margin:"auto",padding:"0.2rem 0"}}>
-            <Text>{category}</Text>
+            <Text>{"category"}</Text>
           </Box >
           <Box style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
             <Image
@@ -60,41 +60,26 @@ import {
               height={180}
               width={250}
               objectFit={'cover'}
-              src={images[0].url}
+              src={"https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"}
             />
             </Box>
           </Box>
           <Stack pt={10} align={'center'}>
             <Text color={'gray.500'} fontSize={'xs'} textTransform={'uppercase'}>
-              {`$ ${price}`}
+              {`$ ${"price"}`}
             </Text>
             <Heading fontSize={'0.8rem'} fontFamily={'body'} fontWeight={500}>
-            {title}
+            {"title"}
             </Heading>
             <Stack direction={'row'} align={'center'}>
               <Text fontWeight={800} fontSize={'xm'}>
-              {`$ ${price}`}
+              {`$ ${"price"}`}
               </Text>
               <Text textDecoration={'line-through'} color={'gray.600'}>
-              {discounted_price}
+              {"discounted_price"}
               </Text>
             </Stack>
           </Stack>
-          <Box style={{display:"flex", justifyContent:"space-around", marginTop:"20px",marginBottom:"-15px"}}>
-          <Text>Total Reviews</Text>
-            <Text>Rating</Text>
-            <Text>Review</Text>
-          </Box>
-          <Box style={{display:"flex", justifyContent:"space-around", marginTop:"20px"}}>
-          <Text>{numofReviews}</Text>
-            <Text>{ratings}</Text>
-            <Text>{reviews}</Text>
-          </Box>
-          
-          <Box style={{display:"flex", justifyContent:"space-between", marginTop:"20px"}}>
-          <Button>Delete</Button>
-          <RouterLink to={`#`}><Button>Edit</Button></RouterLink>
-          </Box>
         </Box>
       </Center>
     );

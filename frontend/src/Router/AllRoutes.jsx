@@ -4,6 +4,7 @@ import ResetPassword from '../Components/ResetPassword'
 import Admin from '../Components/Admin/Admin'
 import Form from '../Components/Admin/adminComponent/FormForAddProduct/AddProduct'
 import Products from '../Components/Admin/adminComponent/ProductRoute/Products'
+import Users from '../Components/Admin/adminComponent/Allusers/Users'
 import Cart from '../Pages/Cart'
 import CheckoutAddress from '../Pages/CheckoutAddress'
 import CheckoutPayment from '../Pages/CheckoutPayment'
@@ -16,6 +17,7 @@ import ProductsDetails from '../Pages/ProductsDetails'
 import Register from '../Pages/Register'
 import Search from '../Pages/Search'
 import UserProfile from '../Pages/UserProfile'
+
 
 export default function AllRoutes() {
     return (
@@ -39,6 +41,7 @@ export default function AllRoutes() {
             <Route path='/resetpassword' element={<ResetPassword />}></Route>
 
             <Route path='/userprofile' element={<UserProfile />}></Route>
+            <Route path='/allusers' element={<Users/>}></Route>
             {/* <Route path='' element={ }></Route> */}
         </Routes>
     )
