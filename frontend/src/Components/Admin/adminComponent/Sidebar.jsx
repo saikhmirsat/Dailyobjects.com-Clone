@@ -5,12 +5,24 @@ import { UilSignOutAlt } from "@iconscout/react-unicons";
 import { SidebarData } from "../adminData/adminData";
 import { UilBars } from "@iconscout/react-unicons";
 import { motion } from "framer-motion";
-import {Link as RouterLink} from "react-router-dom";
+import {Link as RouterLink, useNavigate} from "react-router-dom";
+import { useToast } from "@chakra-ui/toast";
 
 const Sidebar = () => {
   const [selected, setSelected] = useState(0);
+  const toast=useToast();
 
   const [expanded, setExpaned] = useState(true)
+  const nevigate=useNavigate();
+  const logout=()=>{
+      localStorage.setItem("isAuth", false)
+      toast({
+        title: "Logout successful",
+        status: "success",
+        position: "top",
+      })
+      nevigate('/register')
+  }
 
   const sidebarVariants = {
     true: {
@@ -55,7 +67,7 @@ const Sidebar = () => {
         })}
         {/* signoutIcon */}
         <div className="menuItem">
-          <RouterLink to={"/register"}><UilSignOutAlt /></RouterLink>
+          <RouterLink onClick={logout} to={"/register"}><UilSignOutAlt /></RouterLink>
         </div>
       </div>
     </motion.div>

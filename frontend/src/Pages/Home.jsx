@@ -7,6 +7,8 @@ import '../Styles/Home.css'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import Navbar from '../Components/Navbar';
+import Footer from '../Components/Footer';
 
 export default function Home() {
 
@@ -40,6 +42,7 @@ export default function Home() {
 
     return (
         <div>
+            <Navbar />
             <Link to='/'>
                 <img src="https://images.dailyobjects.com/marche/assets/images/other/watchbands-desktops.jpg?tr=cm-pad_crop,v-2,dpr-2,q-60" alt="" />
             </Link>
@@ -200,6 +203,7 @@ export default function Home() {
             <div>
                 <img src="https://images.dailyobjects.com/marche/assets/images/other/corporate-gifting-desktops.jpg?tr=cm-pad_crop,v-2,dpr-2,q-60" alt="" />
             </div>
+            <Footer />
         </div>
     )
 }

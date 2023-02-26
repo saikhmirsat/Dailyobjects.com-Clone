@@ -19,8 +19,7 @@ import {
 } from '@chakra-ui/react'
 const NewArrival = () => {
   return (
-    <Box height="800px">
-       <Popover trigger='hover' isLazy placement='bottom'>
+    <Popover trigger='hover' isLazy placement='bottom'>
       <PopoverTrigger>
         <Button background={"white"} fontSize="12px" fontWeight="bold" >NEW ARRIVALS</Button>
       </PopoverTrigger>
@@ -60,8 +59,6 @@ const NewArrival = () => {
         </PopoverBody>
       </PopoverContent  >
     </Popover>
-    </Box>
-   
   )
 }
 

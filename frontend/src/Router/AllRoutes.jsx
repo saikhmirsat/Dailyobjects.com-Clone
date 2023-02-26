@@ -21,6 +21,7 @@ import OrderPage from '../Pages/OrderPage'
 
 
 export default function AllRoutes() {
+
     return (
         <Routes>
             <Route path='/' element={<Home />}></Route>
@@ -43,7 +44,7 @@ export default function AllRoutes() {
 
             <Route path='/userprofile' element={<UserProfile />}></Route>
 
-            <Route path='/allusers' element={<Users/>}></Route>
+            <Route path='/allusers' element={<Users />}></Route>
 
             <Route path='/orderpage' element={<OrderPage />}></Route>
 

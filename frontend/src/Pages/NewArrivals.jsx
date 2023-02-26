@@ -2,10 +2,12 @@ import React from 'react'
 import { Heading, SimpleGrid, Box, Text } from '@chakra-ui/react'
 import '../Styles/Newarrivals.css'
 import { Link } from 'react-router-dom'
+import Navbar from '../Components/Navbar'
 
 export default function NewArrivals() {
     return (
         <div className='new-arrival-main-container'>
+            <Navbar />
             <img src="https://images.dailyobjects.com/marche/assets/images/other/key-valentines-offer-banners-homepage-desktop.jpg?tr=cm-pad_crop,v-2,w-1440,dpr-2,q-60" alt="" />
             <Heading size="md" className='new-arrival-heading'>NEW ARRIVALS</Heading>
 
