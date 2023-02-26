@@ -58,19 +58,19 @@ import { FaTwitter } from 'react-icons/fa';
     <Image mt="20px" src="https://images.dailyobjects.com/marche/assets/images/other/reviews-desktop-updated-23.png?tr=cm-pad_resize,v-2,w-1349,h-200,dpr-1"></Image>
     
     
-    <Box width="55%" ml="20px">
+    <Box width="100%" ml="20px" textAlign={"center"}>
     <Accordion defaultIndex={[0]} allowMultiple>
   <AccordionItem>
     <h2>
       <AccordionButton>
-        <Box as="span" flex='1' textAlign='left'>
-          <Heading fontSize={{ base: '15px', md: '25px', lg: '30px' }}>KNOW US</Heading>
+        <Box as="span" flex='1' textAlign='center'>
+          <Heading fontSize={{ base: '15px', md: '25px', lg: '30px' }} textAlign="center">KNOW US</Heading>
         </Box>
         <AccordionIcon />
       </AccordionButton>
     </h2>
     <AccordionPanel pb={4}>
-    <Box textAlign={"left"}>
+    <Box textAlign={"center"}>
     <Text  fontSize={"10px"} mt="10px">Iphone 13 covers</Text>
     <Text fontSize={"10px"} mt="10px">Iphone 14 covers</Text>
     <Text fontSize={"10px"} mt="10px">Iphone 11 pro covers</Text>
@@ -85,16 +85,16 @@ import { FaTwitter } from 'react-icons/fa';
   <AccordionItem>
     <h2>
       <AccordionButton>
-        <Box as="span" flex='1' textAlign='left'>
+        <Box as="span" flex='1' textAlign='center'>
         
-          <Heading fontSize={{ base: '15px', md: '25px', lg: '30px' }}>HELPDESK</Heading>
+          <Heading fontSize={{ base: '15px', md: '25px', lg: '30px' }} textAlign="center">HELPDESK</Heading>
         
         </Box>
         <AccordionIcon />
       </AccordionButton>
     </h2>
     <AccordionPanel pb={4}>
-    <Box textAlign={"left"}>
+    <Box textAlign={"center"}>
     <Text  fontSize={"10px"} mt="10px">Iphone 13 covers</Text>
     <Text fontSize={"10px"} mt="10px">Iphone 14 covers</Text>
     <Text fontSize={"10px"} mt="10px">Iphone 11 pro covers</Text>
@@ -110,14 +110,14 @@ import { FaTwitter } from 'react-icons/fa';
   <AccordionItem>
     <h2>
       <AccordionButton>
-        <Box as="span" flex='1' textAlign='left'>
-          <Heading fontSize={{ base: '15px', md: '25px', lg: '30px' }}>NETWORK</Heading>
+        <Box as="span" flex='1' textAlign='center'>
+          <Heading fontSize={{ base: '15px', md: '25px', lg: '30px' }} textAlign="center">NETWORK</Heading>
         </Box>
         <AccordionIcon />
       </AccordionButton>
     </h2>
     <AccordionPanel pb={4}>
-    <Box textAlign={"left"}>
+    <Box textAlign={"center"}>
     <Text  fontSize={"10px"} mt="10px">Iphone 13 covers</Text>
     <Text fontSize={"10px"} mt="10px">Iphone 14 covers</Text>
     <Text fontSize={"10px"} mt="10px">Iphone 11 pro covers</Text>
@@ -134,14 +134,14 @@ import { FaTwitter } from 'react-icons/fa';
       <AccordionButton>
         <Box as="span" flex='1' textAlign='left'>
         
-          <Heading fontSize={{ base: '15px', md: '25px', lg: '30px' }}>MOST SEARCHED</Heading>
+          <Heading fontSize={{ base: '15px', md: '25px', lg: '30px' }} textAlign="center">MOST SEARCHED</Heading>
         
         </Box>
         <AccordionIcon />
       </AccordionButton>
     </h2>
     <AccordionPanel pb={4}>
-    <Box textAlign={"left"}>
+    <Box textAlign={"center"}>
     <Text  fontSize={"10px"} mt="10px">Iphone 13 covers</Text>
     <Text fontSize={"10px"} mt="10px">Iphone 14 covers</Text>
     <Text fontSize={"10px"} mt="10px">Iphone 11 pro covers</Text>
