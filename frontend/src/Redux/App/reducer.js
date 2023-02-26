@@ -27,6 +27,15 @@ export const reducer = (state = initialState, action) => {
 
       case types.GET_SINGLE_FAILURE:
         return { ...state, isLoading: false, isError: true };
+
+        case types.POST_CART_REQUEST:
+      return { ...state, isLoading: true };
+
+    case types.POST_CART_SUCCESS:
+      return { ...state, isLoading: false, cart: payload };
+
+    case types.POST_CART_FAILURE:
+      return { ...state, isLoading: false, isError: true, cart: [] };
     default:
     return state;
     }
