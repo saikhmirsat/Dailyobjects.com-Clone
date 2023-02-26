@@ -1,7 +1,9 @@
-import { Box, Button, Divider, Heading, Image, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react'
+import { Box, Button, Divider, Heading, Image, Input, InputGroup, InputRightElement, Text, useToast } from '@chakra-ui/react'
+import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
+import Footer from '../Components/Footer'
 import Navbar from '../Components/Navbar'
 import DeliveryTimeReturnsModal from '../Components/Product_Details/DeliveryTimeReturnsModal'
 import ImgSlider from '../Components/Product_Details/ImgSlider'
@@ -17,6 +19,34 @@ const ProductsDetails = () => {
     // console.log(id);
     const { single } = useSelector((store) => store.AppReducer);
     // console.log(single)
+    const toast = useToast();
+    const postData = async (payload) => {
+        console.log(payload)
+        await fetch(`https://awful-pear-bedclothes.cyclic.app/api/cart/create`, {
+            method: 'POST',
+            body: JSON.stringify(payload),
+            headers: {
+                "content-type": "application/json",
+                "Authorization": localStorage.getItem('token')
+            }
+        })
+            .then((res) => res.json())
+            .then((res) => res.success?toast({
+                title: res.message,
+                description: "Product is added successfully",
+                status: 'success',
+                duration: 9000,
+                isClosable: true,
+              }):toast({
+                title: res.message,
+                description: "Something is wrong",
+                status: 'error',
+                duration: 9000,
+                isClosable: true,
+              }))
+            .catch((err) => console.log(err))
+
+    }
     const handleAddCart=()=>{
         const {title,price,discounted_price,images} = single.product;
         const payload = {
@@ -26,12 +56,9 @@ const ProductsDetails = () => {
             image_url  : images[0].url,
             quantity : 1
         }
-      dispatch(postCart(payload)).then(
-        alert("added")
-       )
-
-
+        postData(payload)
     }
+
     useEffect(() => {
         if (id) {
           let payload = id;
@@ -146,6 +173,7 @@ COD Available</Box>
         })}
         </Box>
     </ProductsDetailsBottom>
+    <Footer/>
     </Box>
   )
 }

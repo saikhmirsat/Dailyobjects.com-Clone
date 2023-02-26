@@ -37,6 +37,7 @@ export default function Cart() {
     const [landmark, setLandmark] = useState("")
 
 
+
     const navigate = useNavigate()
 
     console.log(data)
@@ -53,6 +54,16 @@ export default function Cart() {
 
     }
 
+    let sum = 0;
+    data && data.forEach((item) =>{
+        return sum += item.price*item.quantity;
+    })
+
+    let dis_sum = 0;
+    data && data.forEach((item) =>{
+        return dis_sum += item.discounted_price-item.price;
+    })
+console.log(sum)
     useEffect(() => {
         getData()
     }, [])
@@ -117,7 +128,7 @@ export default function Cart() {
             <div className='cart-prod-main-div'>
                 <div className='cart-prod-child1'>
                     {
-                        data && data.map((ele) => <div key={ele._id} className='cart-child1-card-div'>
+                        data && data.map((ele) =><div key={ele._id} className='cart-child1-card-div'>
                             <div>
                                 <img src={ele.image_url} alt="" />
                             </div>
@@ -188,12 +199,12 @@ export default function Cart() {
                     <div className='order-summary-box'>
                         <Heading as='h5'>ORDER SUMMARY</Heading>
                         <div className='order-summary-fle-div'>
-                            <p>Item Total (1 Items)</p>
-                            <Heading size="sm" >Rs.234</Heading>
+                            <p>Item Total ({data?.length} Items)</p>
+                            <Heading size="sm" >Rs.{sum}</Heading>
                         </div>
                         <div className='order-summary-fle-div'>
                             <p style={{ color: "#eba194" }}>Discount</p>
-                            <Heading color="#eba194" size="sm" >Rs.1999</Heading>
+                            <Heading color="#eba194" size="sm" >Rs.{dis_sum}</Heading>
                         </div>
                         <div className='order-summary-fle-div'>
                             <p>Shipping</p>
@@ -202,11 +213,11 @@ export default function Cart() {
                         <hr />
                         <div className='order-summary-fle-div'>
                             <p>Grand Total</p>
-                            <Heading size="sm"  >Rs.2198</Heading>
+                            <Heading size="sm"  >Rs.{sum}</Heading>
                         </div>
                         <div className='order-summary-fle-div'>
                             <p>(Inclusive of Taxes)</p>
-                            <Heading size="sm" color="#eba194" >You Saved Rs.1999</Heading>
+                            <Heading size="sm" color="#eba194" >You Saved Rs.{dis_sum}</Heading>
                         </div>
                         <button className='redeem-apply-btn' onClick={onOpen}>CHEKOUT</button>
 
