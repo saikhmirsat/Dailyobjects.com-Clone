@@ -71,7 +71,7 @@
   /* Tablets */
   @media screen and (max-width: 1200px) {
     .menuItem>span{
-      display: none;
+      display: block;
     }
     .logo{
       display: none;

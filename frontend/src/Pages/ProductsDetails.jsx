@@ -24,7 +24,7 @@ const ProductsDetails = () => {
         }
       }, [id, dispatch]);
   return (<Box>
-    {/* <Navbar/> */}
+    <Navbar/>
     <ProductsDetailsBottom>
     <Box className='product-detalis-flex'>
     {/* top left side */}
@@ -164,9 +164,3 @@ const dummy = [
         imgb:"https://images.dailyobjects.com/marche/feature-banner/hive-desk-caddys-6.jpg?tr=cm-pad_crop,v-2,w-768,h-614,dpr-1"
     }
 ]
-// const dummyimg = [
-//     {
-//         id: 1,
-//         imgUrl:""
-//     }
-// ]
