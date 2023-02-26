@@ -8,6 +8,7 @@ import { GiThermometerScale } from 'react-icons/gi';
 import { useNavigate } from 'react-router-dom'
 import '../Styles/UserProfile.css'
 import { Button, Heading, Spinner } from '@chakra-ui/react';
+import Navbar from '../Components/Navbar';
 
 export default function UserProfile() {
     const [loading, setLoading] = useState(false)
@@ -30,6 +31,7 @@ export default function UserProfile() {
 
     return (
         <div className='profile-main-con'>
+            <Navbar />
             <div className='Profile-1st-con'>
                 <div>
                     <Heading mb='10px'>D2D</Heading>

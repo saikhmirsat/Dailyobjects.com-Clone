@@ -1,10 +1,9 @@
 import './App.css';
-// import AllRoutes from './Router/AllRoutes';
-import Admin from './Components/Admin/Admin';
-import NewArrival from './Components/SubNavbar/NewArrival';
+import AllRoutes from './Router/AllRoutes';
+
 function App() {
   return (
-    <div className="App">  
+    <div className="App">
       <AllRoutes />
     </div>
   );

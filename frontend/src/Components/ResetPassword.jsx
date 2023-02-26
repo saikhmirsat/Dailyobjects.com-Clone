@@ -7,21 +7,27 @@ import {
     Input,
     Stack,
     useColorModeValue,
+    Spinner
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function ResetPassword() {
+
+    const [loading, setLoading] = useState(false)
+
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
 
+    const navigate = useNavigate()
     let resetToken = localStorage.getItem("resetToken")
-
 
     const resetFunc = () => {
         const payload = {
             password,
             confirmPassword
         }
+        setLoading(true)
         try {
             fetch(`https://awful-pear-bedclothes.cyclic.app/api/password/reset/${resetToken}`, {
                 method: "PUT",
@@ -31,6 +37,11 @@ export default function ResetPassword() {
                 }
             }).then(res => res.json())
                 .then((res) => {
+                    if (res.success) {
+                        setLoading(false)
+                        alert("Your Password updated Successfully")
+                        navigate('/')
+                    }
                     console.log(res)
                     alert(res)
                 })
@@ -78,7 +89,13 @@ export default function ResetPassword() {
                         }}
                         onClick={resetFunc}
                     >
-                        Submit
+                        {loading ? <Spinner
+                            thickness='4px'
+                            speed='0.65s'
+                            emptyColor='gray.200'
+                            color='blue.500'
+                            size='xl'
+                        /> : " Submit"}
                     </Button>
                 </Stack>
             </Stack>

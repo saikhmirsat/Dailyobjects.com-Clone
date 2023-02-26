@@ -21,6 +21,7 @@ import {
     Spinner
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import Navbar from '../Components/Navbar'
 
 export default function Register() {
     const [loading, setLoading] = useState(false)
@@ -76,6 +77,7 @@ export default function Register() {
 
     return (
         <div id='register-main-cont'>
+            <Navbar />
             <Flex
                 minH={'100vh'}
                 align={'center'}

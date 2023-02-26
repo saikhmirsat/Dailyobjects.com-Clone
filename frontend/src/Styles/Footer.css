@@ -1,0 +1,18 @@
+.footer-main-container {
+    /* border: 1px solid red; */
+}
+
+.mobile-Footer {
+    display: none;
+}
+
+@media (max-width: 667px) {
+    .mobile-Footer {
+        display: contents;
+        /* border: 1px solid green; */
+    }
+
+    .footer {
+        display: none;
+    }
+}

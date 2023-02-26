@@ -3,6 +3,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../Styles/Checkout.css'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
+import Navbar from '../Components/Navbar'
 
 
 export default function CheckoutAddress() {
@@ -14,6 +15,7 @@ export default function CheckoutAddress() {
 
     return (
         <div>
+            <Navbar />
             <hr />
             <Heading mt='60px'>CHECKOUT</Heading>
 
