@@ -13,7 +13,7 @@ import "../../Styles/productdeatilslider.css";
 import { Pagination, Navigation } from "swiper";
 import { Image } from "@chakra-ui/react";
 
-const ImgSlider = () => {
+const ImgSlider = ({data}) => {
   return (
     <>
       <Swiper
@@ -27,9 +27,9 @@ const ImgSlider = () => {
         modules={[Pagination, Navigation]}
         className="mySwiper"
       >
-      {dummy?.map((item, index) =>{
+      {data?.map((item, index) =>{
         return <SwiperSlide key={index} >
-            <Image w="100%" src={item.img} alt= "imges"/>
+            <Image w="100%" src={item.url} alt= "imges"/>
         </SwiperSlide>
       })}
       </Swiper>

@@ -17,7 +17,7 @@ const ProductPage = () => {
   const [value, setValue] = useState("100");
   const  [min ,setMin] = useState("5000");
   const [page,setPage] = useState(1);
-  const [data, setData] = useState([]);
+  const [loading,setLoading] = useState(false);
   const location = useLocation();
 
   const term = location?.search;
@@ -36,13 +36,13 @@ console.log(products.products)
       // params.gte = value;
       // params.lte = min;
       params.page = page;
-      if(category!== ""){
-        params.category = category;
-      }
+
+        params.keyword = category;
+
       // let model = {gte:value,lte:min,term:term}
       setSearchParams(params);
         dispatch(getProduct(term,value,min))
-    }, [term,page,value,min]);
+    }, [term,page,value,min,category]);
   return (
     <ProductPageWrapper>
     <Box><Navbar/></Box>
@@ -121,36 +121,36 @@ let filterdata = [
   {
     name: "Pedal Backpack",
     img: "https://images.dailyobjects.com/marche/assets/images/other/filter-icon.jpg?tr=cm-pad_crop,v-2,w-70,h-70,dpr-1",
-    category: "pedalbackpack"
+    category: "Daypack"
   },
   {
     name: "Desks",
     img: "https://images.dailyobjects.com/marche/icons/category/platrorm-desk-collection.png?tr=cm-pad_resize,v-2,w-70,h-70,dpr-1",
-    category: "desks"
+    category: "Stand"
   },
   {
     name: "Charging Solutions",
     img: "https://images.dailyobjects.com/marche/assets/images/other/charging-solution-icon.jpg?tr=cm-pad_crop,v-2,w-70,h-70,dpr-1",
-    category: "chargingsolutions"
+    category: "Charging"
   },
   {
     name: "Macbook Sleeves",
     img: "https://images.dailyobjects.com/marche/icons/new-arrival/pu-snap-sleeves.jpg?tr=cm-pad_crop,v-2,w-70,h-70,dpr-1",
-    category: "macbooksleeves"
+    category: "MacBook"
   },
   {
     name: "Messenger Bags",
     img: "https://images.dailyobjects.com/marche/icons/category/laptop-brifcae-new-arrival-icon.jpg?tr=cm-pad_crop,v-2,w-70,h-70,dpr-1",
-    category: "messengerbags"
+    category: "Messenger"
   },
   {
     name: "Eyewear Cases",
     img: "https://images.dailyobjects.com/marche/icons/filter/eyewear-cases.png?tr=cm-pad_resize,v-2,w-70,h-70,dpr-1",
-    category: "eyewearcases"
+    category: "Eyewear"
   },
   {
     name: "Watchbands",
     img: "https://images.dailyobjects.com/marche/icons/category/watchbands-filter-icon-for-new-arrival.jpg?tr=cm-pad_crop,v-2,w-70,h-70,dpr-1",
-    category: "watchbands"
+    category: "Watch"
   }
 ]

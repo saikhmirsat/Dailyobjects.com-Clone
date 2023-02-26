@@ -7,16 +7,31 @@ import DeliveryTimeReturnsModal from '../Components/Product_Details/DeliveryTime
 import ImgSlider from '../Components/Product_Details/ImgSlider'
 import ProductDetailsModals from '../Components/Product_Details/ProductDetailsModal'
 import SpecificationsModal from '../Components/Product_Details/SpecificationsModal'
-import { getSingleProduct } from '../Redux/App/action'
+import { getSingleProduct, postCart } from '../Redux/App/action'
 import { ProductsDetailsBottom } from '../Styles/ProductDetailscss'
 
 const ProductsDetails = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const { id } = useParams();
-    console.log(id);
+    // console.log(id);
     const { single } = useSelector((store) => store.AppReducer);
-    console.log(single)
+    // console.log(single)
+    const handleAddCart=()=>{
+        const {title,price,discounted_price,images} = single.product;
+        const payload = {
+            title: title,
+            price: price,
+            discounted_price: discounted_price,
+            image_url  : images[0].url,
+            quantity : 1
+        }
+      dispatch(postCart(payload)).then(
+        alert("added")
+       )
+
+
+    }
     useEffect(() => {
         if (id) {
           let payload = id;
@@ -28,19 +43,19 @@ const ProductsDetails = () => {
     <ProductsDetailsBottom>
     <Box className='product-detalis-flex'>
     {/* top left side */}
-    <Box className='product-detalis-sliderbox'><ImgSlider/></Box>
+    <Box className='product-detalis-sliderbox'><ImgSlider data={single.product?.images} /></Box>
     {/* top right side */}
     <Box className='Product-details-right'>
         <Box className='Product-details-right-heading'>
             <h1>{single.product?.title}</h1>
             <b>
-            Rs.3499
-            <span className='Product-details-right-total-price'>4999</span>
+            Rs.{single.product?.price}
+            <span className='Product-details-right-total-price'>{single.product?.discounted_price}</span>
             <span className='Product-details-right-exclusive'>Inclusive of all taxes</span>
             </b>
         </Box>
         <Box>
-            <Button className='Product-details-right-addtocart-button'>
+            <Button className='Product-details-right-addtocart-button' onClick={handleAddCart}>
                 ADD TO CART
             </Button>
         </Box>
@@ -76,7 +91,7 @@ COD Available</Box>
         <Box>
         <Divider/>
             <Box>
-            <ProductDetailsModals/>
+            <ProductDetailsModals data={single.product?.description}/>
             </Box>
             <Divider/>
             <Box><SpecificationsModal/></Box>
@@ -89,7 +104,7 @@ COD Available</Box>
 
     {/* Bottom Side  */}
     <Box>
-        {dummy?.map((item,i)=>{
+        {single.product?.details?.map((item,i)=>{
             let last = dummy.length-1;
             if(i%2===0){
                 return (
@@ -97,37 +112,37 @@ COD Available</Box>
                         <Box className='product-details-bottom-adujust-wid'>
                         <Box className='product-details-bottom-banner'>
                         <h1>{item.heading}</h1>
-                            <p>{item.details}</p>
+                            <p>{item.content}</p>
 
                         </Box>
                         </Box>
                         <Box className='product-details-bottom-adujust-wid'>
-                            <Image src ={item.img} alt="img"/>
+                            <Image src ={item.img_url} alt="img"/>
                         </Box>
                     </Box>
                 )
-            }else if(i%2===1 && last!== i){
+            }else if(i%2===1){
                return <Box className='product-details-bottom-right' key={i}>
                         <Box className='product-details-bottom-adujust-wid'>
                         <Box className='product-details-bottom-banner'>
                         <h1>{item.heading}</h1>
-                         <p>{item.details}</p>
+                         <p>{item.content}</p>
 
                         </Box>
                         </Box>
                         <Box className='product-details-bottom-adujust-wid'>
-                            <Image src ={item.img} alt="img"/>
+                            <Image src ={item.img_url} alt="img"/>
                         </Box>
                     </Box>
             }
-            else if(last === i){
+            {/* else if(last === i){
                     return(
                         <Box className='product-details-bottom-img' key={i}>
                             <Image minWidth={"120px"} src ={item.imga} alt ="image a"/>
                             <Image minWidth={"120px"} src ={item.imgb} alt ="image b"/>
                         </Box>
                     )
-            }
+            } */}
         })}
         </Box>
     </ProductsDetailsBottom>
