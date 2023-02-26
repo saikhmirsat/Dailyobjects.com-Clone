@@ -12,7 +12,8 @@ import {
     ModalBody,
     ModalCloseButton,
     useDisclosure,
-    Button
+    Button,
+    Spinner
 } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { useState } from 'react'
@@ -21,7 +22,7 @@ import { useNavigate } from 'react-router-dom'
 
 export default function Cart() {
 
-    const [loading, setLoading] = useState("")
+    const [loading, setLoading] = useState(false)
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [data, setData] = useState([])
@@ -42,13 +43,18 @@ export default function Cart() {
     console.log(data)
 
     const getData = async () => {
+        setLoading(true)
         await fetch(`https://awful-pear-bedclothes.cyclic.app/api/cart/me`, {
             headers: {
                 "Authorization": localStorage.getItem('token')
             }
         })
             .then((res) => res.json())
-            .then((res) => setData(res.cart))
+            .then((res) => {
+                setLoading(false)
+                setData(res.cart)
+
+            })
             .catch((err) => console.log(err))
 
     }
@@ -117,7 +123,13 @@ export default function Cart() {
             <div className='cart-prod-main-div'>
                 <div className='cart-prod-child1'>
                     {
-                        data && data.map((ele) => <div key={ele._id} className='cart-child1-card-div'>
+                        loading ? <Spinner
+                            thickness='4px'
+                            speed='0.65s'
+                            emptyColor='gray.200'
+                            color='blue.500'
+                            size='xl'
+                        /> : data && data.map((ele) => <div key={ele._id} className='cart-child1-card-div'>
                             <div>
                                 <img src={ele.image_url} alt="" />
                             </div>
