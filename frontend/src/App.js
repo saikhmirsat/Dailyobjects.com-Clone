@@ -4,9 +4,8 @@ import Admin from './Components/Admin/Admin';
 import NewArrival from './Components/SubNavbar/NewArrival';
 function App() {
   return (
-    <div className="App">
-      {/* <AllRoutes /> */}
-      <NewArrival />
+    <div className="App">  
+      <AllRoutes />
     </div>
   );
 }
