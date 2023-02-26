@@ -15,6 +15,23 @@
 	display: none;
 }
 
+.nav-car-div {
+	display: flex;
+	gap: 5px;
+	align-items: center;
+
+}
+
+.nav-car-div>p {
+	border: 1px solid black;
+	border-radius: 50%;
+	height: 20px;
+	width: 20px;
+	background-color: black;
+	color: aliceblue;
+	font-size: 15px;
+}
+
 @media (max-width: 1024px) {
 	.navbar {
 		padding: unset;
@@ -43,9 +60,9 @@
 		width: 15%;
 	}
 
-	
-		
-	
+
+
+
 
 	.hamburger-catagories-box {
 		border: 1px solid rgb(229, 228, 228);
@@ -113,7 +130,7 @@
 		width: 20%;
 	}
 
-	
+
 	.hamburger-catagories-box {
 		border: 1px solid rgb(229, 228, 228);
 		display: grid;
