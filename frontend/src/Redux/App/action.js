@@ -1,10 +1,14 @@
 import axios from "axios";
 import * as types from "./actionTypes";
-const getProduct = (payload = 'products') => (dispatch) => {
+
+
+const getProduct = (term,value,min) => (dispatch) => {
     dispatch({ type: types.GET_PRODUCTS_REQUEST });
     return axios
-        .get(`https://awful-pear-bedclothes.cyclic.app/api/${payload}`)
+        .get(`https://awful-pear-bedclothes.cyclic.app/api/products?${term}&price[gte]=${value}&price[lte]=${min}`)
         .then((r) => {
+            let {data}=r;
+
            return dispatch({ type: types.GET_PRODUCTS_SUCCESS, payload: r.data });
         })
         .catch((e) => {
