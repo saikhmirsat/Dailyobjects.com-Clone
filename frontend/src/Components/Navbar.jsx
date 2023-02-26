@@ -1,6 +1,6 @@
 
 import React from "react"
-import { background, Box, Image, Text } from "@chakra-ui/react"
+import { background, Box, Heading, Image, Text } from "@chakra-ui/react"
 import { EmailIcon, SearchIcon, LockIcon } from "@chakra-ui/icons";
 import NewArrival from "./SubNavbar/NewArrival";
 import Cases from "./SubNavbar/CasesSleeve";
@@ -19,6 +19,9 @@ import { FaShoppingBag } from 'react-icons/fa';
 import "./Navbar.css"
 import { Link, useNavigate } from "react-router-dom";
 import Hamburger from "./Hamburger";
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
 
 
 
@@ -27,6 +30,10 @@ import Hamburger from "./Hamburger";
 
 
 const Navbar = () => {
+
+  const [cart, setCart] = useState("")
+
+
   const navigate = useNavigate()
   const checkIsAuth = JSON.parse(localStorage.getItem("isAuth"))
   const checkAdmin = JSON.parse(localStorage.getItem("role"))
@@ -36,6 +43,20 @@ const Navbar = () => {
     navigate('/')
   }
 
+  const getData = async () => {
+    await fetch(`https://awful-pear-bedclothes.cyclic.app/api/cart/me`, {
+      headers: {
+        "Authorization": localStorage.getItem('token')
+      }
+    })
+      .then((res) => res.json())
+      .then((res) => setCart(res.cart.length))
+      .catch((err) => console.log(err))
+
+  }
+  useEffect(() => {
+    getData()
+  }, [])
 
 
   return (
@@ -57,7 +78,7 @@ const Navbar = () => {
           </Box>
 
           <Box display="flex" alignItems='center' gap="30px" >
-            <Link to='/cart' ><BsHandbag size='20' /></Link>
+            <Link className="nav-car-div" to='/cart' ><BsHandbag size='20' /><Heading as='p' size="sm">{cart}</Heading></Link>
             <Link to={checkIsAuth ? checkAdmin == "admin" ? '/admindashboard' : '/userprofile' : '/register'}><BsPerson size='23' /></Link>
             <Link to='/search'><TfiSearch size='20' /></Link>
           </Box>
