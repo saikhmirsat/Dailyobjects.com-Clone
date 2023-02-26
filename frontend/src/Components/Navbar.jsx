@@ -32,7 +32,9 @@ const Navbar = () => {
   const checkAdmin = JSON.parse(localStorage.getItem("role"))
 
 
-
+  const gotoHome = () => {
+    navigate('/')
+  }
 
 
 
@@ -40,7 +42,7 @@ const Navbar = () => {
     <div className="navbar">
       <div className="normal-navbar">
         <Box display="flex" justifyContent='space-between' alignItems='center' height="50px">
-          <Box>
+          <Box onClick={gotoHome}>
             <Image width='80px' src={logo}></Image>
           </Box>
           <Box display="flex" justifyContent="space-between" >
