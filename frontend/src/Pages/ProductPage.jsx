@@ -1,23 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../Redux/App/action";
 import ProductCard from "../Components/ProductCard"
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import Navbar from '../Components/Navbar';
 import { Box, Button, Image, Img, SimpleGrid } from '@chakra-ui/react';
 import { ProductPageWrapper } from '../Styles/ProductPagecss';
 import FilterDrawer from '../Components/FilterDrawer';
+import Pagination from '../Components/Pagination';
+
 
 const ProductPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [category, setCategory] = useState("");
+  const [value, setValue] = useState("100");
+  const  [min ,setMin] = useState("5000");
+  const [page,setPage] = useState(1);
+  const [data, setData] = useState([]);
   const location = useLocation();
-    const term = location.state?.query;
+
+  const term = location?.search;
+  // console.log(term);
+
+
+
     const products = useSelector((state) => state.AppReducer.products)
-    console.log(products.products)
+    let total = Math.ceil(products?.productsCount/15);
+console.log(category);
+console.log(products.products)
+    // console.log(products,"searchsearch paramss")
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getProduct(term))
-    }, [dispatch,term]);
+      let params = {};
+      // params.gte = value;
+      // params.lte = min;
+      params.page = page;
+      if(category!== ""){
+        params.category = category;
+      }
+      // let model = {gte:value,lte:min,term:term}
+      setSearchParams(params);
+        dispatch(getProduct(term,value,min))
+    }, [term,page,value,min]);
   return (
     <ProductPageWrapper>
     <Box><Navbar/></Box>
@@ -31,7 +56,11 @@ const ProductPage = () => {
           <Box className='product-category-all'>
             ALL
           </Box>
-          <Box className='product-category-name-bottom'>
+          <Box
+          onClick={
+        ()=>setCategory("")
+          }
+           className='product-category-name-bottom'>
             All
           </Box>
         </Box>
@@ -46,6 +75,9 @@ const ProductPage = () => {
     transform: 'scale(0.98)',
     borderColor: '#1fa87e',
   }}
+  onClick={
+    ()=>setCategory(item.category)
+  }
   _focus={{
     boxShadow:
       '0 0 1px 2px #1fa87e, 0 1px 1px #1fa87e',
@@ -61,7 +93,7 @@ const ProductPage = () => {
     </Box>
     </Box>
     <Box>
-      <Box className='productpage-filter'><FilterDrawer/></Box>
+      <Box className='productpage-filter'><FilterDrawer  setValue={setValue} setMin={setMin} value={value} min={min}/></Box>
     </Box>
     <Box padding={"10px"}>
     <SimpleGrid  columns={[2, 3, 4]} spacing="15px">
@@ -70,6 +102,14 @@ const ProductPage = () => {
                 })}
                 </SimpleGrid>
     </Box>
+    <Box margin={"auto"} m={"20px"}><Button
+    onClick={()=>setPage(page=>page-1)}
+    disabled={page<=1}
+    mr="20px"
+    >Prev</Button> <Button
+    disabled={total<=page}
+    onClick={()=>setPage(page=>page+1)}
+    >Next</Button></Box>
     </ProductPageWrapper>
   )
 }

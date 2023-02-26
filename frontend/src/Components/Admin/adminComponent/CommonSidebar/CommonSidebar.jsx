@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./CommonSidebar.css";
 import Logo from "../../images/logo.png";
 import { motion } from "framer-motion";
-import {Link as RouterLink} from "react-router-dom";
+import {Link as RouterLink, Navigate, useNavigate} from "react-router-dom";
 import {
     UilEstate,
     UilClipboardAlt,
@@ -17,9 +17,17 @@ import {
   import {GrAdd} from "react-icons/gr"
 
 const CommonSidebar = () => {
+
+
   const [selected, setSelected] = useState(0);
 
   const [expanded, setExpaned] = useState(true);
+  const nevigate=useNavigate();
+  const logout=()=>{
+      localStorage.setItem("isAuth", false)
+      alert("Logout Success")
+      nevigate('/register')
+  }
 
  const SidebarData = [
     {
@@ -32,7 +40,7 @@ const CommonSidebar = () => {
     },
     {
       icon: UilUsersAlt,
-      heading: <RouterLink to={"/allusers"}> Customers</RouterLink>,
+      heading: <RouterLink to={"/allusers"}> users</RouterLink>,
     },
     {
       icon: UilPackage,
@@ -48,7 +56,7 @@ const CommonSidebar = () => {
       },
     {
         icon: UilSignOutAlt,
-        heading: 'Signout'
+        heading:<RouterLink onClick={logout} to="/register">Signout</RouterLink> 
       }
 
   ];
@@ -84,12 +92,14 @@ const CommonSidebar = () => {
         {SidebarData.map((item, index) => {
           return (
             <div
-              className={selected === index ? "menuItem active" : "menuItem"}
+              className={selected === index ? "menuItems active" : "menuItems"}
               key={index}
               onClick={() => setSelected(index)}
             >
               <item.icon />
+              <div>
               <span>{item.heading}</span>
+              </div>
             </div>
           );
         })}

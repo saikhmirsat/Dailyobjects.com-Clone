@@ -47,13 +47,15 @@ const Sidebar = () => {
               onClick={() => setSelected(index)}
             >
               <item.icon />
+              <div>
               <span>{item.heading}</span>
+              </div>
             </div>
           );
         })}
         {/* signoutIcon */}
         <div className="menuItem">
-          <UilSignOutAlt />
+          <RouterLink to={"/register"}><UilSignOutAlt /></RouterLink>
         </div>
       </div>
     </motion.div>

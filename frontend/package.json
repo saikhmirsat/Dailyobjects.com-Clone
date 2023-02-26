@@ -5,6 +5,7 @@
   "dependencies": {
     "@chakra-ui/icons": "^2.0.17",
     "@chakra-ui/react": "^2.5.1",
+    "@chakra-ui/toast": "^6.0.1",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@iconscout/react-unicons": "^1.1.6",
@@ -20,6 +21,7 @@
     "react-circular-progressbar": "^2.0.4",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
+    "react-loader-spinner": "^5.3.4",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",

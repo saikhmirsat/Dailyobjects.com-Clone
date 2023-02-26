@@ -8,12 +8,12 @@ import {
     Image,
     Button,
   } from '@chakra-ui/react';
-  import {Link as RouterLink} from "react-router-dom";
+
   
   const IMAGE =
     'https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?w=2000';
   
-  export default function UserCard({_id}) {
+  export default function UserCard({_id,email,firstName,role}) {
 
 
     return (
@@ -52,7 +52,7 @@ import {
               },
             }}>
                 <Box style={{margin:"auto",padding:"0.2rem 0"}}>
-            <Text>{"category"}</Text>
+            <Text>{"User"}</Text>
           </Box >
           <Box style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
             <Image
@@ -60,23 +60,20 @@ import {
               height={180}
               width={250}
               objectFit={'cover'}
-              src={"https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"}
+              src={"https://www.seekpng.com/png/detail/966-9665493_my-profile-icon-blank-profile-image-circle.png"}
             />
             </Box>
           </Box>
           <Stack pt={10} align={'center'}>
             <Text color={'gray.500'} fontSize={'xs'} textTransform={'uppercase'}>
-              {`$ ${"price"}`}
+              {`Role:- ${role}`}
             </Text>
             <Heading fontSize={'0.8rem'} fontFamily={'body'} fontWeight={500}>
-            {"title"}
+            {firstName}
             </Heading>
             <Stack direction={'row'} align={'center'}>
-              <Text fontWeight={800} fontSize={'xm'}>
-              {`$ ${"price"}`}
-              </Text>
-              <Text textDecoration={'line-through'} color={'gray.600'}>
-              {"discounted_price"}
+              <Text  color={'gray.600'}>
+              {` ${email}`}
               </Text>
             </Stack>
           </Stack>
