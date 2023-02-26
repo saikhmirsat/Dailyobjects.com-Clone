@@ -7,6 +7,7 @@ const ProductsDetailsBottom = styled.div`
 }
 .product-detalis-sliderbox{
     width: 50%;
+    padding: 10px;
 }
 .Product-details-right{
     max-width: 470px;
