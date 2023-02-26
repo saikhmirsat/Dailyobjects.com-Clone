@@ -16,6 +16,7 @@ import {
 } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import Navbar from '../Components/Navbar'
 
 export default function Cart() {
 
@@ -37,13 +38,13 @@ export default function Cart() {
     console.log(data)
 
     const getData = async () => {
-        await fetch(`https://confused-crab-glasses.cyclic.app/cartproducts`, {
+        await fetch(`https://awful-pear-bedclothes.cyclic.app/api/cart/me`, {
             headers: {
                 "Authorization": localStorage.getItem('token')
             }
         })
             .then((res) => res.json())
-            .then((res) => setData(res))
+            .then((res) => setData(res.cart))
             .catch((err) => console.log(err))
 
     }
@@ -54,7 +55,7 @@ export default function Cart() {
 
     const deleteFunc = async (id) => {
         try {
-            await fetch(`https://confused-crab-glasses.cyclic.app/cartproducts/delete/${id}`, {
+            await fetch(`https://awful-pear-bedclothes.cyclic.app/api/cart/delete/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-type": "application/json"
@@ -103,6 +104,7 @@ export default function Cart() {
 
     return (
         <div className='cart-main-container'>
+            <Navbar />
             <img src="https://images.dailyobjects.com/marche/assets/images/other/key-valentines-offer-banners-homepage-desktop.jpg?tr=cm-pad_crop,v-2,w-1440,dpr-2,q-60" alt="" />
             <div className='cart-shopping-bag'>
                 <h1>SHOPPING BAG</h1>
@@ -112,13 +114,13 @@ export default function Cart() {
                     {
                         data && data.map((ele) => <div key={ele._id} className='cart-child1-card-div'>
                             <div>
-                                <img src={ele.image} alt="" />
+                                <img src={ele.image_url} alt="" />
                             </div>
                             <div>
                                 <p>{ele.title}</p>
                                 <div style={{ display: "flex", gap: "20px" }}>
 
-                                    <h4>Rs.499</h4> <p style={{ color: "gray", textDecoration: "line-through" }}>{ele.discount}</p>
+                                    <h4>Rs.{ele.price}</h4> <p style={{ color: "gray", textDecoration: "line-through" }}>{ele.discount}</p>
                                 </div>
                                 <div className='cart-quntity-btn-box'>
                                     <div className='cart-plus-minus'>

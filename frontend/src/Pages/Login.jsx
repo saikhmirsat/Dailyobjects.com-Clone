@@ -29,6 +29,7 @@ import {
     ModalBody,
     ModalCloseButton,
 } from '@chakra-ui/react'
+import Navbar from '../Components/Navbar'
 
 export default function Login() {
 
@@ -68,6 +69,7 @@ export default function Login() {
                         alert("User Successfully logedin")
                         localStorage.setItem("userId", JSON.stringify(res.user._id))
                         localStorage.setItem("isAuth", true)
+                        localStorage.setItem("token", res.token)
                         localStorage.setItem("role", JSON.stringify(res.user.role))
                         localStorage.setItem("user", JSON.stringify(res.user))
                         let user = res.user.role
@@ -79,6 +81,7 @@ export default function Login() {
                             navigate('/')
                         }
                     } else {
+                        setLoading(false)
                         alert(res.message)
                     }
 
@@ -96,6 +99,7 @@ export default function Login() {
     return (
 
         <div className='login-div'>
+            <Navbar />
             <Flex
                 minH={'100vh'}
                 align={'center'}

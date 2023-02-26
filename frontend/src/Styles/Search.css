@@ -1,0 +1,17 @@
+.searchbox-main-con {
+    /* border: 1px solid red; */
+    padding: 10px;
+
+}
+
+.searchbox-main-con>input {
+    width: 70%;
+    /* height: 10; */
+    margin: auto;
+    margin: 10px 20px;
+    outline: none;
+    border-bottom: 2px solid green;
+    font-size: 20px;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}

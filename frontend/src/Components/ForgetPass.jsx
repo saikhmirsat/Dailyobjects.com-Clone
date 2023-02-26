@@ -7,14 +7,19 @@ import {
     Stack,
     Text,
     useColorModeValue,
+    Spinner
 } from '@chakra-ui/react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 
 export default function ForgotPassword() {
     const [email, setEmail] = useState("")
 
+    const [loading, setLoading] = useState(false)
+
+    const navigate = useNavigate()
     // const getCookie = () => {
     //     let cookie = document.cookie
     //     let decoded = decodeURIComponent(cookie)
@@ -29,7 +34,7 @@ export default function ForgotPassword() {
         const payload = {
             email
         }
-      
+        setLoading(true)
         try {
             fetch(`https://awful-pear-bedclothes.cyclic.app/api/password/forgot`, {
                 method: "POST",
@@ -39,6 +44,10 @@ export default function ForgotPassword() {
                 }
             }).then(res => res.json())
                 .then((res) => {
+                    if (res.success) {
+                        setLoading(false)
+                        navigate('/resetpassword')
+                    }
                     console.log(res)
                     localStorage.setItem("resetToken", res.resetToken)
                 })
@@ -89,7 +98,14 @@ export default function ForgotPassword() {
                         }}
                         onClick={forgetBTN}
                     >
-                        Request Reset
+                        {loading ? <Spinner
+                            thickness='4px'
+                            speed='0.65s'
+                            emptyColor='gray.200'
+                            color='blue.500'
+                            size='xl'
+                        /> : "Request Reset"}
+
                     </Button>
                 </Stack>
             </Stack>

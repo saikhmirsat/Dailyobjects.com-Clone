@@ -16,6 +16,7 @@ import {
     Heading
 } from '@chakra-ui/react'
 import { useState } from 'react'
+import Navbar from '../Components/Navbar'
 
 export default function CheckoutPayment() {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -39,6 +40,7 @@ export default function CheckoutPayment() {
 
     return (
         <div>
+            <Navbar />
             <div >
                 <hr />
                 <Heading mt='60px'>CHECKOUT</Heading>
