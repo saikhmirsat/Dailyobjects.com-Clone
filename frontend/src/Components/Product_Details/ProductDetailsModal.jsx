@@ -10,7 +10,7 @@ import {
     ModalCloseButton,
   } from '@chakra-ui/react'
 
-const ProductDetailsModals = () => {
+const ProductDetailsModals = ({data}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <><Button onClick={onOpen} variant={"ghost"} margin="10px 0px" padding="15px 0px" fontSize={"16px"} fontWeight="normal">Product Details</Button>
@@ -22,7 +22,7 @@ const ProductDetailsModals = () => {
         <ModalCloseButton size={"lg"}/>
         <ModalBody fontWeight="normal" maxHeight={"55vh"} overflowY={"scroll"} p={"20px 40px"} className="scrollcss">
         <Box fontSize={"16px"} fontWeight="normal">
-        Spacious, sturdy and mobile, Hive Desk Caddy is carefully designed for easy storage and organisation. It offers multiple compartments of optimal sizes to store kids stationery, toys, books, board games, art and craft essentials, etc. Its clever design allows kids to easily organise their everyday stuff and is a perfect enabler to boost their confidence and self-reliance.
+        {data}
         </Box>
        <Box mt={"10%"}>
         <ul className='Product-details-modal-list'>

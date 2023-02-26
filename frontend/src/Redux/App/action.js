@@ -30,8 +30,14 @@ const getSingleProduct = (payload) => (dispatch) => {
 }
 const postCart = (payload) => (dispatch) => {
     dispatch({ type: types.POST_CART_REQUEST });
+ console.log(payload);
     return axios
-        .post("https://awful-pear-bedclothes.cyclic.app/api/product/cart", payload)
+        .post("https://awful-pear-bedclothes.cyclic.app/api/cart/create",{payload}, {
+            headers: {
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem("userId")
+      }
+          }, )
         .then((r) => {
             return dispatch({ type: types.POST_CART_SUCCESS });
         })
@@ -39,5 +45,18 @@ const postCart = (payload) => (dispatch) => {
             dispatch({ type: types.POST_CART_FAILURE });
         })
 }
+
+// const postData = async (payload) => {
+//     await fetch(`https://awful-pear-bedclothes.cyclic.app/api/cart/create`, {
+//         method: 'POST',
+//         headers: {
+//             "Authorization": localStorage.getItem('userId')
+//         }
+//     },payload)
+//         .then((res) => res.json())
+//         .then((res) => console.log(res))
+//         .catch((err) => console.log(err))
+
+// }
 
 export {getProduct,getSingleProduct,postCart};
