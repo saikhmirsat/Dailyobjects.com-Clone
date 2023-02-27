@@ -39,7 +39,7 @@ All collaborators list with their profile link.
 ### Collaborators-
 >**Team-Lead:- Saikh Mirsat** <https://github.com/saikhmirsat>
 
-| Team members | Github-profiles | Likedin |
+| Team members | Github-profiles |
 | ------ | ------ |
 | Aakash Mukherjee | <https://github.com/blackcode1996> |
 | Raghuveer | <https://github.com/sainRaghuveer> |
