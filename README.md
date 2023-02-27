@@ -93,7 +93,8 @@ Site link->https://showy-animal-7694-p91qgk02n-fullstack-crud.vercel.app
      </div>
     </li>
 </ul>
-## Below are some of the Screenshots with features of main site:
+
+## Below are some of the Screenshots with features of admin panel:-
 <ul>
     <li>
      <div>
