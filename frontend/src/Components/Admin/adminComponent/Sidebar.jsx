@@ -43,11 +43,11 @@ const Sidebar = () => {
     animate={window.innerWidth<=768?`${expanded}`:''}
     >
       {/* logo */}
-      <div className="logo">
+      <div className="logos">
         <img src={Logo} alt="logo" />
-        <span>
+        {/* <span>
           Day<span>2</span>Day
-        </span>
+        </span> */}
       </div>
 
       <div className="menu">

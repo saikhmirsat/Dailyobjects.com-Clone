@@ -88,9 +88,9 @@ const CommonSidebar = () => {
       {/* logo */}
       <div className="logo">
         <img src={Logo} alt="logo" />
-        <span>
+        {/* <span>
           Day<span>2</span>Day
-        </span>
+        </span> */}
       </div>
 
       <div className="menus">

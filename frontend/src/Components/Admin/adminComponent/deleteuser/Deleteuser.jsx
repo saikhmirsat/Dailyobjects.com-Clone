@@ -15,7 +15,7 @@ import {
 import axios from 'axios'
 
 
-function DeleteProduct({id}) {
+function DeleteUser({id}) {
     
     let _id=id;
     //  console.log(_id)
@@ -41,33 +41,19 @@ function DeleteProduct({id}) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [overlay, setOverlay] = React.useState(<OverlayOne />)
 
-
-
-//     const deleteFunc = async (id) => {
-//         try {
-//             await fetch(`https://awful-pear-bedclothes.cyclic.app/api/admin/product/${id}`, {
-//                 method: "DELETE",
-//                 headers: {
-//                     "Content-type": "application/json"
-//                 }
-//             }).then((res) => res.json())
-//                 .then((res) => console.log(res))
-//                 // .then(res => getData())
-//         } catch (err) {
-//             console.log(err)
-//         }
-//     }
-
-
     const Delete=(_id)=>{
         // console.log(_id)
-        
-        axios.delete(`https://awful-pear-bedclothes.cyclic.app/api/admin/product/${_id}`).then((res) => {
-            // console.log(res)
+        // window.location.reload();
+        axios.delete(`https://awful-pear-bedclothes.cyclic.app/api/admin/users/${_id}`,{
+            headers:{
+                "Authorization":localStorage.getItem("token")
+            }
+        }).then((res) => {
+             console.log(res)
             if(res.data.success==true){
-              window.location.reload();
+                window.location.reload();
                 toast({
-                    title: "Data deleted successful",
+                    title: "User deleted successful",
                     position: "top",
                     status: "success",
                     isClosable: true,
@@ -90,7 +76,6 @@ function DeleteProduct({id}) {
                 status: "error",
                 position: "top",
                 isClosable: true,
-                duration: 5000
               })
             }
             
@@ -114,7 +99,7 @@ function DeleteProduct({id}) {
             <ModalHeader>Delete Product</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-              <Text>Are you sure you want to delete this product....</Text>
+              <Text>Are you sure you want to delete this user....</Text>
             </ModalBody>
             <ModalFooter>
               <Button onClick={()=>{
@@ -130,4 +115,4 @@ function DeleteProduct({id}) {
   }
 
 
-  export default DeleteProduct;
+  export default DeleteUser;

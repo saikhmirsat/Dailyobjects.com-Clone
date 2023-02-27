@@ -19,7 +19,7 @@ import axios from 'axios'
 function UpdateProduct({id}) {
     
     let _id=id;
-     console.log(_id)
+    //  console.log(_id)
     const toast = useToast()
     const OverlayOne = () => (
       <ModalOverlay
@@ -81,10 +81,15 @@ function UpdateProduct({id}) {
 
 
     const Update=(id)=>{
-        console.log(newData)
-        axios.put(`https://awful-pear-bedclothes.cyclic.app/api/admin/product/${id}`,{newData}).then((res) => {
-            console.log(res)
+        // console.log(newData)
+        axios.put(`https://awful-pear-bedclothes.cyclic.app/api/admin/product/${id}`,{newData},{
+          headers:{
+            "Authorization":localStorage.getItem("token")
+          }
+        }).then((res) => {
+            // console.log(res)
             if(res.success==true){
+              window.location.reload();
                 toast({
                     title: "Data deleted successful",
                     position: "top",

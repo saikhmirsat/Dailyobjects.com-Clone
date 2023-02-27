@@ -10,7 +10,7 @@
   display: none;
 }
 
-.logo {
+.logos {
   display: flex;
   height: 5rem;
   font-weight: bold;
@@ -20,13 +20,13 @@
   justify-content: center;
   height: 4%;
 }
-.logo > span > span {
+.logos > span > span {
   color: var(--pink);
 }
 
-.logo > img {
-  width: 3rem;
-  height: 3rem;
+.logos > img {
+  width: 4rem;
+  height: 4rem;
 }
 
 
@@ -85,9 +85,7 @@
   .menuItem>span{
     display: none;
   }
-  .logo{
-    display: none;
-  }
+  
 }
 
 @media screen and (max-width: 768px) {
@@ -103,7 +101,7 @@
   .menuItem>span{
     display: block;
   }
-  .logo{
+  .logos{
     display: flex;
   }
   .menu .menuItem:last-child {
