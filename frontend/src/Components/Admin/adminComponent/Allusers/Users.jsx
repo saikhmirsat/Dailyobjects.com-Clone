@@ -29,6 +29,7 @@ import { InfinitySpin } from 'react-loader-spinner'
 import { Link as RouterLink } from "react-router-dom";
 import { Spinner } from '@chakra-ui/react'
 import Spinners from './Spinner';
+import Logo from "../../images/logo.png";
 
 
 const Links = [''];
@@ -86,7 +87,8 @@ export default function Users() {
                 <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
 
                     <HStack spacing={8} alignItems={'center'}>
-                        <Box width={"10%"}><RouterLink to={"#"}><Image width={"100%"} src='' /></RouterLink></Box>
+                        <Box width={"10%"}><RouterLink to={"/admindashboard"}><Image width={"100%"} src={Logo} /></RouterLink>
+                        </Box>
                         <HStack
                             as={'nav'}
                             spacing={4}
@@ -139,7 +141,7 @@ export default function Users() {
                     <Box p={4} gap="1rem" display="grid" marginTop={"5rem"} gridTemplateColumns={{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)", xl: "repeat(4, 1fr)" }}>
                         {
                             (!status) ? (
-                                <Spinners/>
+                                <Spinners />
                             ) :
                                 data.length > 0 && data.map((el, index) => {
                                     return <UserCard

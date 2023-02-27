@@ -298,27 +298,34 @@ export default function SimpleCard() {
                         title: "Data Added successful",
                         position: "top",
                         isClosable: true,
+                        duration: 5000
                       })
                 }else{
                     toast({
                         title: "error",
                         position: "top",
                         isClosable: true,
+                        duration: 5000
                       })
                 }
             })
             .catch((err) => console.log(err))
     }
 
+
+    const refresh=()=>{
+        window.location.reload();
+    }
     return (
         <>
             <Stack display={"block"} align={'center'}>
                 <Heading fontSize={'4xl'}>Add New Product</Heading>
                 <Text fontSize={'lg'} color={'gray.600'}>
-                    If don't want to add something <RouterLink to={"/allproducts"} color={'blue.400'}>Click here</RouterLink> ✌
+                    If don't want to add something <RouterLink to={"/allproducts"} color={'blue.400'}>
+                       <span style={{color:"#0a9286",fontWeight:"bold"}}> Click here</span></RouterLink> ✌
                 </Text>
             </Stack>
-            <Button>Refresh</Button>
+            <Button onClick={refresh}>Refresh</Button>
             <div
                 display={{ base: "grid", md: "grid", xl: "flex", "2xl": "flex" }}
                 justifycontent={{ xl: "space-around", "2xl": "space-around" }}

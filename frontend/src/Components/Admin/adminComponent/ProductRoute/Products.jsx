@@ -26,8 +26,9 @@ import { FaSearch } from 'react-icons/fa';
 import Productcard from '../Card/Productcard';
 import CommonSidebar from '../CommonSidebar/CommonSidebar';
 import Spinners from '../Allusers/Spinner';
+import Logo from "../../images/logo.png";
 
-const Links = [ ''];
+const Links = [''];
 
 const NavLink = ({ children }) => (
   <Link
@@ -49,17 +50,20 @@ export default function Products() {
   const { colorMode, toggleColorMode } = useColorMode();
   const [status, setStatus] = useState(false)
   const [data, setData] = useState([]);
-  const [product, setProduct] = useState("");
-  const [total, setTotal]=useState(0);
-
+  const [total, setTotal] = useState(0);
+  const [text, setText] = useState("")
+  const [page,setPage] = useState(1)
+  const [count, setCount]=useState();
+  
   //   https://awful-pear-bedclothes.cyclic.app/
 
-  const getData = () => {
+  const getData = (page) => {
     setStatus(false)
-    axios.get(`https://awful-pear-bedclothes.cyclic.app/api/products`).then((res) => {
+    axios.get(`https://awful-pear-bedclothes.cyclic.app/api/products?keyword=${text}&page=${page}`).then((res) => {
       console.log(res)
       setData(res.data.products);
       setTotal(res.data.productsCount);
+      setCount(res.data.resultPerPage)
       setStatus(true);
     }).catch((error) => {
       setStatus(false);
@@ -69,12 +73,14 @@ export default function Products() {
 
   useEffect(() => {
     //  console.log(data)
-    getData();
-  }, [])
+    getData(page);
+  }, [page])
 
   const handleSearch = () => {
-
+    getData();
   }
+
+  let last=Math.ceil(total/count);
 
   Links[0] = `Total_${total}`
 
@@ -84,7 +90,8 @@ export default function Products() {
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
 
           <HStack spacing={8} alignItems={'center'}>
-            <Box width={"10%"}><RouterLink to={"#"}><Image width={"100%"} src='' /></RouterLink></Box>
+            <Box width={"10%"}><RouterLink to={"/admindashboard"}><Image width={"100%"} src={Logo} /></RouterLink>
+            </Box>
             <HStack
               as={'nav'}
               spacing={4}
@@ -94,7 +101,7 @@ export default function Products() {
               ))}
             </HStack>
             <Box width={"50%"}>
-              <Input width={"50%"} value={product} onChange={(e) => setProduct(e.target.value)} placeholder={"Search"} />
+              <Input width={"50%"} value={text} onChange={(e) => setText(e.target.value)} placeholder={"Search"} />
               <Button onClick={() => handleSearch()}><FaSearch width={"20px"} /></Button>
             </Box>
           </HStack>
@@ -133,7 +140,7 @@ export default function Products() {
       {/* <h1 style={{fontSize:"30px", textAlign:"left",fontWeight:"bolder",padding:"20px"}}>Products</h1> */}
       <div style={{ display: "flex", flexBasis: "row", width: "100%" }}>
         <CommonSidebar />
-        <Box margin={{ base: "0px 0px 0px 30px ", md: "0px 0px 0px 160px", xl: " 0px 0px 0px 180px", "2xl": " 0px 0px 0px 250px" }} style={{ width: "80%" }}>
+        <Box margin={{ base: "0px 0px 0px 30px ", md: "0px 0px 0px 200px", xl: " 0px 0px 0px 180px", "2xl": " 0px 0px 0px 250px" }} style={{ width: "80%" }}>
           <Box p={4} gap="1rem" display="grid" marginTop={"5rem"} gridTemplateColumns={{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)", xl: "repeat(4, 1fr)" }}>
             {
               (!status) ? (
@@ -146,8 +153,19 @@ export default function Products() {
                   />
                 })
             }
-
+            
           </Box>
+          <Box margin={"auto"} m={"20px"}><Button
+          m={"5px"}
+              onClick={() => setPage(page => page - 1)}
+              disabled={page <= 1}
+            >Prev</Button>
+            <Button>{page}</Button>
+             <Button
+             m={"5px"}
+              onClick={() => setPage(page => page + 1)}
+              disabled={page==last}
+            >Next</Button></Box>
         </Box>
       </div>
 

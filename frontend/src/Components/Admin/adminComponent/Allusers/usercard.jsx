@@ -8,6 +8,7 @@ import {
     Image,
     Button,
   } from '@chakra-ui/react';
+import DeleteUser from '../deleteuser/Deleteuser';
 
   
   const IMAGE =
@@ -77,7 +78,13 @@ import {
               </Text>
             </Stack>
           </Stack>
+          <Box style={{marginTop:"20px"}}>
+          <DeleteUser
+          id={_id}
+          />
+          </Box>
         </Box>
+
       </Center>
     );
   }
