@@ -93,4 +93,42 @@ Site link->https://showy-animal-7694-p91qgk02n-fullstack-crud.vercel.app
      </div>
     </li>
 </ul>
-
+## Below are some of the Screenshots with features of main site:
+<ul>
+    <li>
+     <div>
+         <h4>Dashboard</h4>
+          <img src="https://user-images.githubusercontent.com/110044436/221498536-48c73597-00c3-4188-8636-f6250c9feb24.png" alt=" homepage"/>
+     </div>
+    </li>
+     <li>
+     <div>
+         <h4>Userpage</h4>
+          <img src="https://user-images.githubusercontent.com/110044436/221498679-db2fde3f-f1aa-4fbd-8992-f539dad20125.png" alt="userpage"/>
+     </div>
+    </li>
+     <li>
+     <div>
+         <h4>Product Page</h4>
+          <img src="https://user-images.githubusercontent.com/110044436/221498987-629003c7-e008-43ac-8475-081c336e696f.png" alt="product"/>
+     </div>
+    </li>
+    <li>
+     <div>
+         <h4>Add Product Page</h4>
+          <img src="https://user-images.githubusercontent.com/110044436/221499382-b52d345f-f02c-488e-961d-c4623a86f58c.png" alt="addproduct"/>
+     </div>
+    </li>
+    <li>
+     <div>
+         <h4>Delete Product Page</h4>
+          <img src="https://user-images.githubusercontent.com/110044436/221499601-c1fba63c-f543-4912-8fe6-df31c7dc00f0.png" alt="delete"/>
+     </div>
+    </li>
+    <li>
+     <div>
+         <h4>Update Product Page</h4>
+          <img src="https://user-images.githubusercontent.com/110044436/221499889-e3833e60-ad37-4b2d-991a-e3670ea249a2.png" alt="update"/>
+     </div>
+    </li>
+</ul>
