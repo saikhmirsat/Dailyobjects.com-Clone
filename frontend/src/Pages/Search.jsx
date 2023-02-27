@@ -5,12 +5,10 @@ import '../Styles/Search.css'
 import { SimpleGrid } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import Navbar from '../Components/Navbar'
-import { Skeleton, Stack } from '@chakra-ui/react'
 
 export default function Search() {
 
     const [loading, setLoading] = useState(false)
-
     const [data, setData] = useState([])
     const [text, setText] = useState(undefined)
     console.log(data)
@@ -46,22 +44,11 @@ export default function Search() {
                 transition={{ duration: 1 }}
                 type="text" placeholder='search' onChange={(e) => setText(e.target.value)} />
             {/* <button onClick={searchFunc}>Search</button> */}
-
-            {
-                loading ?
-                    <div className='search-page-loading'>
-                        <img src="https://media.tenor.com/YPOStjIfQ2IAAAAM/loading-waiting.gif" alt="" />
-                    </div>
-                    :
-                    <SimpleGrid columns={[2, 3, 4]} spacing="15px">
-                        {
-                            data && data.map((item) => {
-                                return (<ProductCard key={item._id} id={item._id} item={item} />)
-                            })}
-                    </SimpleGrid>
-            }
-
-
+            <SimpleGrid columns={[2, 3, 4]} spacing="15px">
+                {data && data.map((item) => {
+                    return (<ProductCard key={item._id} id={item._id} item={item} />)
+                })}
+            </SimpleGrid>
         </div>
 
 

@@ -2,7 +2,7 @@ import React from 'react'
 import '../Styles/Cart.css'
 import redeem from '../Images/redeem.png'
 import coupan from '../Images/coupan.png'
-import { Heading } from '@chakra-ui/react'
+import { Heading, Spinner } from '@chakra-ui/react'
 import {
     Modal,
     ModalOverlay,
@@ -12,9 +12,7 @@ import {
     ModalBody,
     ModalCloseButton,
     useDisclosure,
-    Button,
-    useToast,
-    Spinner
+    Button
 } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { useState } from 'react'
@@ -30,7 +28,7 @@ export default function Cart() {
 
     const [fullname, setFullname] = useState("")
     const [phoneNo, setPhoneNo] = useState("")
-    const [pincode, setPinCode] = useState("")
+    const [pinCode, setPinCode] = useState("")
     const [city, setCity] = useState("")
     const [state, setState] = useState("")
     const [country, setCountry] = useState("")
@@ -39,37 +37,33 @@ export default function Cart() {
     const [landmark, setLandmark] = useState("")
 
 
-    const toast = useToast()
+
     const navigate = useNavigate()
 
     console.log(data)
 
     const getData = async () => {
-        setLoading(true)
         await fetch(`https://awful-pear-bedclothes.cyclic.app/api/cart/me`, {
             headers: {
                 "Authorization": localStorage.getItem('token')
             }
         })
             .then((res) => res.json())
-            .then((res) => {
-                setData(res.cart)
-                setLoading(false)
-            })
+            .then((res) => setData(res.cart))
             .catch((err) => console.log(err))
 
     }
 
     let sum = 0;
-    data && data.forEach((item) => {
-        return sum += item.price * item.quantity;
+    data && data.forEach((item) =>{
+        return sum += item.price*item.quantity;
     })
 
     let dis_sum = 0;
-    data && data.forEach((item) => {
-        return dis_sum += item.discounted_price - item.price;
+    data && data.forEach((item) =>{
+        return dis_sum += item.discounted_price-item.price;
     })
-    console.log(sum)
+console.log(sum)
     useEffect(() => {
         getData()
     }, [])
@@ -90,35 +84,18 @@ export default function Cart() {
     }
 
     const AddressSubmit = () => {
-        const payload = {
-            fullname,
-            phoneNo,
-            pincode,
-            city,
-            state,
-            country,
-            address,
-            area,
-            landmark
-        }
-
-        let orderItems = {
-            price: sum,
-            discounted_price: dis_sum
-        }
-        console.log(payload)
-        localStorage.setItem('shippingInfo', JSON.stringify(payload))
-        localStorage.setItem('orderItems', JSON.stringify(orderItems))
-
-        toast({
-            title: 'Your Shipping Address added successful',
-            description: "",
-            position: "top",
-            status: 'success',
-            duration: 5000,
-            isClosable: true,
-        })
-        navigate('/checkout-address')
+        // const payload = {
+        //     fullname,
+        //     phoneNo,
+        //     pinCode,
+        //     city,
+        //     state,
+        //     country,
+        //     address,
+        //     area,
+        //     landmark
+        // }
+        // console.log(payload)
 
         // try {
         //     console.log(payload)
@@ -138,7 +115,7 @@ export default function Cart() {
         //     console.log(err)
         //     alert("Something Wrong")
         // }
-
+        navigate('/checkout-address')
     }
 
     return (

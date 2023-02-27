@@ -17,7 +17,7 @@ import '../Styles/Footer.css'
 const MobileFooter = () => {
   return (
     <div className='mobile-Footer'>
-      <Box w="100%">
+      <Box >
         <Box>
           <Heading fontSize={{ base: '15px', md: '25px', lg: '30px' }} textAlign={"left"} mt="20px" ml="20px">FEATURED IN</Heading>
         </Box>

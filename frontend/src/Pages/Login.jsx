@@ -18,8 +18,7 @@ import {
     Text,
     useColorModeValue,
     useDisclosure,
-    Spinner,
-    useToast
+    Spinner
 } from '@chakra-ui/react';
 import {
     Modal,
@@ -44,8 +43,6 @@ export default function Login() {
 
     const navigate = useNavigate()
 
-    const toast = useToast()
-
     let token;
     const LoginFunc = () => {
         const payload = {
@@ -69,6 +66,7 @@ export default function Login() {
                         date.setTime(date.getTime() + (7 * 24 * 60 * 60 * 1000))
                         const expires = date.toUTCString()
                         document.cookie = `${encodeURIComponent("token")}=${encodeURIComponent(res.token)};expires=${expires};path=/`
+                        alert("User Successfully logedin")
                         localStorage.setItem("userId", JSON.stringify(res.user._id))
                         localStorage.setItem("isAuth", true)
                         localStorage.setItem("token", res.token)
@@ -76,44 +74,19 @@ export default function Login() {
                         localStorage.setItem("user", JSON.stringify(res.user))
                         let user = res.user.role
                         setLoading(false)
-
-
                         if (user == "admin") {
-                            toast({
-                                position: 'top',
-                                title: "Admin Login Successful.",
-                                description: `Hello ${res.user.firstName}`,
-                                status: 'success',
-                                duration: 9000,
-                                isClosable: true,
-                            })
                             navigate('/admindashboard')
                         }
                         if (user == 'user') {
-                            toast({
-                                position: 'top',
-                                title: `${res.user.firstName} Your Login Successful.`,
-                                description: `Welcome`,
-                                status: 'success',
-                                duration: 9000,
-                                isClosable: true,
-                            })
                             navigate('/')
                         }
                     } else {
                         setLoading(false)
-                        toast({
-                            position: 'top',
-                            title: `${res.message} `,
-                            description: `something went wrong please try again`,
-                            status: 'error',
-                            duration: 9000,
-                            isClosable: true,
-                        })
+                        alert(res.message)
                     }
 
                 })
-                .catch((err) => { console.log(err) })
+                .catch((err) => console.log(err))
 
         } catch (err) {
             console.log(err)

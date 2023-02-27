@@ -18,8 +18,7 @@ import {
     Text,
     useColorModeValue,
     Link,
-    Spinner,
-    useToast
+    Spinner
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import Navbar from '../Components/Navbar'
@@ -35,8 +34,6 @@ export default function Register() {
     const [email, setEmail] = useState("")
     const [mobile, setMobile] = useState("")
 
-    const toast = useToast()
-    const statuses = ['success', 'error', 'warning', 'info']
 
 
 
@@ -59,38 +56,17 @@ export default function Register() {
                 .then((res) => {
                     setLoading(false)
                     if (res.success) {
+                        alert("Register")
                         navigate('/login')
-                        toast({
-                            position: 'top',
-                            title: "Account created.",
-                            description: "We've created your account for you.",
-                            status: 'success',
-                            duration: 9000,
-                            isClosable: true,
-                        })
                         console.log(res)
                     } else {
-                        toast({
-                            position: 'top',
-                            title: `${res.message}`,
-                            description: "Something went wrong please try again",
-                            status: 'error',
-                            duration: 9000,
-                            isClosable: true,
-                        })
+                        alert(res.message)
                     }
 
                 })
         } catch (err) {
             console.log(err)
-            toast({
-                position: 'top',
-                title: `${err}`,
-                description: "Something went wrong please try again",
-                status: 'error',
-                duration: 9000,
-                isClosable: true,
-            })
+            alert("Something Wrong")
         }
 
     }

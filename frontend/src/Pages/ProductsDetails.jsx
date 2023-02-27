@@ -109,10 +109,10 @@ const ProductsDetails = () => {
     </InputGroup>
         </Box>
         <Box>
-            <Box>delivery.png
+            {/* <Box>delivery.png
 Dispatch to Courier in 3-4 Days.
 cod.png
-COD Available</Box>
+COD Available</Box> */}
 <Box></Box>
         </Box>
         <Box>
