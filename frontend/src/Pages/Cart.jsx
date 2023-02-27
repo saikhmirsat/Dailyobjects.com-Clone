@@ -128,35 +128,44 @@ console.log(sum)
             <div className='cart-prod-main-div'>
                 <div className='cart-prod-child1'>
                     {
-                        data && data.map((ele) =><div key={ele._id} className='cart-child1-card-div'>
-                            <div>
-                                <img src={ele.image_url} alt="" />
-                            </div>
-                            <div>
-                                <p>{ele.title}</p>
-                                <div style={{ display: "flex", gap: "20px" }}>
+                        loading ? <Spinner
+                            thickness='4px'
+                            speed='0.65s'
+                            emptyColor='gray.200'
+                            color='blue.500'
+                            size='xl'
+                        /> :
+                            data.length > 0 ? data && data.map((ele) => <div key={ele._id} className='cart-child1-card-div'>
+                                <div>
+                                    <img src={ele.image_url} alt="" />
+                                </div>
+                                <div>
+                                    <p>{ele.title}</p>
+                                    <div style={{ display: "flex", gap: "20px" }}>
 
-                                    <h4>Rs.{ele.price}</h4> <p style={{ color: "gray", textDecoration: "line-through" }}>{ele.discount}</p>
-                                </div>
-                                <div className='cart-quntity-btn-box'>
-                                    <div className='cart-plus-minus'>
-                                        <div>
-                                            <button>-</button>
-                                        </div>
-                                        <div>
-                                            <p>{ele.quantity}</p>
-                                        </div>
-                                        <div>
-                                            <button>+</button>
-                                        </div>
+                                        <h4>Rs.{ele.price}</h4> <p style={{ color: "gray", textDecoration: "line-through" }}>{ele.discount}</p>
                                     </div>
-                                    <div></div>
-                                    <button className='cart-delete-btn' onClick={() => deleteFunc(ele._id)}>
-                                        <img src="https://images.dailyobjects.com/marche/icons/bin.png?tr=cm-pad_resize,v-2,w-20,dpr-2,q-60" alt="" />
-                                    </button>
+                                    <div className='cart-quntity-btn-box'>
+                                        <div className='cart-plus-minus'>
+                                            <div>
+                                                <button>-</button>
+                                            </div>
+                                            <div>
+                                                <p>{ele.quantity}</p>
+                                            </div>
+                                            <div>
+                                                <button>+</button>
+                                            </div>
+                                        </div>
+                                        <div></div>
+                                        <button className='cart-delete-btn' onClick={() => deleteFunc(ele._id)}>
+                                            <img src="https://images.dailyobjects.com/marche/icons/bin.png?tr=cm-pad_resize,v-2,w-20,dpr-2,q-60" alt="" />
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>)
+                            </div>)
+                                :
+                                <Heading>Donts have any products</Heading>
                     }
                 </div>
                 <div className='cart-prod-child2'>

@@ -57,7 +57,7 @@ const Navbar = () => {
           </Box>
 
           <Box display="flex" alignItems='center' gap="30px" >
-            <Link to='/cart' ><BsHandbag size='20' /></Link>
+            <Link className="nav-car-div" to='/cart' ><BsHandbag size='20' />{cart > 0 ? <Heading as='p' size="sm">{cart}</Heading> : ""}</Link>
             <Link to={checkIsAuth ? checkAdmin == "admin" ? '/admindashboard' : '/userprofile' : '/register'}><BsPerson size='23' /></Link>
             <Link to='/search'><TfiSearch size='20' /></Link>
           </Box>
