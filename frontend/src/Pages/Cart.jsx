@@ -2,7 +2,7 @@ import React from 'react'
 import '../Styles/Cart.css'
 import redeem from '../Images/redeem.png'
 import coupan from '../Images/coupan.png'
-import { Heading } from '@chakra-ui/react'
+import { Heading, Spinner } from '@chakra-ui/react'
 import {
     Modal,
     ModalOverlay,
