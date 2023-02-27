@@ -12,9 +12,7 @@ import {
     ModalBody,
     ModalCloseButton,
     useDisclosure,
-    Button,
-    useToast,
-    Spinner
+    Button
 } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { useState } from 'react'
@@ -30,7 +28,7 @@ export default function Cart() {
 
     const [fullname, setFullname] = useState("")
     const [phoneNo, setPhoneNo] = useState("")
-    const [pincode, setPinCode] = useState("")
+    const [pinCode, setPinCode] = useState("")
     const [city, setCity] = useState("")
     const [state, setState] = useState("")
     const [country, setCountry] = useState("")
@@ -39,37 +37,33 @@ export default function Cart() {
     const [landmark, setLandmark] = useState("")
 
 
-    const toast = useToast()
+
     const navigate = useNavigate()
 
     console.log(data)
 
     const getData = async () => {
-        setLoading(true)
         await fetch(`https://awful-pear-bedclothes.cyclic.app/api/cart/me`, {
             headers: {
                 "Authorization": localStorage.getItem('token')
             }
         })
             .then((res) => res.json())
-            .then((res) => {
-                setData(res.cart)
-                setLoading(false)
-            })
+            .then((res) => setData(res.cart))
             .catch((err) => console.log(err))
 
     }
 
     let sum = 0;
-    data && data.forEach((item) => {
-        return sum += item.price * item.quantity;
+    data && data.forEach((item) =>{
+        return sum += item.price*item.quantity;
     })
 
     let dis_sum = 0;
-    data && data.forEach((item) => {
-        return dis_sum += item.discounted_price - item.price;
+    data && data.forEach((item) =>{
+        return dis_sum += item.discounted_price-item.price;
     })
-    console.log(sum)
+console.log(sum)
     useEffect(() => {
         getData()
     }, [])
@@ -90,35 +84,18 @@ export default function Cart() {
     }
 
     const AddressSubmit = () => {
-        const payload = {
-            fullname,
-            phoneNo,
-            pincode,
-            city,
-            state,
-            country,
-            address,
-            area,
-            landmark
-        }
-
-        let orderItems = {
-            price: sum,
-            discounted_price: dis_sum
-        }
-        console.log(payload)
-        localStorage.setItem('shippingInfo', JSON.stringify(payload))
-        localStorage.setItem('orderItems', JSON.stringify(orderItems))
-
-        toast({
-            title: 'Your Shipping Address added successful',
-            description: "",
-            position: "top",
-            status: 'success',
-            duration: 5000,
-            isClosable: true,
-        })
-        navigate('/checkout-address')
+        // const payload = {
+        //     fullname,
+        //     phoneNo,
+        //     pinCode,
+        //     city,
+        //     state,
+        //     country,
+        //     address,
+        //     area,
+        //     landmark
+        // }
+        // console.log(payload)
 
         // try {
         //     console.log(payload)
@@ -138,7 +115,7 @@ export default function Cart() {
         //     console.log(err)
         //     alert("Something Wrong")
         // }
-
+        navigate('/checkout-address')
     }
 
     return (
@@ -151,42 +128,35 @@ export default function Cart() {
             <div className='cart-prod-main-div'>
                 <div className='cart-prod-child1'>
                     {
-                        loading ? <Spinner
-                            thickness='4px'
-                            speed='0.65s'
-                            emptyColor='gray.200'
-                            color='blue.500'
-                            size='xl'
-                        /> :
-                            data && data.map((ele) => <div key={ele._id} className='cart-child1-card-div'>
-                                <div>
-                                    <img src={ele.image_url} alt="" />
-                                </div>
-                                <div>
-                                    <p>{ele.title}</p>
-                                    <div style={{ display: "flex", gap: "20px" }}>
+                        data && data.map((ele) =><div key={ele._id} className='cart-child1-card-div'>
+                            <div>
+                                <img src={ele.image_url} alt="" />
+                            </div>
+                            <div>
+                                <p>{ele.title}</p>
+                                <div style={{ display: "flex", gap: "20px" }}>
 
-                                        <h4>Rs.{ele.price}</h4> <p style={{ color: "gray", textDecoration: "line-through" }}>{ele.discount}</p>
-                                    </div>
-                                    <div className='cart-quntity-btn-box'>
-                                        <div className='cart-plus-minus'>
-                                            <div>
-                                                <button>-</button>
-                                            </div>
-                                            <div>
-                                                <p>{ele.quantity}</p>
-                                            </div>
-                                            <div>
-                                                <button>+</button>
-                                            </div>
-                                        </div>
-                                        <div></div>
-                                        <button className='cart-delete-btn' onClick={() => deleteFunc(ele._id)}>
-                                            <img src="https://images.dailyobjects.com/marche/icons/bin.png?tr=cm-pad_resize,v-2,w-20,dpr-2,q-60" alt="" />
-                                        </button>
-                                    </div>
+                                    <h4>Rs.{ele.price}</h4> <p style={{ color: "gray", textDecoration: "line-through" }}>{ele.discount}</p>
                                 </div>
-                            </div>)
+                                <div className='cart-quntity-btn-box'>
+                                    <div className='cart-plus-minus'>
+                                        <div>
+                                            <button>-</button>
+                                        </div>
+                                        <div>
+                                            <p>{ele.quantity}</p>
+                                        </div>
+                                        <div>
+                                            <button>+</button>
+                                        </div>
+                                    </div>
+                                    <div></div>
+                                    <button className='cart-delete-btn' onClick={() => deleteFunc(ele._id)}>
+                                        <img src="https://images.dailyobjects.com/marche/icons/bin.png?tr=cm-pad_resize,v-2,w-20,dpr-2,q-60" alt="" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>)
                     }
                 </div>
                 <div className='cart-prod-child2'>

@@ -36,10 +36,7 @@ export default function CheckoutPayment() {
         localStorage.setItem("card", JSON.stringify(payload))
         navigate('/loading')
 
-
     }
-
-
 
     return (
         <div>
