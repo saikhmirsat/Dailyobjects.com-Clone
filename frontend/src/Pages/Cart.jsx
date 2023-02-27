@@ -158,7 +158,7 @@ export default function Cart() {
                             color='blue.500'
                             size='xl'
                         /> :
-                            data && data.map((ele) => <div key={ele._id} className='cart-child1-card-div'>
+                            data.length > 0 ? data && data.map((ele) => <div key={ele._id} className='cart-child1-card-div'>
                                 <div>
                                     <img src={ele.image_url} alt="" />
                                 </div>
@@ -187,6 +187,8 @@ export default function Cart() {
                                     </div>
                                 </div>
                             </div>)
+                                :
+                                <Heading>Donts have any products</Heading>
                     }
                 </div>
                 <div className='cart-prod-child2'>
