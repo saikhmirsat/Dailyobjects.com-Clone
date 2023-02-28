@@ -15,7 +15,7 @@ import {
 import axios from 'axios'
 
 
-function DeleteProduct({id}) {
+function DeleteProduct({id,getData}) {
     
     let _id=id;
     //  console.log(_id)
@@ -62,10 +62,10 @@ function DeleteProduct({id}) {
     const Delete=(_id)=>{
         // console.log(_id)
         
-        axios.delete(`https://awful-pear-bedclothes.cyclic.app/api/admin/product/${_id}`).then((res) => {
+        axios.delete(`https://awful-pear-bedclothes.cyclic.app/api/admin/delete/${_id}`).then((res) => {
             // console.log(res)
             if(res.data.success==true){
-              window.location.reload();
+                getData();
                 toast({
                     title: "Data deleted successful",
                     position: "top",

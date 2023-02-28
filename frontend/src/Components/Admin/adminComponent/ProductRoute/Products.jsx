@@ -60,7 +60,7 @@ export default function Products() {
   const getData = (page) => {
     setStatus(false)
     axios.get(`https://awful-pear-bedclothes.cyclic.app/api/products?keyword=${text}&page=${page}`).then((res) => {
-      console.log(res)
+      // console.log(res)
       setData(res.data.products);
       setTotal(res.data.productsCount);
       setCount(res.data.resultPerPage)
@@ -150,6 +150,7 @@ export default function Products() {
                   return <Productcard
                     key={index}
                     {...el}
+                    getData={getData}
                   />
                 })
             }
