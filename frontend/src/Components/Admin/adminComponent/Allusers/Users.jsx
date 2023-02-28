@@ -147,6 +147,7 @@ export default function Users() {
                                     return <UserCard
                                         key={index}
                                         {...el}
+                                        getData={getData}
                                     />
                                 })
                         }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
     Modal,
     ModalOverlay,
@@ -15,7 +15,7 @@ import {
 import axios from 'axios'
 
 
-function DeleteUser({id}) {
+function DeleteUser({id,getData}) {
     
     let _id=id;
     //  console.log(_id)
@@ -51,7 +51,8 @@ function DeleteUser({id}) {
         }).then((res) => {
              console.log(res)
             if(res.data.success==true){
-                window.location.reload();
+                // window.location.reload();
+                getData();
                 toast({
                     title: "User deleted successful",
                     position: "top",
@@ -81,6 +82,10 @@ function DeleteUser({id}) {
             
         });
     }
+
+    // useEffect(()=>{
+    //   getData();
+    // });
   
     return (
       <>

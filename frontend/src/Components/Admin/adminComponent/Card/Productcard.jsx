@@ -15,7 +15,7 @@ import UpdateProduct from '../UpdateProduct/UpdateProduct';
   const IMAGE =
     'https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?w=2000';
   
-  export default function Productcard({_id,title,category,color,description,discounted_price,images,numofReviews,price,ratings,reviews,stock}) {
+  export default function Productcard({_id,getData,title,category,color,description,discounted_price,images,numofReviews,price,ratings,reviews,stock}) {
 
 
     return (
@@ -96,9 +96,11 @@ import UpdateProduct from '../UpdateProduct/UpdateProduct';
           <Box style={{display:"flex", justifyContent:"space-between", marginTop:"20px"}}>
           <DeleteProduct
           id={_id}
+          getData={getData}
           />
           <UpdateProduct
           id={_id}
+          getData={getData}
           />
           </Box>
         </Box>

@@ -14,7 +14,7 @@ import DeleteUser from '../deleteuser/Deleteuser';
   const IMAGE =
     'https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?w=2000';
   
-  export default function UserCard({_id,email,firstName,role}) {
+  export default function UserCard({_id,email,firstName,role,getData}) {
 
 
     return (
@@ -81,6 +81,7 @@ import DeleteUser from '../deleteuser/Deleteuser';
           <Box style={{marginTop:"20px"}}>
           <DeleteUser
           id={_id}
+          getData={getData}
           />
           </Box>
         </Box>
