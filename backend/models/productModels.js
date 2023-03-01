@@ -27,6 +27,9 @@ const productSchema=new mongoose.Schema({
             },
             content:{
                 type:String,
+            },
+            img_url:{
+                type:String
             }
         }
     ],
@@ -68,10 +71,6 @@ const productSchema=new mongoose.Schema({
     ],
     images:[
         {
-            public_id:{
-                type:String,
-                required:true
-            },
             url:{
                 type:String,
                 required:true
@@ -102,12 +101,14 @@ const productSchema=new mongoose.Schema({
     user:{
         type:mongoose.Schema.ObjectId,
         ref:"User",
-        required:true,
     },
     countryoforigin:{
         type:String
     },
     status:{
+        type:String
+    },
+    offer:{
         type:String
     }
 

@@ -6,21 +6,33 @@ const User = require("../models/userModels")
 
 exports.isAutheticatedUser= catchAsyncErrors(async(req,res,next)=>{
     
-    const {token}=req.cookies
+const token=req.headers.authorization
 
+    if(!token){
+        return next(new ErrorHandler("Please login to access this resource",401))
+    }
 
-   if(!token){
-    return next(new ErrorHandler("Please Login to access this resource",401))
-   }
+    const decodedData=jwt.verify(token,process.env.JWT_SECRET)
 
-   const decodedData=jwt.verify(token,process.env.JWT_SECRET)
+    req.user=await User.findById(decodedData.id);
 
-   req.user=await User.findById(decodedData.id);
-
-   next();
-
+    next()
 
 })
+
+//     const {token}=req.cookies
+
+
+//    if(!token){
+//     return next(new ErrorHandler("Please Login to access this resource",401))
+//    }
+
+//    const decodedData=jwt.verify(token,process.env.JWT_SECRET)
+
+//    req.user=await User.findById(decodedData.id);
+
+//    next();
+
 
 exports.authorizeRoles=(...roles)=>{
 
@@ -32,3 +44,6 @@ exports.authorizeRoles=(...roles)=>{
         next()
     }
 }
+
+
+
