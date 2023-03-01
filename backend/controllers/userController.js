@@ -1,7 +1,7 @@
 const ErrorHandler = require("../utils/errorhandler");
 const catchAsyncErrors=require("../middleware/catchAsyncErrors")
 const User=require("../models/userModels");
-const sendToken = require("../utils/jwttoken");
+const sendToken = require("../utils/jwtToken");
 const sendEmail=require("../utils/sendEmail")
 const crypto=require("crypto")
 const cloudinary=require("cloudinary")
@@ -10,12 +10,7 @@ const cloudinary=require("cloudinary")
 
 exports.registerUser=catchAsyncErrors(async(req,res,next)=>{
 
-    const myCloud=await cloudinary.v2.uploader.upload(req.body.avatar,{
-        folder:"avatars",
-        width:150,
-        crop:"scale",
 
-    })
 
     const { firstName, email, password }=req.body
 
@@ -24,12 +19,9 @@ exports.registerUser=catchAsyncErrors(async(req,res,next)=>{
     const user=await User.create({
         firstName,
         email,
-        password,
-        avatar:{
-            public_id:myCloud.public_id,
-            url:myCloud.secure_url
-        }
+        password
     })
+
 
     sendToken(user,201,res)
 })
@@ -89,7 +81,9 @@ exports.forgotPassword=catchAsyncErrors(async(req,res,next)=>{
 
     await user.save({validateBeforeSave:false})
 
-    const resetPasswordurl=`${req.protocol}://${req.get("host")}/api/password/reset/${resetToken}`
+    const resetPasswordurl=`https://showy-animal-7694.vercel.app/resetpassword/${resetToken}`
+
+    // const resetPasswordurl=`${req.protocol}:/${req.get("host")}/api/password/reset/${resetToken}`
 
     const message=`Your password reset token is :- \n\n${resetPasswordurl}\n\nIf you have not requested this email then, please ignore it`
     
@@ -101,7 +95,8 @@ exports.forgotPassword=catchAsyncErrors(async(req,res,next)=>{
         })
         res.status(200).json({
             success:true,
-            message:`Email sent to ${user.email} successfully`
+            message:`Email sent to ${user.email} successfully`,
+            resetToken
         })
 
     } catch (error) {
