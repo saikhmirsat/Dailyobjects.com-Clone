@@ -81,6 +81,7 @@ export default function Products() {
   }
 
   let last=Math.ceil(total/count);
+  console.log(last)
 
   Links[0] = `Total_${total}`
 
@@ -165,7 +166,7 @@ export default function Products() {
              <Button
              m={"5px"}
               onClick={() => setPage(page => page + 1)}
-              disabled={page==last}
+              disabled={page==7}
             >Next</Button></Box>
         </Box>
       </div>
