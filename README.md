@@ -48,7 +48,7 @@ All collaborators list with their profile link.
 
 ## Links
 
-Site link->https://showy-animal-7694-p91qgk02n-fullstack-crud.vercel.app
+Site link->https://showy-animal-7694.vercel.app/
 
 ## Below are some of the Screenshots with features of main site:
 <ul>
