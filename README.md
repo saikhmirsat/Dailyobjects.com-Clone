@@ -1,5 +1,5 @@
 # Day2Day
-Welcome to Day2Day, It is a E-commerce application that helps users to buy various lifestyle Accessories Brand that curates stunning designs and prints it on a wide range of personal accessories. We vision to bring the things you love on the things you use.
+Welcome to Day2Day, It is an E-commerce application that helps users buy various lifestyle Accessories Brand that curate stunning designs and print it on a wide range of personal accessories. We vision to bring the things you love to the things you use.
 
 ## Features
 * Products search: Day2Day allows users to search products dynamically.
